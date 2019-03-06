@@ -3,7 +3,9 @@
         <textarea>
             some code
         </textarea>
-        <lang-switch></lang-switch>
+        <div>
+            <lang-switch></lang-switch>
+        </div>
         <button>Copy to clipboard</button>
     </div>
 </template>

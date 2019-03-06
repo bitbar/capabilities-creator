@@ -1,8 +1,8 @@
 <template>
     <select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
+        <option>some value 1</option>
+        <option>some value 2</option>
+        <option>some value 3</option>
     </select>
 </template>
 

@@ -1,7 +1,6 @@
 <template>
     <div>
-        <input type="text" v-model="message"/>
-        <p>{{ message }}</p>
+        <input type="text" />
     </div>
 </template>
 
@@ -9,7 +8,7 @@
     export default {
         data() {
             return {
-                message: ''
+
             }
         }
     }

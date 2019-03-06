@@ -27,22 +27,22 @@
         </div>
         <div>
             <p>Project name</p>
-            <app-input></app-input>
+            <data-input></data-input>
         </div>
         <div>
             <p>Test run name</p>
-            <app-input></app-input>
+            <data-input></data-input>
         </div>
     </div>
 </template>
 
 <script>
-    import Input from './Input.vue'
+    import Input from './DataInput.vue'
     import Select from './DataSelect.vue'
     export default {
         name: "PropertiesSetter",
         components: {
-            'app-input': Input,
+            'data-input': Input,
             'data-select': Select
         }
     }
