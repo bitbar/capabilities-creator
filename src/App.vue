@@ -1,5 +1,8 @@
 <template>
     <div class="full-width center-content">
-        <h1>Bitbar Capabilities Creator</h1>
+        <props-setter></props-setter>
+        <div>
+            <code-editor></code-editor>
+        </div>
     </div>
 </template>
