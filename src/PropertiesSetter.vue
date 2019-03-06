@@ -3,47 +3,60 @@
         <h1>Capabilities creator</h1>
         <div>
             <p>Device</p>
-            <data-select></data-select>
+            <drop-down v-model="capability.device"></drop-down>
         </div>
         <div>
             <p>OS</p>
-            <data-select></data-select>
+            <drop-down v-model="capability.osType"></drop-down>
         </div>
         <div>
             <p>Screen resolution</p>
-            <data-select></data-select>
+            <drop-down v-model="capability.screenRes"></drop-down>
         </div>
         <div>
             <p>
-                <input type="checkbox" />
-                <label>user API key</label>
+                <input type="checkbox" id="apiKey" v-model="capability.useApiKey"/>
+                <label for="apiKey">user API key</label>
             </p>
         </div>
         <div>
             <p>
-                <input type="checkbox" />
-                <label>basic sample</label>
+                <input type="checkbox" id="basicSample" v-model="capability.basicSample"/>
+                <label for="basicSample">basic sample</label>
             </p>
         </div>
         <div>
             <p>Project name</p>
-            <data-input></data-input>
+            <input type="text" v-model="capability.projectName"/>
         </div>
         <div>
             <p>Test run name</p>
-            <data-input></data-input>
+            <input type="text" v-model="capability.testRunName"/>
         </div>
     </div>
 </template>
 
 <script>
-    import Input from './DataInput.vue'
-    import Select from './DataSelect.vue'
+    import DropDown from './Dropdown.vue'
     export default {
         name: "PropertiesSetter",
         components: {
-            'data-input': Input,
-            'data-select': Select
+            'drop-down': DropDown
+        },
+        data () {
+            return {
+                capability: {
+                     device: '',
+                     osType: null,
+                     screenRes: '',
+                     useApiKey: false,
+                     basicSample: false,
+                     projectName: '',
+                     testRunName: ''
+                 },
+                lang: '',
+                capabilityCode: ''
+            }
         }
     }
 </script>
