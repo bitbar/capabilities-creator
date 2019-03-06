@@ -1,7 +1,6 @@
 <template>
     <div id="propertiesSetter">
         <h1>Capabilities creator</h1>
-        {{ capability }}
         <div>
             <p>Device</p>
             <drop-down v-model="capability.device"></drop-down>
