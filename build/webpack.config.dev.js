@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -42,6 +43,16 @@ module.exports = {
             filename: 'index.html',
             template: 'index.html',
             inject: true
-        })
+        }),
+        new BrowserSyncPlugin(
+            {
+                host: 'localhost',
+                port: 3000,
+                proxy: 'http://localhost:3100/'
+            },
+            {
+                reload: false
+            }
+        )
     ]
 };

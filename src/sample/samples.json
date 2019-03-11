@@ -1,0 +1,88 @@
+{
+  "contexts": [
+    {
+      "matches":{
+        "language": "java"
+      },
+      "values":{
+        "WRAPPER": "DesiredCapabilities caps = new DesiredCapabilities();\n%{x}\n",
+        "CAPABILITY_PLATFORM": "caps.SetCapability('platform', '%{x}');",
+        "CAPABILITY_BROWSER_NAME": "caps.SetCapability('browser_name', '%{x}');",
+        "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browser_version', '%{x}');",
+        "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbar_project', '%{x}');",
+        "CAPABILITY_RESOLUTION": "caps.SetCapability('resolution', '%{x}');",
+        "CAPABILITY_API_KEY": "caps.SetCapability('api_key', '%{x}')"
+      }
+    },
+    {
+      "matches":{
+        "language": "python"
+      },
+      "values":{
+        "WRAPPER": "desired_capabilities = {\n%{x}\n}",
+        "CAPABILITY_PLATFORM": "\t'platform': '%{x}'",
+        "CAPABILITY_BROWSER_NAME": "\t'browser_name': '%{x}'",
+        "CAPABILITY_BROWSER_VERSION": "\t'browser_version': '%{x}'",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project': '%{x}'",
+        "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}'",
+        "CAPABILITY_API_KEY": "\t'api_key': '%{x}'"
+      }
+    },
+    {
+      "matches":{
+        "language": "nodeJs"
+      },
+      "values":{
+        "WRAPPER": "var desiredCapabilities = {\n%{x}\n}",
+        "CAPABILITY_PLATFORM": "\t'platform': '%{x}',",
+        "CAPABILITY_BROWSER_NAME": "\t'browser_name': '%{x}',",
+        "CAPABILITY_BROWSER_VERSION": "\t'browser_version': '%{x}',",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project': '%{x}',",
+        "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}',",
+        "CAPABILITY_API_KEY": "\t'api_key': '%{x}'"
+      }
+    },
+    {
+      "matches":{
+        "language": "C#"
+      },
+      "values":{
+        "WRAPPER": "DesiredCapabilities caps = new DesiredCapabilities();\n%{x}\n",
+        "CAPABILITY_PLATFORM": "caps.SetCapability('platform', '%{x}');",
+        "CAPABILITY_BROWSER_NAME": "caps.SetCapability('browser_name', '%{x}');",
+        "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browser_version', '%{x}');",
+        "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbar_project', '%{x}');",
+        "CAPABILITY_RESOLUTION": "caps.SetCapability('resolution', '%{x}');",
+        "CAPABILITY_API_KEY": "caps.SetCapability('api_key', '%{x}')"
+      }
+    },
+    {
+      "matches":{
+        "language": "php"
+      },
+      "values":{
+        "WRAPPER": "$caps = array(\n%{x}\n);",
+        "CAPABILITY_PLATFORM": "\t'platform' => '%{x}';",
+        "CAPABILITY_BROWSER_NAME": "\t'browser_name' => '%{x}';",
+        "CAPABILITY_BROWSER_VERSION": "\t'browser_version' => '%{x}';",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project' => '%{x}';",
+        "CAPABILITY_RESOLUTION": "\t'resolution' => '%{x}';",
+        "CAPABILITY_API_KEY": "\t'api_key' => '%{x}'"
+      }
+    },
+    {
+      "matches":{
+        "language": "ruby"
+      },
+      "values":{
+        "WRAPPER": "caps = Selenium::WebDriver::Remote::Capabilities.new\n%{x}\n",
+        "CAPABILITY_PLATFORM": "caps['platform'] = '%{x}'",
+        "CAPABILITY_BROWSER_NAME": "caps['browser_name'] = '%{x}'",
+        "CAPABILITY_BROWSER_VERSION": "caps['browser_version'] = '%{x}'",
+        "CAPABILITY_BITBAR_PROJECT": "caps['bitbar_project'] = '%{x}'",
+        "CAPABILITY_RESOLUTION": "caps['resolution'] = '%{x}'",
+        "CAPABILITY_API_KEY": "caps['api_key'] = '%{x}'"
+      }
+    }
+  ]
+}
