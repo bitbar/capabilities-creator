@@ -9,6 +9,8 @@
         <div class="buttons">
             <button class="btn-copy" @click="copyToClipboard" :data-clipboard-text="capabilities">
                 Copy code</button>
+            <button class="btn-download" @click="downloadZipFile">
+                Download .zip</button>
         </div>
     </div>
 </template>
@@ -21,6 +23,8 @@
     import ruby from './../node_modules/codemirror/mode/ruby/ruby'
     import clike from './../node_modules/codemirror/mode/clike/clike'
     import ClipboardJS from './../node_modules/clipboard'
+    import JSZip from 'jszip';
+    import FileSaver from 'file-saver';
 
     export default {
         name: "CodeEditor",
@@ -81,6 +85,13 @@
                         break;
                 }
                 this.cmOptions.mode = mode;
+            },
+            downloadZipFile() {
+                let zip = new JSZip();
+                zip.file(this.currentLang+"_test.txt", i18n('SAMPLE_TEST',undefined, {x: this.capabilities}, {language: this.currentLang}));
+                zip.generateAsync({type: "blob"}).then((content) => {
+                    FileSaver.saveAs(content, "download.zip");
+                });
             }
         }
     }

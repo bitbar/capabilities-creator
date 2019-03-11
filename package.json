@@ -22,6 +22,7 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "babel-loader": "^8.0.5",
+    "browser-sync": "^2.26.3",
     "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
@@ -37,7 +38,9 @@
   },
   "dependencies": {
     "clipboard": "^2.0.4",
+    "file-saver": "^2.0.1",
     "finka": "^1.4.0",
+    "jszip": "^3.2.0",
     "roddeh-i18n": "^1.2.0",
     "vue": "^2.6.8",
     "vue-codemirror": "^4.0.6"
