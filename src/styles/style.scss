@@ -1,0 +1,27 @@
+@import './../../node_modules/codemirror/lib/codemirror.css';
+@import './../../node_modules/codemirror/theme/mdn-like.css';
+
+.full-width {
+  width: 100%;
+
+  &.center-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #propertiesSetter {
+    width: 50%;
+  }
+  #codeEditor {
+    width: 50%;
+
+    .buttons {
+      display: flex;
+
+      button {
+        margin-right: 15px;
+      }
+    }
+  }
+}
+

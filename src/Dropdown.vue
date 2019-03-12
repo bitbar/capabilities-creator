@@ -1,15 +1,13 @@
 <template>
     <select v-model="internalValue">
-        <option value="1">some value 1</option>
-        <option value="2">some value 2</option>
-        <option value="3">some value 3</option>
+        <option v-for="option in options" :value="option.value?option.value:option">{{option.name?option.name:option}}</option>
     </select>
 </template>
 
 <script>
     export default {
         name: "Dropdown",
-        props:["value"],
+        props:["value", "options"],
         data() {
             return {
                 internalValue: this.value
