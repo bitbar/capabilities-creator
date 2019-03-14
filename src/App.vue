@@ -1,7 +1,7 @@
 <template>
-    <div class="full-width center-content">
-        <props-setter @capability="setCapabilities" :language="language"></props-setter>
-        <code-editor @currentLang="changeLanguage" :capabilities="capabilities"></code-editor>
+    <div class="full-width center-content" id="creatorContent">
+        <props-setter class="creator-nav" @capability="setCapabilities" :language="language"></props-setter>
+        <code-editor class="creator-editor" @currentLang="changeLanguage" :capabilities="capabilities"></code-editor>
     </div>
 </template>
 

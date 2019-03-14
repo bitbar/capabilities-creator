@@ -1,16 +1,24 @@
 <template>
     <div id="codeEditor">
-        <div>
-            <select v-model="currentLang">
-                <option v-for="lang in languages" :value="lang.value">{{ lang.name }}</option>
+        <codemirror v-model="capabilities" :options="cmOptions" />
+        <div class="alert-box hidden">
+            <span class="alert-text">Code was copied to clipboard</span>
+        </div>
+        <div class="lang-container">
+            <select v-model="currentLang" class="lang-select">
+                <option v-for="lang in languages" :value="lang.value">
+
+                    <span>{{ lang.icon }} &nbsp;{{ lang.name }}</span>
+                </option>
             </select>
         </div>
-        <codemirror v-model="capabilities" :options="cmOptions"/>
-        <div class="buttons">
-            <button class="btn-copy" @click="copyToClipboard" :data-clipboard-text="capabilities">
-                Copy code</button>
-            <button class="btn-download" @click="downloadZipFile">
-                Download .zip</button>
+        <div class="editor-buttons">
+            <button class="btn btn-copy" @click="copyToClipboard" :data-clipboard-text="capabilities">
+                <i class="far fa-copy"></i>
+            </button>
+            <button class="btn btn-download" @click="downloadZipFile">
+                <i class="fas fa-download"></i>
+            </button>
         </div>
     </div>
 </template>
@@ -25,7 +33,6 @@
     import ClipboardJS from './../node_modules/clipboard'
     import JSZip from 'jszip';
     import FileSaver from 'file-saver';
-
     export default {
         name: "CodeEditor",
         props: ['capabilities'],
@@ -35,18 +42,18 @@
         data () {
             return {
                 languages: [
-                    { name: 'Java', value: 'java' },
-                    { name: 'Python', value: 'python' },
-                    { name: 'Ruby', value: 'ruby' },
-                    { name: 'NodeJS', value: 'nodeJs' },
-                    { name: 'C#', value: 'C#' },
-                    { name: 'PHP', value: 'php' }
+                    { name: 'Java', value: 'java', icon: ''},
+                    { name: 'Python', value: 'python', icon: '' },
+                    { name: 'Ruby', value: 'ruby'},
+                    { name: 'NodeJS', value: 'nodeJs', icon: '' },
+                    { name: 'C#', value: 'C#'},
+                    { name: 'PHP', value: 'php', icon: '' }
                 ],
                 currentLang: 'java',
                 cmOptions: {
                     tabSize: 4,
                     mode: 'text/x-java',
-                    theme: 'mdn-like',
+                    theme: 'dracula',
                     lineNumbers: true,
                     line: true,
                 }
@@ -61,6 +68,11 @@
         methods: {
             copyToClipboard() {
                 new ClipboardJS('.btn-copy');
+                let alertBox = document.querySelector('.alert-box');
+                alertBox.classList.remove('hidden');
+                setTimeout(() => {
+                    alertBox.classList.add('hidden');
+                }, 2000)
             },
             setMode(lang){
                 let mode;
