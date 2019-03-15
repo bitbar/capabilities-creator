@@ -1,35 +1,33 @@
 <template>
-    <div id="propertiesSetter">
-        <h1>Capabilities creator</h1>
-        <div>
-            <p>Platform</p>
+    <div id="propertiesSetter" class="form">
+        <h1 class="form-header">Capabilities creator</h1>
+        <div class="form-field">
             <drop-down v-model="capability.platform" :options="options.platform"></drop-down>
+            <label class="form-label">Platform</label>
         </div>
-        <div>
-            <p>Browser</p>
+        <div class="form-field">
             <drop-down v-model="capability.browserName" :options="options.browsers"></drop-down>
+            <label class="form-label">Browser</label>
         </div>
-        <div v-if="capability.browserName">
-            <p>Browser version</p>
+        <div v-if="capability.browserName" class="form-field">
             <drop-down v-model="capability.browserVersion" :options="browserVersions()"></drop-down>
+            <label class="form-label">Browser version</label>
         </div>
-        <div>
-            <p>
-                <input type="checkbox" id="apiKey" v-model="capability.useApiKey"/>
-                <label for="apiKey">Use API key</label>
-            </p>
+        <div class="form-field checkbox-field">
+            <input type="checkbox" id="apiKey" class="form-checkbox" v-model="capability.useApiKey"/>
+            <label for="apiKey" class="form-label">use API key</label>
         </div>
-        <div v-if="capability.useApiKey">
-            <p>API key</p>
-            <input type="text" v-model="capability.apiKey"/>
+        <div v-if="capability.useApiKey" class="form-field">
+            <input type="text" id="key" class="form-input" v-model="capability.apiKey"/>
+            <label for="key" class="form-label">API key</label>
         </div>
-        <div>
-            <p>Resolution</p>
+        <div class="form-field">
             <drop-down v-model="capability.resolution" :options="options.resolution"></drop-down>
+            <label class="form-label">Resolution</label>
         </div>
-        <div>
-            <p>Project name</p>
-            <input type="text" v-model="capability.bitbarProject"/>
+        <div class="form-field">
+            <input type="text" class="form-input" id="name" v-model="capability.bitbarProject"/>
+            <label for="name" class="form-label">Project name</label>
         </div>
     </div>
 </template>

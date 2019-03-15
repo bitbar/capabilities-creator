@@ -1,27 +1,268 @@
 @import './../../node_modules/codemirror/lib/codemirror.css';
-@import './../../node_modules/codemirror/theme/mdn-like.css';
+@import './../../node_modules/codemirror/theme/dracula.css';
+@import './colors.scss';
+@import './mixins.scss';
 
-.full-width {
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: $body-color;
+  font-family: 'Roboto', sans-serif;
+}
+
+#creatorContent {
   width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background: $nav-bg;
+}
 
-  &.center-content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.creator-editor {
+  grid-column: 2/3;
+  width: 100%;
+  height: 100%;
+  background: $editor-bg;
+}
+
+#propertiesSetter {
+  grid-column: 1/2;
+  background: $nav-bg;
+  @include flex(column, flex-start, flex-start);
+  padding: 0 1.5em;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+h1.form-header {
+  font-weight: 600;
+}
+
+
+div.form-field {
+  width: 100%;
+  @include flex(column-reverse, center, flex-start);
+}
+
+div.checkbox-field {
+  @include flex(row, flex-start, center)
+}
+
+.btn {
+  width: 50px;
+  height: 50px;
+  padding: 0 1em;
+  line-height: 40px;
+  text-align: center;
+  border: none;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  color: $btn-text-color;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 $btn-color-clicked;
+  outline: none;
+  transition: transform 0.3s ease-in, box-shadow 0.6s cubic-bezier(.17,.56,.62,.6);
+
+  &:hover {
+    transform: scale(1.2);
   }
-  #propertiesSetter {
-    width: 50%;
-  }
-  #codeEditor {
-    width: 50%;
 
-    .buttons {
-      display: flex;
-
-      button {
-        margin-right: 15px;
-      }
-    }
+  &:active {
+    color: $btn-text-color-active;
+    box-shadow: inset 0 0 0 40px $btn-color-clicked;
   }
 }
 
+.btn-download {
+  background-color: $btn-download-bg;
+}
+
+.btn-copy {
+  color: $btn-copy-text;
+  margin-right: 10px;
+  background-color: $btn-copy-bg;
+}
+
+.form-field {
+  display: block;
+  position: relative;
+  min-width: 250px;
+  margin: 1em 0;
+  border-radius: 3px;
+}
+
+input.form-input {
+  width: calc(100% - 20px);
+  height: 2.5em;
+  margin-top: 1em;
+  font-size: 16px;
+  padding: 0 10px;
+  border: 1px solid $input-border-color;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: none;
+  color: $input-text-color;
+  font-weight: 100;
+  background-color: $input-bg;
+  transition: all 0.1s ease-in-out;
+
+  &:focus {
+    border-color: $accent;
+
+    & + label {
+      color: $accent;
+      font-weight: 400;
+    }
+  }
+
+}
+
+input.form-checkbox {
+  margin-right: 1em;
+}
+
+input.form-checkbox {
+  position: relative;
+  width: 15px;
+  height: 15px;
+}
+
+input.form-checkbox:focus {
+  outline-color: $input-outline-color;
+}
+
+input.form-checkbox::before {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  z-index: 1;
+  border: 2px solid $checkbox-border-color;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+input.form-checkbox::after {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  background: $checkbox-bg;
+}
+
+input.form-checkbox:checked::before {
+  border-top-style: none;
+  border-right-style: none;
+  height: 10px;
+  transform: rotate(-45deg);
+}
+
+input.form-checkbox:nth-child(1):checked::before {
+  border-color: $accent;
+}
+
+
+
+select {
+  display: block;
+  height: 2.5rem;
+  width: 100%;
+  @include appearance();
+  outline: none;
+  border: 1px solid $input-border-color;
+  border-radius: 5px;
+  box-shadow: none;
+  content: 'f107';
+  @include bg($input-border-color, "/src/img/angle_down.svg", 95%, no-repeat, 16px);
+  background-size: 16px;
+  cursor: pointer;
+  color: $select-text-color;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 100;
+  line-height: inherit;
+  padding: 10px;
+  margin-top: 1em;
+}
+
+select.lang-select {
+  width: 8.5em;
+  height: 3.2em;
+  padding: 0 1em;
+  font-size: 1rem;
+  line-height: 3.2em;
+  border-radius: 30px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  color: $select-text-color;
+  background: url("/src/img/angle_down.svg") 82% 18px no-repeat;
+  background-size: 16px;
+  background-color: $lang-select-bg;
+  font-family: 'Font Awesome\ 5 Brands' , 'arial';
+}
+
+select.select-field:focus {
+  border-color: $accent;
+
+  &  + label {
+    color: $accent;
+  }
+}
+
+label.form-label {
+  color: $label-color;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.CodeMirror {
+  height: 100vh;
+}
+
+#codeEditor {
+  position: relative;
+}
+
+.editor-buttons {
+  position: absolute;
+  z-index: 1;
+  bottom: 3em;
+  right: 3em;
+  @include flex(row, center, center);
+}
+
+div.lang-container {
+  position: absolute;
+  z-index: 1;
+  bottom: 3em;
+  left: 3em;
+}
+
+div.alert-box {
+  width: 10em;
+  position: absolute;
+  top: 3em;
+  right: 2em;
+  padding: 20px;
+  background-color: $alert-box-bg;
+  color: $alert-box-text;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  opacity: 1;
+  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.alert-text {
+  text-align: center;
+  opacity: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+}

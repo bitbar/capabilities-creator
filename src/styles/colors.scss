@@ -1,0 +1,41 @@
+$white: #ffffff;
+$black: #707070;
+$bright-turquoise: #2E9DFB;
+$gainsboro: #e4e4e4;
+$gainsboro-light: #e0e0e0;
+$acadia: #282a37;
+$blueviolet: #8A2BE2;
+$whitesmoke: rgb(245, 245, 245);
+$nobel: #999999;
+
+$body-color: $gainsboro;
+$accent: $bright-turquoise;
+$editor-bg: $acadia;
+$nav-bg: $white;
+
+//btns
+$btn-text-color: $black;
+$btn-text-color-active: $white;
+$btn-color-clicked: $blueviolet;
+$btn-copy-bg: $bright-turquoise;
+$btn-copy-text: $white;
+$btn-download-bg: $white;
+
+//inputs
+$input-border-color: $whitesmoke;
+$input-bg: $whitesmoke;
+$input-text-color: $acadia;
+$input-outline-color: $white;
+
+$select-text-color: $acadia;
+$lang-select-bg: $white;
+
+
+$label-color: $nobel;
+
+//checkboxes
+$checkbox-bg: $white;
+$checkbox-border-color: $gainsboro-light;
+
+$alert-box-bg: $white;
+$alert-box-text: $acadia;

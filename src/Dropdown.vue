@@ -1,6 +1,6 @@
 <template>
-    <select v-model="internalValue">
-        <option v-for="option in options" :value="option.value?option.value:option">{{option.name?option.name:option}}</option>
+    <select v-model="internalValue" class="select-field">
+        <option v-for="option in options" :value="option.value?option.value:option" class="option-field">{{option.name?option.name:option}}</option>
     </select>
 </template>
 
