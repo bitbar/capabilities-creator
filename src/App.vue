@@ -6,12 +6,19 @@
 </template>
 
 <script>
+    import CodeEditor from './CodeEditor.vue'
+    import PropertiesSetter from './PropertiesSetter.vue'
+
     export default {
         data() {
             return {
                 language: 'java',
                 capabilities: null
             }
+        },
+        components: {
+            'code-editor': CodeEditor,
+            'props-setter': PropertiesSetter
         },
         methods: {
             changeLanguage(lang) {
