@@ -1,7 +1,7 @@
 <template>
     <div id="codeEditor">
         <codemirror v-model="capabilities" :options="cmOptions" />
-        <div class="alert-box hidden" id="alert">
+        <div :class="['alert-box', { 'hidden': !isCopied }]" id="alert">
             <span class="alert-text">Code was copied to clipboard</span>
         </div>
         <div class="lang-container">
@@ -57,7 +57,8 @@
                     theme: 'dracula',
                     lineNumbers: true,
                     line: true,
-                }
+                },
+                isCopied: false
             }
         },
         watch: {
@@ -68,11 +69,10 @@
         },
         methods: {
             copyToClipboard() {
+                this.isCopied = true;
                 new ClipboardJS('.btn-copy');
-                let alertBox = document.getElementById('alert');
-                alertBox.classList.remove('hidden');
                 setTimeout(() => {
-                    alertBox.classList.add('hidden');
+                    this.isCopied = false
                 }, 2000)
             },
             setMode(lang){

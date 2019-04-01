@@ -3,7 +3,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import PropertiesSetter from '../PropertiesSetter.vue'
 import Dropdown from '../Dropdown.vue'
 
-describe('PropertiesSetter.vue', () => {
+void describe('PropertiesSetter.vue', () => {
     const vue = createLocalVue()
     const wrapper = mount(PropertiesSetter, { vue })
 

@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { shallowMount } from '@vue/test-utils'
 import CodeEditor from '../CodeEditor.vue'
 
-describe('CodeEditor.vue', () => {
+void describe('CodeEditor.vue', () => {
 
     const wrapper = shallowMount(CodeEditor)
 
