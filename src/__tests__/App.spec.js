@@ -1,15 +1,11 @@
 import { expect } from 'chai'
-import { mount, createLocalVue } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import App from '../App.vue'
 import PropSetter from '../PropertiesSetter.vue'
 import CodeEditor from '../CodeEditor.vue'
 
-
-describe('App.vue', () => {
-
-    const vue = createLocalVue()
-
-    const wrapper = mount(App, { vue })
+void describe('CodeEditor.vue', () => {
+    const wrapper = shallowMount(App)
 
     test('has a root element with id creatorContent', () => {
         expect(wrapper.is('#creatorContent')).to.equal(true)
