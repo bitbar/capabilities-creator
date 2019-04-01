@@ -1,7 +1,7 @@
 <template>
     <div id="codeEditor">
         <codemirror v-model="capabilities" :options="cmOptions" />
-        <div class="alert-box hidden">
+        <div class="alert-box hidden" id="alert">
             <span class="alert-text">Code was copied to clipboard</span>
         </div>
         <div class="lang-container">
@@ -33,6 +33,7 @@
     import ClipboardJS from './../node_modules/clipboard'
     import JSZip from 'jszip';
     import FileSaver from 'file-saver';
+    import i18n from 'roddeh-i18n'
     export default {
         name: "CodeEditor",
         props: ['capabilities'],
@@ -68,7 +69,7 @@
         methods: {
             copyToClipboard() {
                 new ClipboardJS('.btn-copy');
-                let alertBox = document.querySelector('.alert-box');
+                let alertBox = document.getElementById('alert');
                 alertBox.classList.remove('hidden');
                 setTimeout(() => {
                     alertBox.classList.add('hidden');

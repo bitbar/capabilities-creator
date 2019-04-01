@@ -34,6 +34,8 @@
 
 <script>
     import DropDown from './Dropdown.vue'
+    import i18n from 'roddeh-i18n'
+
     export default {
         name: "PropertiesSetter",
         components: {
@@ -99,24 +101,24 @@
             },
             createCapabilities() {
                 let cap = [];
-            //     if(this.capability.platform) cap.push(i18n('CAPABILITY_PLATFORM', undefined,
-            //         {x: this.capability.platform}, {language: this.language}));
-            //     if(this.capability.browserName) {
-            //         cap.push(i18n('CAPABILITY_BROWSER_NAME', undefined,
-            //             {x: this.capability.browserName}, {language: this.language}));
-            //         this.browserVersions()
-            //     }
-            //     if(this.capability.browserVersion) cap.push(i18n('CAPABILITY_BROWSER_VERSION', undefined,
-            //         {x: this.capability.browserVersion}, {language: this.language}));
-            //     if(this.capability.bitbarProject) cap.push(i18n('CAPABILITY_BITBAR_PROJECT', undefined,
-            //         {x: this.capability.bitbarProject}, {language: this.language}));
-            //     if(this.capability.resolution) cap.push(i18n('CAPABILITY_RESOLUTION', undefined,
-            //         {x: this.capability.resolution}, {language: this.language}));
-            //     if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
-            //         {x: this.capability.apiKey}, {language: this.language}));
-            //
-            //     let codeSample = i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
-            //     return codeSample;
+                if(this.capability.platform) cap.push(i18n('CAPABILITY_PLATFORM', undefined,
+                    {x: this.capability.platform}, {language: this.language}));
+                if(this.capability.browserName) {
+                    cap.push(i18n('CAPABILITY_BROWSER_NAME', undefined,
+                        {x: this.capability.browserName}, {language: this.language}));
+                    this.browserVersions()
+                }
+                if(this.capability.browserVersion) cap.push(i18n('CAPABILITY_BROWSER_VERSION', undefined,
+                    {x: this.capability.browserVersion}, {language: this.language}));
+                if(this.capability.bitbarProject) cap.push(i18n('CAPABILITY_BITBAR_PROJECT', undefined,
+                    {x: this.capability.bitbarProject}, {language: this.language}));
+                if(this.capability.resolution) cap.push(i18n('CAPABILITY_RESOLUTION', undefined,
+                    {x: this.capability.resolution}, {language: this.language}));
+                if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
+                    {x: this.capability.apiKey}, {language: this.language}));
+
+                let codeSample = i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
+                return codeSample;
             }
         }
     }

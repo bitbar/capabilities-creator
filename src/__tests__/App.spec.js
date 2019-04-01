@@ -1,6 +1,9 @@
 import { expect } from 'chai'
 import { mount, createLocalVue } from '@vue/test-utils'
 import App from '../App.vue'
+import PropSetter from '../PropertiesSetter.vue'
+import CodeEditor from '../CodeEditor.vue'
+
 
 describe('App.vue', () => {
 
@@ -13,10 +16,10 @@ describe('App.vue', () => {
     })
 
     test('render a props-setter component', () => {
-        expect(wrapper.contains('props-setter')).to.equal(true)
+        expect(wrapper.contains(PropSetter)).to.equal(true)
     })
 
     test('render a code-editor component', () => {
-        expect(wrapper.contains('code-editor')).to.equal(true)
+        expect(wrapper.contains(CodeEditor)).to.equal(true)
     })
 })
