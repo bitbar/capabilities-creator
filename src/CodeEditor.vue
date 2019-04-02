@@ -43,12 +43,12 @@
         data () {
             return {
                 languages: [
-                    { name: 'Java', value: 'java', icon: ''},
-                    { name: 'Python', value: 'python', icon: '' },
+                    { name: 'Java', value: 'java'},
+                    { name: 'Python', value: 'python'},
                     { name: 'Ruby', value: 'ruby'},
-                    { name: 'NodeJS', value: 'nodeJs', icon: '' },
+                    { name: 'NodeJS', value: 'nodeJs'},
                     { name: 'C#', value: 'C#'},
-                    { name: 'PHP', value: 'php', icon: '' }
+                    { name: 'PHP', value: 'php'}
                 ],
                 currentLang: 'java',
                 cmOptions: {
