@@ -9,9 +9,9 @@
         "CAPABILITY_PLATFORM": "caps.SetCapability('platform', '%{x}');",
         "CAPABILITY_BROWSER_NAME": "caps.SetCapability('browser_name', '%{x}');",
         "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browser_version', '%{x}');",
+        "CAPABILITY_API_KEY": "caps.SetCapability('api_key', '%{x}');",
         "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbar_project', '%{x}');",
         "CAPABILITY_RESOLUTION": "caps.SetCapability('resolution', '%{x}');",
-        "CAPABILITY_API_KEY": "caps.SetCapability('api_key', '%{x}')",
         "SAMPLE_TEST": "%{x}"
       }
     },
@@ -21,12 +21,12 @@
       },
       "values":{
         "WRAPPER": "desired_capabilities = {\n%{x}\n}",
-        "CAPABILITY_PLATFORM": "\t'platform': '%{x}'",
-        "CAPABILITY_BROWSER_NAME": "\t'browser_name': '%{x}'",
-        "CAPABILITY_BROWSER_VERSION": "\t'browser_version': '%{x}'",
-        "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project': '%{x}'",
+        "CAPABILITY_PLATFORM": "\t'platform': '%{x}',",
+        "CAPABILITY_BROWSER_NAME": "\t'browser_name': '%{x}',",
+        "CAPABILITY_BROWSER_VERSION": "\t'browser_version': '%{x}',",
+        "CAPABILITY_API_KEY": "\t'api_key': '%{x}',",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project': '%{x}',",
         "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}'",
-        "CAPABILITY_API_KEY": "\t'api_key': '%{x}'",
         "SAMPLE_TEST": "from selenium import webdriver\nfrom selenium.webdriver.common.by import By\n%{x}\ndriver = webdriver.Remote(command_executor=broker_url, desired_capabilities=d)\ndriver.get('https://supportdetails.com/')\nprint driver.title\nprint('\/n\/n')\nelm_os = driver.find_element(By.ID, 'os')\nassert platform in elm_os.text.lower(), elm_os.text + ' (expected: ' + platform + ')'\nprint(elm_os.text)\nelm_browser = driver.find_element(By.ID, 'web-browser')\nassert browser_name + ' ' + browser_version in elm_browser.text.lower(), elm_browser.text + ' (expected: ' + browser_name + ' ' + browser_version + ')'\nprint(elm_browser.text)\nresolution = driver.find_element(By.ID, 'screen-resolution')\nprint(resolution.text)\nprint('\n\n')\ndriver.get_screenshot_as_file('./screenshots/testdroid.png')\ndriver.quit()"
       }
     },
@@ -39,9 +39,9 @@
         "CAPABILITY_PLATFORM": "\t'platform': '%{x}',",
         "CAPABILITY_BROWSER_NAME": "\t'browser_name': '%{x}',",
         "CAPABILITY_BROWSER_VERSION": "\t'browser_version': '%{x}',",
+        "CAPABILITY_API_KEY": "\t'api_key': '%{x}',",
         "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project': '%{x}',",
-        "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}',",
-        "CAPABILITY_API_KEY": "\t'api_key': '%{x}'",
+        "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}'",
         "SAMPLE_TEST": "%{x}"
       }
     },
@@ -54,9 +54,9 @@
         "CAPABILITY_PLATFORM": "caps.SetCapability('platform', '%{x}');",
         "CAPABILITY_BROWSER_NAME": "caps.SetCapability('browser_name', '%{x}');",
         "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browser_version', '%{x}');",
+        "CAPABILITY_API_KEY": "caps.SetCapability('api_key', '%{x}');",
         "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbar_project', '%{x}');",
         "CAPABILITY_RESOLUTION": "caps.SetCapability('resolution', '%{x}');",
-        "CAPABILITY_API_KEY": "caps.SetCapability('api_key', '%{x}')",
         "SAMPLE_TEST": "%{x}"
       }
     },
@@ -69,9 +69,9 @@
         "CAPABILITY_PLATFORM": "\t'platform' => '%{x}';",
         "CAPABILITY_BROWSER_NAME": "\t'browser_name' => '%{x}';",
         "CAPABILITY_BROWSER_VERSION": "\t'browser_version' => '%{x}';",
+        "CAPABILITY_API_KEY": "\t'api_key' => '%{x}';",
         "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project' => '%{x}';",
-        "CAPABILITY_RESOLUTION": "\t'resolution' => '%{x}';",
-        "CAPABILITY_API_KEY": "\t'api_key' => '%{x}'",
+        "CAPABILITY_RESOLUTION": "\t'resolution' => '%{x}'",
         "SAMPLE_TEST": "%{x}"
       }
     },
@@ -84,9 +84,9 @@
         "CAPABILITY_PLATFORM": "caps['platform'] = '%{x}'",
         "CAPABILITY_BROWSER_NAME": "caps['browser_name'] = '%{x}'",
         "CAPABILITY_BROWSER_VERSION": "caps['browser_version'] = '%{x}'",
+        "CAPABILITY_API_KEY": "caps['api_key'] = '%{x}'",
         "CAPABILITY_BITBAR_PROJECT": "caps['bitbar_project'] = '%{x}'",
         "CAPABILITY_RESOLUTION": "caps['resolution'] = '%{x}'",
-        "CAPABILITY_API_KEY": "caps['api_key'] = '%{x}'",
         "SAMPLE_TEST": "%{x}"
       }
     }
