@@ -36,6 +36,9 @@
                        :disabled="!capability.platform"></drop-down>
             <label class="form-label">Resolution</label>
         </div>
+        <button class="btn create-btn-mob" @click="onCreateData">
+            <i class="fas fa-2x fa-plus"></i>
+        </button>
     </div>
 </template>
 
@@ -49,7 +52,6 @@
             'drop-down': DropDown
         },
         props: ['language'],
-
         data () {
             return {
                 capability: {
@@ -61,16 +63,13 @@
                     useApiKey: false,
                     apiKey: null
                 },
-
                 platforms: []
             }
         },
-
         created() {
             this.fetchData();
             this.$emit("capability", this.createCapabilities())
         },
-
         watch: {
             capability: {
                 handler(newVal, oldVal) {
@@ -82,13 +81,11 @@
                 },
                 deep: true
             },
-
             language(){
                 this.createCapabilities();
                 this.$emit("capability", this.createCapabilities())
             }
         },
-
         methods: {
             fetchData() {
                 let that = this;
@@ -96,10 +93,9 @@
                     .then(function(response) {
                         return response.json()
                     }).then(function (data) {
-                        that.platforms = data.platforms
+                    that.platforms = data.platforms
                 })
             },
-
             setOptions(key, deep=false) {
                 if(deep) {
                     let browsers = this.setOptions('browsers');
@@ -114,7 +110,6 @@
                     }
                 }
             },
-
             createCapabilities() {
                 let cap = [];
                 if(this.capability.platform) cap.push(i18n('CAPABILITY_PLATFORM', undefined,
@@ -132,8 +127,12 @@
                     {x: this.capability.bitbarProject}, {language: this.language}));
                 if(this.capability.resolution) cap.push(i18n('CAPABILITY_RESOLUTION', undefined,
                     {x: this.capability.resolution}, {language: this.language}));
-
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language})
+            },
+            onCreateData(e) {
+                let propsSetter = document.getElementById('propertiesSetter');
+                propsSetter.classList.remove('visible');
+                e.stopPropagation();
             }
         }
     }
