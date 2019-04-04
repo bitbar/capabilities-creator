@@ -29,6 +29,9 @@
             <input type="text" class="form-input" id="name" v-model="capability.bitbarProject"/>
             <label for="name" class="form-label">Project name</label>
         </div>
+        <button class="btn create-btn-mob" @click="onCreateData">
+            <i class="fas fa-2x fa-plus"></i>
+        </button>
     </div>
 </template>
 
@@ -119,6 +122,11 @@
 
                 let codeSample = i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
                 return codeSample;
+            },
+            onCreateData(e) {
+                let propsSetter = document.getElementById('propertiesSetter');
+                propsSetter.classList.remove('visible');
+                e.stopPropagation();
             }
         }
     }

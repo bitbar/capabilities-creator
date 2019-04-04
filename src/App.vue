@@ -1,5 +1,8 @@
 <template>
     <div class="full-width center-content" id="creatorContent">
+        <button class="nav-btn-mob" @click="onShowNav">
+            <i class="fas fa-2x fa-pencil-alt"></i>
+        </button>
         <props-setter class="creator-nav" @capability="setCapabilities" :language="language"></props-setter>
         <code-editor class="creator-editor" @currentLang="changeLanguage" :capabilities="capabilities"></code-editor>
     </div>
@@ -26,6 +29,11 @@
             },
             setCapabilities(val) {
                 this.capabilities = val
+            },
+            onShowNav(e) {
+                let propsSetter = document.getElementById('propertiesSetter');
+                propsSetter.classList.add('visible');
+                e.stopPropagation();
             }
         }
     }

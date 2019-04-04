@@ -18,3 +18,11 @@
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
+@mixin transition($sec, $el, $animation) {
+  -webkit-transition: $sec $el $animation;
+  -moz-transition: $sec $el $animation;
+  -ms-transition: $sec $el $animation;
+  -o-transition: $sec $el $animation;
+  transition: $sec $el $animation;
+}

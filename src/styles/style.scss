@@ -19,6 +19,25 @@ body, html {
   background: $nav-bg;
 }
 
+.nav-btn-mob {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100px;
+  z-index: 10000;
+  height: 70px;
+  padding: 1%;
+  background-color: $nav-btn-mob-bg;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  @include transition(0.7s, transform, ease);
+}
+
+.nav-mob-text {
+  margin-right: 1.2em;
+}
+
 .creator-editor {
   grid-column: 2/3;
   width: 100%;
@@ -26,7 +45,7 @@ body, html {
   background: $editor-bg;
 }
 
-#propertiesSetter {
+.creator-nav {
   grid-column: 1/2;
   background: $nav-bg;
   @include flex(column, flex-start, flex-start);
@@ -61,7 +80,8 @@ div.checkbox-field {
   cursor: pointer;
   box-shadow: inset 0 0 0 0 $btn-color-clicked;
   outline: none;
-  transition: transform 0.3s ease-in, box-shadow 0.6s cubic-bezier(.17,.56,.62,.6);
+  @include transition(0.3s, transform, ease-in);
+  @include transition(0.6s, box-shadow, cubic-bezier(.17,.56,.62,.6));
 
   &:hover {
     transform: scale(1.2);
@@ -81,6 +101,18 @@ div.checkbox-field {
   color: $btn-copy-text;
   margin-right: 10px;
   background-color: $btn-copy-bg;
+}
+
+.create-btn-mob {
+  position: absolute;
+  right: 9%;
+  bottom: 5%;
+  width: 100px;
+  height: 100px;
+  @include flex(row, center, center);
+  box-shadow: 1px 2px 7px $btn-create-mob-shadow;
+  color: $btn-create-text-color;
+  background-color: $btn-create-mob-bg;
 }
 
 .form-field {
@@ -104,7 +136,7 @@ input.form-input {
   color: $input-text-color;
   font-weight: 100;
   background-color: $input-bg;
-  transition: all 0.1s ease-in-out;
+  @include transition(0.1s, all, ease-in-out);
 
   &:focus {
     border-color: $accent;
@@ -140,7 +172,7 @@ input.form-checkbox::before {
   z-index: 1;
   border: 2px solid $checkbox-border-color;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  @include transition(0.3s, all, ease-in-out);
 }
 
 input.form-checkbox::after {
@@ -177,7 +209,7 @@ select {
   border-radius: 5px;
   box-shadow: none;
   content: 'f107';
-  @include bg($input-border-color, "/src/img/angle_down.svg", 95%, no-repeat, 16px);
+  @include bg($input-border-color, "/img/angle_down.svg", 95%, no-repeat, 16px);
   background-size: 16px;
   cursor: pointer;
   color: $select-text-color;
@@ -198,7 +230,7 @@ select.lang-select {
   border-radius: 30px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   color: $select-text-color;
-  background: url("/src/img/angle_down.svg") 82% 18px no-repeat;
+  background: url("/img/angle_down.svg") 82% 18px no-repeat;
   background-size: 16px;
   background-color: $lang-select-bg;
   font-family: 'Font Awesome\ 5 Brands' , 'arial';
@@ -252,7 +284,7 @@ div.alert-box {
   border-top-right-radius: 30px;
   border-bottom-left-radius: 30px;
   opacity: 1;
-  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  @include transition(0.8s, all, cubic-bezier(0.165, 0.84, 0.44, 1));
 }
 
 .hidden {
@@ -265,4 +297,68 @@ div.alert-box {
   opacity: 1;
   font-size: 0.95rem;
   font-weight: 600;
+}
+
+@media screen and (min-width: 320px) and (max-width: 900px) {
+  .creator-nav {
+    position: absolute;
+    transform: translateX(-100%);
+    grid-column: 1/3;
+    z-index: 11111;
+    @include flex(column, flex-start, flex-start);
+    height: 100vh;
+    @include transition(0.7s, all, ease-in-out);
+  }
+
+  .visible {
+    width: 94%;
+    transform: translateX(0%);
+  }
+
+  .nav-btn-mob {
+    @include flex(row, center, center);
+  }
+
+  .creator-editor {
+    grid-column: 1/3;
+  }
+
+  div.lang-container {
+    left: 9%;
+  }
+
+  .editor-buttons {
+    right: 2%;
+  }
+
+  .btn-copy {
+    margin-right: 2em;
+  }
+
+  .btn {
+    width: 70px;
+    height: 70px;
+  }
+
+  div.alert-box {
+    width: 80%;
+    height: 5%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .alert-text {
+    font-size: 200%;
+  }
+
+  .CodeMirror {
+    font-size: 1.2em;
+  }
+
+  div.form-field {
+    width: 94%;
+  }
 }
