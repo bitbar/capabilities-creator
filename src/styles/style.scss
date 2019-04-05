@@ -199,18 +199,18 @@ input.form-checkbox:nth-child(1):checked::before {
 }
 
 
-
 select {
   display: block;
   height: 2.5rem;
   width: 100%;
-  @include appearance();
   outline: none;
   border: 1px solid $input-border-color;
   border-radius: 5px;
   box-shadow: none;
   content: 'f107';
-  @include bg($input-border-color, "/img/angle_down.svg", 95%, no-repeat, 16px);
+  background-color: $input-border-color;
+  background-position: 95%;
+  background-repeat: no-repeat;
   background-size: 16px;
   cursor: pointer;
   color: $select-text-color;
@@ -231,14 +231,13 @@ select.lang-select {
   border-radius: 30px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   color: $select-text-color;
-  background: url("/img/angle_down.svg") 82% 18px no-repeat;
   background-size: 16px;
   background-color: $lang-select-bg;
   font-family: 'Font Awesome\ 5 Brands' , 'arial';
 }
 
 select.select-field:focus {
-  border-color: $accent;
+  border: 2px solid $accent;
 
   &  + label {
     color: $accent;
