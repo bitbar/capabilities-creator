@@ -7,12 +7,13 @@
       "values":{
         "WRAPPER": "DesiredCapabilities caps = new DesiredCapabilities();\n%{x}\n",
         "CAPABILITY_PLATFORM": "caps.SetCapability('platform', '%{x}');",
-        "CAPABILITY_BROWSER_NAME": "caps.SetCapability('browser_name', '%{x}');",
-        "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browser_version', '%{x}');",
-        "CAPABILITY_API_KEY": "caps.SetCapability('api_key', '%{x}');",
-        "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbar_project', '%{x}');",
+        "CAPABILITY_BROWSER_NAME": "caps.SetCapability('browserName', '%{x}');",
+        "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browserVersion', '%{x}');",
         "CAPABILITY_RESOLUTION": "caps.SetCapability('resolution', '%{x}');",
-        "SAMPLE_TEST": "%{x}"
+        "CAPABILITY_API_KEY": "caps.SetCapability('bitbarApi_key', '%{x}');",
+        "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbarProject', '%{x}');",
+        "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/java/src/test/java/com/bitbar/selenium/BitbarSelenium.java"
       }
     },
     {
@@ -22,12 +23,13 @@
       "values":{
         "WRAPPER": "desired_capabilities = {\n%{x}\n}",
         "CAPABILITY_PLATFORM": "\t'platform': '%{x}',",
-        "CAPABILITY_BROWSER_NAME": "\t'browser_name': '%{x}',",
-        "CAPABILITY_BROWSER_VERSION": "\t'browser_version': '%{x}',",
-        "CAPABILITY_API_KEY": "\t'api_key': '%{x}',",
-        "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project': '%{x}',",
-        "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}'",
-        "SAMPLE_TEST": "from selenium import webdriver\nfrom selenium.webdriver.common.by import By\n%{x}\ndriver = webdriver.Remote(command_executor=broker_url, desired_capabilities=d)\ndriver.get('https://supportdetails.com/')\nprint driver.title\nprint('\/n\/n')\nelm_os = driver.find_element(By.ID, 'os')\nassert platform in elm_os.text.lower(), elm_os.text + ' (expected: ' + platform + ')'\nprint(elm_os.text)\nelm_browser = driver.find_element(By.ID, 'web-browser')\nassert browser_name + ' ' + browser_version in elm_browser.text.lower(), elm_browser.text + ' (expected: ' + browser_name + ' ' + browser_version + ')'\nprint(elm_browser.text)\nresolution = driver.find_element(By.ID, 'screen-resolution')\nprint(resolution.text)\nprint('\n\n')\ndriver.get_screenshot_as_file('./screenshots/testdroid.png')\ndriver.quit()"
+        "CAPABILITY_BROWSER_NAME": "\t'browserName': '%{x}',",
+        "CAPABILITY_BROWSER_VERSION": "\t'browserVersion': '%{x}',",
+        "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}',",
+        "CAPABILITY_API_KEY": "\t'bitbarApi_key': '%{x}',",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}'",
+        "REGEXP": "( *)# user-customizable parameters start here\\n([\\S\\s]*})",
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/python/bitbar_selenium.py"
       }
     },
     {
@@ -37,27 +39,29 @@
       "values":{
         "WRAPPER": "var desiredCapabilities = {\n%{x}\n}",
         "CAPABILITY_PLATFORM": "\t'platform': '%{x}',",
-        "CAPABILITY_BROWSER_NAME": "\t'browser_name': '%{x}',",
-        "CAPABILITY_BROWSER_VERSION": "\t'browser_version': '%{x}',",
-        "CAPABILITY_API_KEY": "\t'api_key': '%{x}',",
-        "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project': '%{x}',",
-        "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}'",
-        "SAMPLE_TEST": "%{x}"
+        "CAPABILITY_BROWSER_NAME": "\t'browserName': '%{x}',",
+        "CAPABILITY_BROWSER_VERSION": "\t'browserVersion': '%{x}',",
+        "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}',",
+        "CAPABILITY_API_KEY": "\t'bitbarApi_key': '%{x}',",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}'",
+        "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/NodeJS/bitbar_selenium.js"
       }
     },
     {
       "matches":{
         "language": "C#"
       },
-      "values":{
+      "values": {
         "WRAPPER": "DesiredCapabilities caps = new DesiredCapabilities();\n%{x}\n",
         "CAPABILITY_PLATFORM": "caps.SetCapability('platform', '%{x}');",
-        "CAPABILITY_BROWSER_NAME": "caps.SetCapability('browser_name', '%{x}');",
-        "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browser_version', '%{x}');",
-        "CAPABILITY_API_KEY": "caps.SetCapability('api_key', '%{x}');",
-        "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbar_project', '%{x}');",
+        "CAPABILITY_BROWSER_NAME": "caps.SetCapability('browserName', '%{x}');",
+        "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browserVersion', '%{x}');",
         "CAPABILITY_RESOLUTION": "caps.SetCapability('resolution', '%{x}');",
-        "SAMPLE_TEST": "%{x}"
+        "CAPABILITY_API_KEY": "caps.SetCapability('bitbarApi_key', '%{x}');",
+        "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbarProject', '%{x}');",
+        "REGEXP": "",
+        "SOURCE": ""
       }
     },
     {
@@ -67,12 +71,13 @@
       "values":{
         "WRAPPER": "$caps = array(\n%{x}\n);",
         "CAPABILITY_PLATFORM": "\t'platform' => '%{x}';",
-        "CAPABILITY_BROWSER_NAME": "\t'browser_name' => '%{x}';",
-        "CAPABILITY_BROWSER_VERSION": "\t'browser_version' => '%{x}';",
-        "CAPABILITY_API_KEY": "\t'api_key' => '%{x}';",
-        "CAPABILITY_BITBAR_PROJECT": "\t'bitbar_project' => '%{x}';",
-        "CAPABILITY_RESOLUTION": "\t'resolution' => '%{x}'",
-        "SAMPLE_TEST": "%{x}"
+        "CAPABILITY_BROWSER_NAME": "\t'browserName' => '%{x}';",
+        "CAPABILITY_BROWSER_VERSION": "\t'browserVersion' => '%{x}';",
+        "CAPABILITY_RESOLUTION": "\t'resolution' => '%{x}';",
+        "CAPABILITY_API_KEY": "\t'bitbarApi_key' => '%{x}';",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject' => '%{x}'",
+        "REGEXP": "",
+        "SOURCE": ""
       }
     },
     {
@@ -82,12 +87,13 @@
       "values":{
         "WRAPPER": "caps = Selenium::WebDriver::Remote::Capabilities.new\n%{x}\n",
         "CAPABILITY_PLATFORM": "caps['platform'] = '%{x}'",
-        "CAPABILITY_BROWSER_NAME": "caps['browser_name'] = '%{x}'",
-        "CAPABILITY_BROWSER_VERSION": "caps['browser_version'] = '%{x}'",
-        "CAPABILITY_API_KEY": "caps['api_key'] = '%{x}'",
-        "CAPABILITY_BITBAR_PROJECT": "caps['bitbar_project'] = '%{x}'",
+        "CAPABILITY_BROWSER_NAME": "caps['browserName'] = '%{x}'",
+        "CAPABILITY_BROWSER_VERSION": "caps['browserVersion'] = '%{x}'",
         "CAPABILITY_RESOLUTION": "caps['resolution'] = '%{x}'",
-        "SAMPLE_TEST": "%{x}"
+        "CAPABILITY_API_KEY": "caps['bitbarApi_key'] = '%{x}'",
+        "CAPABILITY_BITBAR_PROJECT": "caps['bitbarProject'] = '%{x}'",
+        "REGEXP": "( *)# user-customizable parameters start here\\n([\\S\\s]*)\\n.*#",
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/ruby/bitbar_selenium.rb"
       }
     }
   ]
