@@ -34,6 +34,7 @@
     import JSZip from 'jszip';
     import FileSaver from 'file-saver';
     import i18n from 'roddeh-i18n'
+
     export default {
         name: "CodeEditor",
         props: ['capabilities'],
@@ -47,8 +48,8 @@
                     { name: 'Python', value: 'python'},
                     { name: 'Ruby', value: 'ruby'},
                     { name: 'NodeJS', value: 'nodeJs'},
-                    { name: 'C#', value: 'C#'},
-                    { name: 'PHP', value: 'php'}
+                    // { name: 'C#', value: 'C#'},
+                    // { name: 'PHP', value: 'php'}
                 ],
                 currentLang: 'java',
                 cmOptions: {
@@ -58,7 +59,8 @@
                     lineNumbers: true,
                     line: true,
                 },
-                isCopied: false
+                isCopied: false,
+                extension: 'java'
             }
         },
         watch: {
@@ -80,31 +82,53 @@
                 switch (lang) {
                     case 'java':
                         mode = 'text/x-java';
+                        this.extension = 'java';
                         break;
                     case 'python':
                         mode = 'text/x-python';
+                        this.extension = 'py';
                         break;
                     case 'ruby':
                         mode = 'text/x-ruby';
+                        this.extension = 'rb';
                         break;
                     case 'C#':
                         mode = 'text/x-csharp';
+                        this.extension = 'cs';
                         break;
                     case 'php':
                         mode = 'text/x-php';
+                        this.extension = 'php';
                         break;
                     case 'nodeJs':
                         mode = 'text/javascript';
+                        this.extension = 'js';
                         break;
                 }
                 this.cmOptions.mode = mode;
             },
             downloadZipFile() {
-                let zip = new JSZip();
-                zip.file(this.currentLang+"_test.txt", i18n('SAMPLE_TEST',undefined, {x: this.capabilities}, {language: this.currentLang}));
-                zip.generateAsync({type: "blob"}).then((content) => {
-                    FileSaver.saveAs(content, "download.zip");
-                });
+                let that = this;
+                fetch(i18n('SOURCE', undefined, undefined, {language: that.currentLang}))
+                    .then(function(response) {
+                        return response.text();
+                    })
+                    .then(function(response) {
+                        let reg = new RegExp(i18n('REGEXP', undefined, undefined, {language: that.currentLang}));
+                        let match = response.match(reg);
+                        let str = "";
+                        let file;
+                        let zip = new JSZip();
+                        that.capabilities.split("\n").forEach(function(line, index, arr) {
+                            if (index === arr.length - 1 && line === "") { return; }
+                            str = str.concat(match[1] + line + '\n');
+                        });
+                        file = response.replace(match[2], str);
+                        zip.file(that.currentLang+"_sample."+that.extension, file);
+                        zip.generateAsync({type: "blob"}).then((content) => {
+                            FileSaver.saveAs(content, "download.zip");
+                        });
+                    });
             }
         }
     }

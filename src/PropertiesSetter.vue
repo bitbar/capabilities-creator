@@ -18,23 +18,23 @@
                        :disabled="!capability.browserName"></drop-down>
             <label class="form-label">Browser version</label>
         </div>
-        <div class="form-field checkbox-field">
-            <input type="checkbox" id="apiKey" class="form-checkbox" v-model="capability.useApiKey"/>
-            <label for="apiKey" class="form-label">use API key</label>
-        </div>
-        <div v-if="capability.useApiKey" class="form-field">
-            <input type="text" id="key" class="form-input" v-model="capability.apiKey"/>
-            <label for="key" class="form-label">API key</label>
-        </div>
-        <div class="form-field">
-            <input type="text" class="form-input" id="name" v-model="capability.bitbarProject"/>
-            <label for="name" class="form-label">Project name</label>
-        </div>
         <div class="form-field">
             <drop-down v-model="capability.resolution"
                        :options="setOptions('resolutions')"
                        :disabled="!capability.platform"></drop-down>
             <label class="form-label">Resolution</label>
+        </div>
+        <div class="form-field">
+            <input type="text" id="key" class="form-input" v-model="capability.apiKey"/>
+            <label for="key" class="form-label">API key</label>
+        </div>
+        <div class="form-field checkbox-field">
+            <input type="checkbox" id="optional" class="form-checkbox" v-model="capability.optional"/>
+            <label for="optional" class="form-label">Optional capabilities</label>
+        </div>
+        <div v-if="capability.optional" class="form-field">
+            <input type="text" class="form-input" id="name" v-model="capability.bitbarProject"/>
+            <label for="name" class="form-label">Project name</label>
         </div>
         <button class="btn create-btn-mob" @click="onCreateData">
             <i class="fas fa-2x fa-plus"></i>
@@ -60,7 +60,7 @@
                     browserVersion: null,
                     bitbarProject: null,
                     resolution: null,
-                    useApiKey: false,
+                    optional: false,
                     apiKey: null
                 },
                 platforms: []
@@ -75,8 +75,8 @@
                 handler(newVal, oldVal) {
                     this.createCapabilities();
                     this.$emit("capability", this.createCapabilities());
-                    if(!this.capability.useApiKey) {
-                        this.capability.apiKey = null
+                    if(!this.capability.optional) {
+                        this.capability.bitbarProject = null
                     }
                 },
                 deep: true
@@ -121,12 +121,12 @@
                 }
                 if(this.capability.browserVersion) cap.push(i18n('CAPABILITY_BROWSER_VERSION', undefined,
                     {x: this.capability.browserVersion}, {language: this.language}));
-                if(this.capability.apiKey && this.capability.useApiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
+                if(this.capability.resolution) cap.push(i18n('CAPABILITY_RESOLUTION', undefined,
+                    {x: this.capability.resolution}, {language: this.language}));
+                if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
                     {x: this.capability.apiKey}, {language: this.language}));
                 if(this.capability.bitbarProject) cap.push(i18n('CAPABILITY_BITBAR_PROJECT', undefined,
                     {x: this.capability.bitbarProject}, {language: this.language}));
-                if(this.capability.resolution) cap.push(i18n('CAPABILITY_RESOLUTION', undefined,
-                    {x: this.capability.resolution}, {language: this.language}));
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language})
             },
             onCreateData(e) {
