@@ -98,7 +98,7 @@
         "CAPABILITY_API_KEY": "caps['bitbarApi_key'] = '%{x}'",
         "CAPABILITY_API_KEY_UNDEFINED": "caps['bitbar_apiKey'] = '<insert your Bitbar API key here>'",
         "CAPABILITY_BITBAR_PROJECT": "caps['bitbarProject'] = '%{x}'",
-        "REGEXP": "( *)# user-customizable parameters start here\\n([\\S\\s]*)\\n.*#",
+        "REGEXP": "( *)# user-customizable parameters start here\n([\\S\\s]*?)\n.*#",
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/ruby/bitbar_selenium.rb"
       }
     }
