@@ -125,6 +125,9 @@
                     {x: this.capability.resolution}, {language: this.language}));
                 if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
                     {x: this.capability.apiKey}, {language: this.language}));
+                if(!this.capability.apiKey)
+                    cap.push(i18n('CAPABILITY_API_KEY_UNDEFINED', undefined,
+                        {x: this.capability.apiKey}, {language: this.language}));
                 if(this.capability.bitbarProject) cap.push(i18n('CAPABILITY_BITBAR_PROJECT', undefined,
                     {x: this.capability.bitbarProject}, {language: this.language}));
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language})
