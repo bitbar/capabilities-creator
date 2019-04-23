@@ -11,6 +11,7 @@
         "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browserVersion', '%{x}');",
         "CAPABILITY_RESOLUTION": "caps.SetCapability('resolution', '%{x}');",
         "CAPABILITY_API_KEY": "caps.SetCapability('bitbarApi_key', '%{x}');",
+        "CAPABILITY_API_KEY_UNDEFINED": "caps.SetCapability('bitbar_apiKey', '<insert your Bitbar API key here>')",
         "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbarProject', '%{x}');",
         "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/java/src/test/java/com/bitbar/selenium/BitbarSelenium.java"
@@ -27,6 +28,7 @@
         "CAPABILITY_BROWSER_VERSION": "\t'browserVersion': '%{x}',",
         "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}',",
         "CAPABILITY_API_KEY": "\t'bitbarApi_key': '%{x}',",
+        "CAPABILITY_API_KEY_UNDEFINED": "\t'bitbar_apiKey': '<insert your Bitbar API key here>'",
         "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}'",
         "REGEXP": "( *)# user-customizable parameters start here\\n([\\S\\s]*})",
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/python/bitbar_selenium.py"
@@ -43,6 +45,7 @@
         "CAPABILITY_BROWSER_VERSION": "\t'browserVersion': '%{x}',",
         "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}',",
         "CAPABILITY_API_KEY": "\t'bitbarApi_key': '%{x}',",
+        "CAPABILITY_API_KEY_UNDEFINED": "\t'bitbar_apiKey': '<insert your Bitbar API key here>'",
         "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}'",
         "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/NodeJS/bitbar_selenium.js"
@@ -59,6 +62,7 @@
         "CAPABILITY_BROWSER_VERSION": "caps.SetCapability('browserVersion', '%{x}');",
         "CAPABILITY_RESOLUTION": "caps.SetCapability('resolution', '%{x}');",
         "CAPABILITY_API_KEY": "caps.SetCapability('bitbarApi_key', '%{x}');",
+        "CAPABILITY_API_KEY_UNDEFINED": "caps.SetCapability('bitbar_apiKey', '<insert your Bitbar API key here>')",
         "CAPABILITY_BITBAR_PROJECT": "caps.SetCapability('bitbarProject', '%{x}');",
         "REGEXP": "",
         "SOURCE": ""
@@ -75,6 +79,7 @@
         "CAPABILITY_BROWSER_VERSION": "\t'browserVersion' => '%{x}';",
         "CAPABILITY_RESOLUTION": "\t'resolution' => '%{x}';",
         "CAPABILITY_API_KEY": "\t'bitbarApi_key' => '%{x}';",
+        "CAPABILITY_API_KEY_UNDEFINED": "\t'bitbar_apiKey' => '<insert your Bitbar API key here>'",
         "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject' => '%{x}'",
         "REGEXP": "",
         "SOURCE": ""
@@ -91,6 +96,7 @@
         "CAPABILITY_BROWSER_VERSION": "caps['browserVersion'] = '%{x}'",
         "CAPABILITY_RESOLUTION": "caps['resolution'] = '%{x}'",
         "CAPABILITY_API_KEY": "caps['bitbarApi_key'] = '%{x}'",
+        "CAPABILITY_API_KEY_UNDEFINED": "caps['bitbar_apiKey'] = '<insert your Bitbar API key here>'",
         "CAPABILITY_BITBAR_PROJECT": "caps['bitbarProject'] = '%{x}'",
         "REGEXP": "( *)# user-customizable parameters start here\\n([\\S\\s]*)\\n.*#",
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/ruby/bitbar_selenium.rb"
