@@ -13,7 +13,7 @@
             <label class="form-label">Browser</label>
         </div>
         <div v-if="capability.browserName" class="form-field">
-            <drop-down v-model="capability.browserVersion"
+            <drop-down v-model="capability.version"
                        :options="setOptions('versions', true)"
                        :disabled="!capability.browserName"></drop-down>
             <label class="form-label">Browser version</label>
@@ -57,7 +57,7 @@
                 capability: {
                     platform: null,
                     browserName: null,
-                    browserVersion: null,
+                    version: null,
                     bitbarProject: null,
                     resolution: null,
                     optional: false,
@@ -119,8 +119,8 @@
                         {x: this.capability.browserName}, {language: this.language}));
                     this.setOptions('versions', true)
                 }
-                if(this.capability.browserVersion) cap.push(i18n('CAPABILITY_BROWSER_VERSION', undefined,
-                    {x: this.capability.browserVersion}, {language: this.language}));
+                if(this.capability.version) cap.push(i18n('CAPABILITY_VERSION', undefined,
+                    {x: this.capability.version}, {language: this.language}));
                 if(this.capability.resolution) cap.push(i18n('CAPABILITY_RESOLUTION', undefined,
                     {x: this.capability.resolution}, {language: this.language}));
                 if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
