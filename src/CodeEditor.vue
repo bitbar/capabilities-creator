@@ -126,7 +126,7 @@
                         file = response.replace(match[2], str);
                         zip.file(that.currentLang+"_sample."+that.extension, file);
                         zip.generateAsync({type: "blob"}).then((content) => {
-                            FileSaver.saveAs(content, "download.zip");
+                            FileSaver.saveAs(content, that.currentLang + "Sample.zip");
                         });
                     });
             }
