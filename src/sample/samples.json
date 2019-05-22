@@ -13,8 +13,12 @@
         "CAPABILITY_API_KEY": "capabilities.setCapability(\"bitbar_apiKey\", \"%{x}\");",
         "CAPABILITY_API_KEY_UNDEFINED": "capabilities.setCapability(\"bitbar_apiKey\", \"<insert your Bitbar API key here>\");",
         "CAPABILITY_BITBAR_PROJECT": "capabilities.setCapability(\"bitbarProject\", \"%{x}\");",
+        "CAPABILITY_BITBAR_TEST_RUN": "capabilities.setCapability(\"bitbar_testrun\", \"%{x}\");",
+        "CAPABILITY_BITBAR_TEST_TIMEOUT": "capabilities.setCapability(\"bitbar_testTimeout\", \"%{x}\");",
+        "CAPABILITY_BITBAR_MULTI_SESSION_WAIT": "capabilities.setCapability(\"bitbar_multiSessionWait\", \"%{x}\");",
         "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
-        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/java/src/test/java/com/bitbar/selenium/BitbarSelenium.java"
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/java/src/test/java/com/bitbar/selenium/BitbarSelenium.java",
+        "SOURCE_XML": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/java/pom.xml"
       }
     },
     {
@@ -30,8 +34,17 @@
         "CAPABILITY_API_KEY": "\t'bitbar_apiKey': '%{x}',",
         "CAPABILITY_API_KEY_UNDEFINED": "\t'bitbar_apiKey': '<insert your Bitbar API key here>',",
         "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}'",
+        "CAPABILITY_BITBAR_TEST_RUN": "\t'bitbar_testrun': '%{x}'",
+        "CAPABILITY_BITBAR_TEST_TIMEOUT": "\t'bitbar_testTimeout': '%{x}'",
+        "CAPABILITY_BITBAR_MULTI_SESSION_WAIT": "\t'bitbar_multiSessionWait': '%{x}'",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}',",
+        "CAPABILITY_BITBAR_TEST_RUN": "\t'bitbar_testrun': '%{x}',",
+        "CAPABILITY_BITBAR_TEST_TIMEOUT": "\t'bitbar_testTimeout': '%{x}',",
+        "CAPABILITY_BITBAR_MULTI_SESSION_WAIT": "\t'bitbar_multiSessionWait': '%{x}'",
         "REGEXP": "( *)# user-customizable parameters start here\\n([\\S\\s]*})",
-        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/python/bitbar_selenium.py"
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/python/bitbar_selenium.py",
+        "SOURCE_1": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/package-lock.json",
+        "SOURCE_2": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/package.json"
       }
     },
     {
@@ -46,9 +59,14 @@
         "CAPABILITY_RESOLUTION": "\t'resolution': '%{x}',",
         "CAPABILITY_API_KEY": "\t'bitbar_apiKey': '%{x}',",
         "CAPABILITY_API_KEY_UNDEFINED": "\t'bitbar_apiKey': '<insert your Bitbar API key here>',",
-        "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}'",
+        "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}',",
+        "CAPABILITY_BITBAR_TEST_RUN": "\t'bitbar_testrun': '%{x}',",
+        "CAPABILITY_BITBAR_TEST_TIMEOUT": "\t'bitbar_testTimeout': '%{x}',",
+        "CAPABILITY_BITBAR_MULTI_SESSION_WAIT": "\t'bitbar_multiSessionWait': '%{x}'",
         "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
-        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/bitbar_selenium.js"
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/bitbar_selenium.js",
+        "SOURCE_1": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/package-lock.json",
+        "SOURCE_2": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/package.json"
       }
     },
     {
@@ -64,6 +82,9 @@
         "CAPABILITY_API_KEY": "capabilities.SetCapability('bitbar_apiKey', '%{x}');",
         "CAPABILITY_API_KEY_UNDEFINED": "capabilities.SetCapability('bitbar_apiKey', '<insert your Bitbar API key here>')",
         "CAPABILITY_BITBAR_PROJECT": "capabilities.SetCapability('bitbarProject', '%{x}');",
+        "CAPABILITY_BITBAR_TEST_RUN": "\t'bitbar_testrun' => '%{x}'",
+        "CAPABILITY_BITBAR_TEST_TIMEOUT": "\t 'bitbar_testTimeout' => '%{x}'",
+        "CAPABILITY_BITBAR_MULTI_SESSION_WAIT": "\t 'bitbar_multiSessionWait' => '%{x}'",
         "REGEXP": "",
         "SOURCE": ""
       }
@@ -98,8 +119,12 @@
         "CAPABILITY_API_KEY": "capabilities['bitbar_apiKey'] = '%{x}'",
         "CAPABILITY_API_KEY_UNDEFINED": "capabilities['bitbar_apiKey'] = '<insert your Bitbar API key here>'",
         "CAPABILITY_BITBAR_PROJECT": "capabilities['bitbarProject'] = '%{x}'",
+        "CAPABILITY_BITBAR_TEST_RUN": "capabilities['bitbar_testrun'] = '%{x}'",
+        "CAPABILITY_BITBAR_TEST_TIMEOUT": "capabilities['bitbar_testTimeout'] = '%{x}'",
+        "CAPABILITY_BITBAR_MULTI_SESSION_WAIT": "capabilities['bitbar_multiSessionWait'] = '%{x}'",
         "REGEXP": "( *)# user-customizable parameters start here\n([\\S\\s]*?)\n.*#",
-        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/ruby/bitbar_selenium.rb"
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/ruby/bitbar_selenium.rb",
+        "SOURCE_GEMFILE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/ruby/Gemfile"
       }
     }
   ]

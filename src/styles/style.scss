@@ -9,6 +9,7 @@ body, html {
   padding: 0;
   background: $body-color;
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
 #creatorContent {
@@ -69,29 +70,32 @@ div.checkbox-field {
 }
 
 .btn {
-  width: 50px;
+  min-width: 170px;
   height: 50px;
-  padding: 0 1em;
+  padding: 0 1.5em;
   line-height: 40px;
   text-align: center;
   border: none;
-  border-radius: 50%;
+  border-radius: 40px;
   font-size: 0.85rem;
   color: $btn-text-color;
   cursor: pointer;
   box-shadow: inset 0 0 0 0 $btn-color-clicked;
   outline: none;
-  @include transition(0.3s, transform, ease-in);
-  @include transition(0.6s, box-shadow, cubic-bezier(.17,.56,.62,.6));
-
-  &:hover {
-    transform: scale(1.2);
-  }
+  @include transition(0.4s, all, cubic-bezier(.17,.56,.62,.6));
 
   &:active {
-    color: $btn-text-color-active;
-    box-shadow: inset 0 0 0 40px $btn-color-clicked;
+    transform: scale(0.9);
   }
+
+  &:hover {
+    color: $btn-text-color-active;
+    background-color: $btn-color-clicked;
+  }
+}
+
+.btn-title {
+  margin-left: 0.4em;
 }
 
 .btn-download {
@@ -100,7 +104,7 @@ div.checkbox-field {
 
 .btn-copy {
   color: $btn-copy-text;
-  margin-right: 10px;
+  margin-bottom: 2em;
   background-color: $btn-copy-bg;
 }
 
@@ -251,26 +255,154 @@ label.form-label {
 }
 
 .CodeMirror {
-  height: 100vh;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 92%;
 }
 
 #codeEditor {
   position: relative;
 }
 
-.editor-buttons {
+#codeEditorNav {
   position: absolute;
-  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  right: 0;
+  z-index: 500;
+  background-color: $nav-bg;
+}
+
+#codeEditorNav > ul > * {
+  margin: 0;
+  padding-left: 0;
+}
+
+#codeEditorNav > ul {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  cursor: pointer;
+  border-bottom: 4px solid $edit-nav-border;
+  font-size: 13px;
+  line-height: 26px;
+  font-weight: 600;
+  transition: all 250ms ease;
+}
+
+.editor-nav-tab {
+  display: block;
+  float: right;
+  padding: 10px 24px 8px;
+  border-radius: 8px 8px 0 0;
+  background-color: $edit-nav-bg;
+  margin-right: 46px;
+  z-index: 2;
+  position: relative;
+  cursor: pointer;
+  color: $edit-nav-text-color;
+  text-transform: uppercase;
+  transition: all 250ms ease;
+  text-align: center;
+
+  &::before,
+  &::after {
+    display: block;
+    content: " ";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 44px;
+    background-color: $edit-nav-bg;
+    transition: all 250ms ease;
+  }
+
+  &::before {
+    right: -24px;
+    border-radius: 0 8px 0 0;
+    transform: skew(30deg, 0deg);
+    box-shadow: $box-shadow-color 3px 2px 5px, inset $edit-nav-bg -1px 0;
+  }
+
+  &::after {
+    left: -25.7px;
+    border-radius: 8px 0 0 0;
+    transform: skew(-30deg, 0deg);
+    box-shadow: $box-shadow-color -3px 2px 5px, inset $edit-nav-bg 1px 0;
+  }
+
+
+  &:first-of-type {
+    grid-column: 1/2;
+
+    &::after {
+      left: -40px;
+      width: 50px;
+      border-radius: 0 0 0 0;
+      transform: skew(0deg, 0deg);
+      box-shadow: $box-shadow-color -3px 2px 5px, inset $edit-nav-bg 1px 0;
+    }
+  }
+
+  &:nth-of-type(2) {
+    grid-column: 2/3;
+  }
+
+
+  &:hover,
+  &:hover::before,
+  &:hover::after {
+    background-color: $edit-nav-bg--hover;
+    color: $edit-nav-text--hover;
+  }
+
+  &:hover::before {
+    box-shadow: $box-shadow-color 3px 2px 5px, inset $edit-nav-bg--hover -1px 0;
+  }
+
+  &:hover::after {
+    box-shadow: $box-shadow-color -3px 2px 5px, inset $edit-nav-bg--hover 1px 0;
+  }
+
+  &.active {
+    z-index: 3;
+  }
+  &.active,
+  &.active::before,
+  &.active::after {
+    background-color: $edit-nav-bg--active;
+    color: $edit-nav-text-color--active;
+    border-color: $edit-nav-bg--hover;
+  }
+
+  &.active::before {
+    box-shadow: $box-shadow-color 3px 2px 5px, inset $edit-nav-bg--active -1px 0;
+  }
+
+  &.active::after {
+    box-shadow: $box-shadow-color -3px 2px 5px, inset $edit-nav-bg--active 1px 0;
+  }
+}
+
+.editor-buttons {
+  position: fixed;
+  z-index: 40;
   bottom: 3em;
   right: 3em;
-  @include flex(row, center, center);
+  @include flex(column, center, center);
 }
 
 div.lang-container {
-  position: absolute;
-  z-index: 1;
+  position: fixed;
+  z-index: 44;
   bottom: 3em;
-  left: 3em;
+  margin-left: 3em;
 }
 
 div.alert-box {
@@ -300,6 +432,11 @@ div.alert-box {
 }
 
 @media screen and (min-width: 320px) and (max-width: 900px) {
+
+  #codeEditorNav > ul {
+    grid-template-columns: 2fr 2fr 1fr;
+  }
+
   .creator-nav {
     position: absolute;
     transform: translateX(-100%);
