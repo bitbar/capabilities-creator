@@ -1,6 +1,14 @@
 <template>
     <div id="codeEditor">
-        <codemirror v-model="capabilities" :options="cmOptions" />
+        <nav id="codeEditorNav">
+            <ul>
+                <li :class="['editor-nav-tab', { 'active': sampleEditor }]" @click="onChangeTab()">Sample</li>
+                <li :class="['editor-nav-tab', { 'active': !sampleEditor }]" @click="onChangeTab()">Full Script</li>
+            </ul>
+        </nav>
+
+        <codemirror v-if="sampleEditor" v-model="capabilities" :options="cmOptions" />
+        <codemirror v-else v-model="script" :options="cmOptions" />
         <div :class="['alert-box', { 'hidden': !isCopied }]" id="alert">
             <span class="alert-text">Code was copied to clipboard</span>
         </div>
@@ -13,11 +21,13 @@
             </select>
         </div>
         <div class="editor-buttons">
-            <button class="btn btn-copy" @click="copyToClipboard" :data-clipboard-text="capabilities">
+            <button v-show="sampleEditor" class="btn btn-copy" @click="copyToClipboard" :data-clipboard-text="capabilities">
                 <i class="far fa-copy"></i>
+                <span class="btn-title">Copy to clipboard</span>
             </button>
             <button class="btn btn-download" @click="downloadZipFile">
                 <i class="fas fa-download"></i>
+                <span class="btn-title">Download sample</span>
             </button>
         </div>
     </div>
@@ -60,8 +70,19 @@
                     line: true,
                 },
                 isCopied: false,
-                extension: 'java'
+                extension: 'java',
+                script: '',
+                sampleEditor: true
             }
+        },
+        created() {
+            fetch(i18n("SOURCE", undefined, undefined, {language: this.currentLang}))
+                .then(function(response) {
+                    return response.text();
+                }).then((response) => {
+                this.script = response;
+                return response;
+            });
         },
         watch: {
             currentLang(lang) {
@@ -107,6 +128,15 @@
                 }
                 this.cmOptions.mode = mode;
             },
+            fetchAdditionalFile(source) {
+                let sample = fetch(i18n(source, undefined, undefined, {language: this.currentLang}))
+                    .then(function(response) {
+                        return response.text();
+                    }).then(function(response) {
+                        return response;
+                    });
+                return sample;
+            },
             downloadZipFile() {
                 let that = this;
                 fetch(i18n('SOURCE', undefined, undefined, {language: that.currentLang}))
@@ -118,17 +148,62 @@
                         let match = response.match(reg);
                         let str = "";
                         let file;
+                        let additionalFile = {};
+                        let folder;
                         let zip = new JSZip();
                         that.capabilities.split("\n").forEach(function(line, index, arr) {
                             if (index === arr.length - 1 && line === "") { return; }
                             str = str.concat(match[1] + line + '\n');
                         });
                         file = response.replace(match[2], str);
-                        zip.file(that.currentLang+"_sample."+that.extension, file);
+                        folder = zip.folder(that.currentLang + "_sample");
+
+                        switch (that.currentLang) {
+                            case 'java':
+                                additionalFile.name = 'pom.';
+                                additionalFile.source = 'SOURCE_XML';
+                                additionalFile.extension = 'xml';
+                                break;
+                            case 'nodeJs':
+                                additionalFile.name = ['package-lock.', 'package.'];
+                                additionalFile.source = ['SOURCE_1', 'SOURCE_2'];
+                                additionalFile.extension = 'json';
+                                break;
+                            case 'ruby':
+                                additionalFile.name = 'Gemfile';
+                                additionalFile.source = 'SOURCE_GEMFILE';
+                                additionalFile.extension = '';
+                                break;
+                        }
+
+                        if (that.currentLang === 'python') {
+                            folder.file(that.currentLang+"_sample."+ that.extension, file);
+                        }
+                        else if (that.currentLang === 'nodeJs') {
+                            additionalFile.file1 = that.fetchAdditionalFile(additionalFile.source[0]);
+                            additionalFile.file2 = that.fetchAdditionalFile(additionalFile.source[1]);
+                            folder.file(that.currentLang+"_sample."+that.extension, file).file(
+                                additionalFile.name[0] + additionalFile.extension, additionalFile.file1).file(
+                                additionalFile.name[1] + additionalFile.extension, additionalFile.file2);
+                        }
+
+                        else {
+                            additionalFile.file = that.fetchAdditionalFile(additionalFile.source);
+                            folder
+                                .file(that.currentLang+"_sample."+that.extension, file)
+                                .file(additionalFile.name + additionalFile.extension, additionalFile.file);
+                        }
+
+
+
                         zip.generateAsync({type: "blob"}).then((content) => {
                             FileSaver.saveAs(content, that.currentLang + "Sample.zip");
                         });
                     });
+
+            },
+            onChangeTab() {
+                this.sampleEditor = !this.sampleEditor;
             }
         }
     }

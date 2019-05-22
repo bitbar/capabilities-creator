@@ -4,15 +4,28 @@ $bright-turquoise: #2E9DFB;
 $gainsboro: #e4e4e4;
 $gainsboro-light: #e0e0e0;
 $acadia: #282a37;
+$acadia-light: #414358;
 $blueviolet: #8A2BE2;
 $whitesmoke: rgb(245, 245, 245);
 $nobel: #999999;
+$dark: rgba(0,0,0,.1);
+
+$box-shadow-color: $dark;
 
 $body-color: $gainsboro;
 $accent: $bright-turquoise;
 $editor-bg: $acadia;
 $nav-bg: $white;
 $nav-btn-mob-bg: $white;
+
+//code-editor nav
+$edit-nav-bg: $acadia-light;
+$edit-nav-text-color--active: $white;
+$edit-nav-bg--active: $acadia;
+$edit-nav-text-color: $white;
+$edit-nav-border: $acadia;
+$edit-nav-bg--hover: $bright-turquoise;
+$edit-nav-text--hover: $white;
 
 //btns
 $btn-text-color: $black;
