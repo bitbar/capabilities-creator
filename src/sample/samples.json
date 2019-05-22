@@ -14,7 +14,7 @@
         "CAPABILITY_API_KEY_UNDEFINED": "capabilities.setCapability(\"bitbar_apiKey\", \"<insert your Bitbar API key here>\");",
         "CAPABILITY_BITBAR_PROJECT": "capabilities.setCapability(\"bitbarProject\", \"%{x}\");",
         "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
-        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/java/src/test/java/com/bitbar/selenium/BitbarSelenium.java"
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/java/src/test/java/com/bitbar/selenium/BitbarSelenium.java"
       }
     },
     {
@@ -31,7 +31,7 @@
         "CAPABILITY_API_KEY_UNDEFINED": "\t'bitbar_apiKey': '<insert your Bitbar API key here>',",
         "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}'",
         "REGEXP": "( *)# user-customizable parameters start here\\n([\\S\\s]*})",
-        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/python/bitbar_selenium.py"
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/python/bitbar_selenium.py"
       }
     },
     {
@@ -48,7 +48,7 @@
         "CAPABILITY_API_KEY_UNDEFINED": "\t'bitbar_apiKey': '<insert your Bitbar API key here>',",
         "CAPABILITY_BITBAR_PROJECT": "\t'bitbarProject': '%{x}'",
         "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
-        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/NodeJS/bitbar_selenium.js"
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/bitbar_selenium.js"
       }
     },
     {
@@ -99,7 +99,7 @@
         "CAPABILITY_API_KEY_UNDEFINED": "capabilities['bitbar_apiKey'] = '<insert your Bitbar API key here>'",
         "CAPABILITY_BITBAR_PROJECT": "capabilities['bitbarProject'] = '%{x}'",
         "REGEXP": "( *)# user-customizable parameters start here\n([\\S\\s]*?)\n.*#",
-        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/desktop-browsers/desktop-browsers/sample-scripts/ruby/bitbar_selenium.rb"
+        "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/ruby/bitbar_selenium.rb"
       }
     }
   ]
