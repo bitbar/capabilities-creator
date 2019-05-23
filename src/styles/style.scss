@@ -227,11 +227,12 @@ select {
 }
 
 select.lang-select {
-  width: 8.5em;
-  height: 3.2em;
+  width: 15em;
+  height: 2.5em;
   padding: 0 1em;
   font-size: 1rem;
   line-height: 3.2em;
+  border: 1px solid rgba(0,0,0,0.24);
   border-radius: 30px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   color: $select-text-color;
@@ -400,8 +401,9 @@ label.form-label {
 
 div.lang-container {
   position: fixed;
-  z-index: 44;
-  bottom: 3em;
+  z-index: 501;
+  top: -11px;
+  right: 3em;
   margin-left: 3em;
 }
 
@@ -462,20 +464,17 @@ div.alert-box {
   }
 
   div.lang-container {
-    left: 9%;
+    right: 2%;
+    top: 65%;
+  }
+
+  select.lang-select {
+    width: 10.6em;
+    height: 3em;
   }
 
   .editor-buttons {
     right: 2%;
-  }
-
-  .btn-copy {
-    margin-right: 2em;
-  }
-
-  .btn {
-    width: 70px;
-    height: 70px;
   }
 
   div.alert-box {
