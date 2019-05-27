@@ -2,8 +2,8 @@
     <div id="codeEditor">
         <nav id="codeEditorNav">
             <ul>
-                <li :class="['editor-nav-tab', { 'active': sampleEditor }]" @click="onChangeTab()">Sample</li>
-                <li :class="['editor-nav-tab', { 'active': !sampleEditor }]" @click="onChangeTab()">Full Script</li>
+                <li :class="['editor-nav-tab', { 'active': sampleEditor }]" @click="onChangeTab()">Capabilities</li>
+                <li :class="['editor-nav-tab', { 'active': !sampleEditor }]" @click="onChangeTab()">Full sample</li>
             </ul>
         </nav>
 
@@ -27,7 +27,7 @@
             </button>
             <button class="btn btn-download" @click="downloadZipFile">
                 <i class="fas fa-download"></i>
-                <span class="btn-title">Download sample</span>
+                <span class="btn-title">Download full sample</span>
             </button>
         </div>
     </div>
@@ -75,12 +75,12 @@
                 sampleEditor: true
             }
         },
-        created() {
+        updated() {
             fetch(i18n("SOURCE", undefined, undefined, {language: this.currentLang}))
                 .then(function(response) {
                     return response.text();
                 }).then((response) => {
-                this.script = response;
+                this.script = this.setCapabilities(response);
                 return response;
             });
         },
@@ -91,6 +91,18 @@
             }
         },
         methods: {
+            setCapabilities(caps) {
+                let reg = new RegExp(i18n('REGEXP', undefined, undefined, {language: this.currentLang}));
+                let match = caps.match(reg);
+                let str = "";
+                let file;
+                this.capabilities.split("\n").forEach(function(line, index, arr) {
+                    if (index === arr.length - 1 && line === "") { return; }
+                    str = str.concat(match[1] + line + '\n');
+                });
+                file = caps.replace(match[2], str);
+                return file;
+            },
             copyToClipboard() {
                 this.isCopied = true;
                 new ClipboardJS('.btn-copy');
@@ -144,18 +156,11 @@
                         return response.text();
                     })
                     .then(function(response) {
-                        let reg = new RegExp(i18n('REGEXP', undefined, undefined, {language: that.currentLang}));
-                        let match = response.match(reg);
-                        let str = "";
                         let file;
                         let additionalFile = {};
                         let folder;
+                        file = that.setCapabilities(response);
                         let zip = new JSZip();
-                        that.capabilities.split("\n").forEach(function(line, index, arr) {
-                            if (index === arr.length - 1 && line === "") { return; }
-                            str = str.concat(match[1] + line + '\n');
-                        });
-                        file = response.replace(match[2], str);
                         folder = zip.folder(that.currentLang + "_sample");
 
                         switch (that.currentLang) {
