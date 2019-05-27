@@ -41,17 +41,21 @@
             <label for="testRunName" class="form-label">Test run name</label>
         </div>
         <div v-if="capability.optional" class="form-field">
-            <input type="number" class="form-input" id="testTimeout" v-model="capability.bitbarTestTimeout" min="600"/>
-            <label for="testTimeout" class="form-label">Test timeout (in seconds)</label>
+            <input type="number" class="form-input" id="testTimeout" v-model="capability.bitbarTestTimeout" min="0"/>
+            <label for="testTimeout" class="form-label">Test timeout (in seconds)*</label>
         </div>
         <div v-if="capability.optional" class="form-field">
             <input type="number" class="form-input" id="multiSessionWait" v-model="capability.bitbarMultiSessionWait"
                    min="0" max="60"/>
             <label for="multiSessionWait" class="form-label">
-                Multi session wait
+                Multisession wait
                 <br>
                 (in seconds)
             </label>
+        </div>
+
+        <div v-if="capability.optional" class="form-field">
+            <p class="form-label">* on default is equal 600s</p>
         </div>
         <button class="btn create-btn-mob" @click="onCreateData">
             <i class="fas fa-2x fa-plus"></i>
@@ -77,7 +81,7 @@
                     version: null,
                     bitbarProject: null,
                     bitbarTestRun: null,
-                    bitbarTestTimeout: 600,
+                    bitbarTestTimeout: null,
                     bitbarMultiSessionWait: 0,
                     resolution: null,
                     optional: false,
@@ -154,6 +158,8 @@
                     {x: this.capability.bitbarTestRun}, {language: this.language}));
                 if(this.capability.optional && this.capability.bitbarTestTimeout) cap.push(i18n('CAPABILITY_BITBAR_TEST_TIMEOUT', undefined,
                     {x: this.capability.bitbarTestTimeout}, {language: this.language}));
+                if(this.capability.optional && !this.capability.bitbarTestTimeout) cap.push(i18n('CAPABILITY_BITBAR_TEST_TIMEOUT', undefined,
+                    {x: 600}, {language: this.language}));
                 if(this.capability.optional && this.capability.bitbarMultiSessionWait) cap.push(i18n('CAPABILITY_BITBAR_MULTI_SESSION_WAIT', undefined,
                     {x: this.capability.bitbarMultiSessionWait}, {language: this.language}));
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language})
