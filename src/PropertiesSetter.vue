@@ -48,14 +48,8 @@
             <input type="number" class="form-input" id="multiSessionWait" v-model="capability.bitbarMultiSessionWait"
                    min="0" max="60"/>
             <label for="multiSessionWait" class="form-label">
-                Multisession wait
-                <br>
-                (in seconds)
+                Multisession wait(in seconds)
             </label>
-        </div>
-
-        <div v-if="capability.optional" class="form-field">
-            <p class="form-label">* on default is equal 600s</p>
         </div>
         <button class="btn create-btn-mob" @click="onCreateData">
             <i class="fas fa-2x fa-plus"></i>
@@ -82,7 +76,7 @@
                     bitbarProject: null,
                     bitbarTestRun: null,
                     bitbarTestTimeout: null,
-                    bitbarMultiSessionWait: 0,
+                    bitbarMultiSessionWait: null,
                     resolution: null,
                     optional: false,
                     apiKey: null
