@@ -41,14 +41,14 @@
             <label for="testRunName" class="form-label">Test run name</label>
         </div>
         <div v-if="capability.optional" class="form-field">
-            <input type="number" class="form-input" id="testTimeout" v-model="capability.bitbarTestTimeout" min="0"/>
-            <label for="testTimeout" class="form-label">Test timeout (in seconds)*</label>
+            <input type="number" class="form-input num-input" id="testTimeout" v-model="capability.bitbarTestTimeout" min="0"/>
+            <label for="testTimeout" class="form-label">Test timeout(in seconds; 600s by default)</label>
         </div>
         <div v-if="capability.optional" class="form-field">
-            <input type="number" class="form-input" id="multiSessionWait" v-model="capability.bitbarMultiSessionWait"
+            <input type="number" class="form-input num-input" id="multiSessionWait" v-model="capability.bitbarMultiSessionWait"
                    min="0" max="60"/>
             <label for="multiSessionWait" class="form-label">
-                Multisession wait(in seconds)
+                Multisession wait (in seconds)
             </label>
         </div>
         <button class="btn create-btn-mob" @click="onCreateData">
