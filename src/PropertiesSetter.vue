@@ -41,12 +41,13 @@
             <label for="testRunName" class="form-label">Test run name</label>
         </div>
         <div v-if="capability.optional" class="form-field">
-            <input type="number" class="form-input num-input" id="testTimeout" v-model="capability.bitbarTestTimeout" min="0"/>
-            <label for="testTimeout" class="form-label">Test timeout(in seconds; 600s by default)</label>
+            <input type="number" class="form-input num-input" id="testTimeout" v-model="capability.bitbarTestTimeout"
+                   min="0" oninput="this.value = Math.abs(this.value)"/>
+            <label for="testTimeout" class="form-label">Test timeout (in seconds; 600 by default)</label>
         </div>
         <div v-if="capability.optional" class="form-field">
             <input type="number" class="form-input num-input" id="multiSessionWait" v-model="capability.bitbarMultiSessionWait"
-                   min="0" max="60"/>
+                   min="0" max="60" oninput="this.value = Math.abs(this.value)"/>
             <label for="multiSessionWait" class="form-label">
                 Multisession wait (in seconds)
             </label>
@@ -90,7 +91,7 @@
         },
         watch: {
             capability: {
-                handler(newVal, oldVal) {
+                handler() {
                     this.createCapabilities();
                     this.$emit("capability", this.createCapabilities());
                     if(!this.capability.optional) {
