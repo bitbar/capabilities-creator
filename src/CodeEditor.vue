@@ -191,7 +191,12 @@
                                 additionalFile.name[0] + additionalFile.extension, additionalFile.file1).file(
                                 additionalFile.name[1] + additionalFile.extension, additionalFile.file2);
                         }
-
+                        else if (that.currentLang === 'java') {
+                            additionalFile.file = that.fetchAdditionalFile(additionalFile.source);
+                            folder
+                                .file('BitbarSelenium.' + that.extension, file)
+                                .file(additionalFile.name + additionalFile.extension, additionalFile.file);
+                        }
                         else {
                             additionalFile.file = that.fetchAdditionalFile(additionalFile.source);
                             folder
