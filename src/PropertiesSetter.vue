@@ -49,7 +49,7 @@
             <input type="number" class="form-input num-input" id="multiSessionWait" v-model="capability.bitbarMultiSessionWait"
                    min="0" max="60" oninput="this.value = Math.abs(this.value)"/>
             <label for="multiSessionWait" class="form-label">
-                Multisession wait (in seconds)
+                Multisession wait (in seconds; max 60)
             </label>
         </div>
         <button class="btn create-btn-mob" @click="onCreateData">
@@ -95,7 +95,22 @@
                     this.createCapabilities();
                     this.$emit("capability", this.createCapabilities());
                     if(!this.capability.optional) {
-                        this.capability.bitbarProject = null
+                        this.clearOptionalCaps()
+                    }
+                    if(this.capability.bitbarTestTimeout === 0) {
+                        this.capability.bitbarTestTimeout = null
+                    }
+                    if(this.capability.bitbarTestTimeout) {
+                        this.capability.bitbarTestTimeout = Math.round(this.capability.bitbarTestTimeout)
+                    }
+                    if(this.capability.bitbarMultiSessionWait === 0) {
+                        this.capability.bitbarMultiSessionWait = null
+                    }
+                    if(this.capability.bitbarMultiSessionWait) {
+                        this.capability.bitbarMultiSessionWait = Math.round(this.capability.bitbarMultiSessionWait);
+                        if(this.capability.bitbarMultiSessionWait > 60) {
+                            this.capability.bitbarMultiSessionWait = 60
+                        }
                     }
                 },
                 deep: true
@@ -153,8 +168,6 @@
                     {x: this.capability.bitbarTestRun}, {language: this.language}));
                 if(this.capability.optional && this.capability.bitbarTestTimeout) cap.push(i18n('CAPABILITY_BITBAR_TEST_TIMEOUT', undefined,
                     {x: this.capability.bitbarTestTimeout}, {language: this.language}));
-                if(this.capability.optional && !this.capability.bitbarTestTimeout) cap.push(i18n('CAPABILITY_BITBAR_TEST_TIMEOUT', undefined,
-                    {x: 600}, {language: this.language}));
                 if(this.capability.optional && this.capability.bitbarMultiSessionWait) cap.push(i18n('CAPABILITY_BITBAR_MULTI_SESSION_WAIT', undefined,
                     {x: this.capability.bitbarMultiSessionWait}, {language: this.language}));
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language})
@@ -163,6 +176,12 @@
                 let propsSetter = document.getElementById('propertiesSetter');
                 propsSetter.classList.remove('visible');
                 e.stopPropagation();
+            },
+            clearOptionalCaps() {
+                this.capability.bitbarProject = null;
+                this.capability.bitbarTestRun = null;
+                this.capability.bitbarTestTimeout = null;
+                this.capability.bitbarMultiSessionWait = null
             }
         }
     }
