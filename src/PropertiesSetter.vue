@@ -1,6 +1,9 @@
 <template>
     <div id="propertiesSetter" class="form">
-        <h1 class="form-header">Capabilities creator</h1>
+        <div class="tag">
+            <span>BETA</span>
+        </div>
+        <h1 class="form-header">Capabilities<br>creator</h1>
         <div class="form-field">
             <drop-down v-model="capability.platform"
                        :options="platforms"></drop-down>
