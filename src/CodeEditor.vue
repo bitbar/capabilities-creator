@@ -193,9 +193,14 @@
                         }
                         else if (that.currentLang === 'java') {
                             additionalFile.file = that.fetchAdditionalFile(additionalFile.source);
-                            folder
+                            folder.file(additionalFile.name + additionalFile.extension, additionalFile.file);
+                            folder.folder("src")
+                                .folder("test")
+                                .folder("java")
+                                .folder("com")
+                                .folder("bitbar")
+                                .folder("selenium")
                                 .file('BitbarSelenium.' + that.extension, file)
-                                .file(additionalFile.name + additionalFile.extension, additionalFile.file);
                         }
                         else {
                             additionalFile.file = that.fetchAdditionalFile(additionalFile.source);
