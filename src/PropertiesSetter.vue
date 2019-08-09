@@ -126,7 +126,14 @@
         methods: {
             fetchData() {
                 let that = this;
-                fetch('https://staging.bitbar.com/api/v2/devices/desktop-browser-capabilities')
+                let url = 'https://cloud.bitbar.com/api/v2/devices/desktop-browser-capabilities';
+
+                // if(window.location.href.split('?')[1] === 'env=prod')
+                //     url = 'https://cloud.bitbar.com/api/v2/devices/desktop-browser-capabilities';
+                // else if(window.location.href.split('?')[1] === 'env=staging')
+                //     url = 'https://staging.bitbar.com/api/v2/devices/desktop-browser-capabilities';
+
+                fetch(url)
                     .then(function(response) {
                         return response.json()
                     }).then(function (data) {
