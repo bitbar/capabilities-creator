@@ -4,6 +4,14 @@
             <span>BETA</span>
         </div>
         <h1 class="form-header">Capabilities<br>creator</h1>
+
+        <div class="form-toggle">
+            <span class="form-label">{{ title }}</span>
+            <label class="switch-toggle">
+                <input type="checkbox" v-model="appiumView"/>
+                <span class="slider round"></span>
+            </label>
+        </div>
         <div class="form-field">
             <drop-down v-model="capability.platform"
                        :options="platforms"></drop-down>
@@ -73,6 +81,7 @@
         props: ['language'],
         data () {
             return {
+                appiumView: false,
                 capability: {
                     platform: null,
                     browserName: null,
@@ -190,6 +199,16 @@
                 this.capability.bitbarTestRun = null;
                 this.capability.bitbarTestTimeout = null;
                 this.capability.bitbarMultiSessionWait = null
+            }
+        },
+        computed: {
+            title: function() {
+                if (this.appiumVue) {
+                    return 'Appium';
+                }
+                else {
+                    return 'Desktop';
+                }
             }
         }
     }

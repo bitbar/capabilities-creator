@@ -249,7 +249,7 @@ select.select-field:focus {
   }
 }
 
-label.form-label {
+.form-label {
   color: $label-color;
   font-size: 1em;
   font-weight: 400;
@@ -451,8 +451,8 @@ div.alert-box {
 .tag span {
   margin: 2px 5px 2px 12px;
   padding: 0 10px 0 12px;
-  background: #0078d7;
-  color: #fff;
+  background: $beta-tag-bg;
+  color: $beta-tag-color;
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
   position: absolute;
@@ -469,7 +469,7 @@ div.alert-box {
   left: -12px;
   width: 0;
   height: 0;
-  border-color: transparent #0078d7 transparent transparent;
+  border-color: transparent $beta-tag-bg transparent transparent;
   border-style: solid;
   border-width: 12px 12px 12px 0;
 }
@@ -485,17 +485,17 @@ div.alert-box {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  background: #fff;
-  -moz-box-shadow: -1px -1px 2px #004977;
-  -webkit-box-shadow: -1px -1px 2px #004977;
-  box-shadow: -1px -1px 2px #004977;
+  background: $beta-tag-color;
+  -moz-box-shadow: -1px -1px 2px $beta-tag-shadow;
+  -webkit-box-shadow: -1px -1px 2px $beta-tag-shadow;
+  box-shadow: -1px -1px 2px $beta-tag-shadow;
 }
 .tag.ic span{
-  background: #003399;
+  background: $beta-additional-color;
 
 }
 .tag.ic span:before{
-  border-color: transparent #003399 transparent transparent;
+  border-color: transparent $beta-additional-color transparent transparent;
 }
 
 @media screen and (min-width: 320px) and (max-width: 900px) {
@@ -562,5 +562,75 @@ div.alert-box {
 
   div.form-field {
     width: 94%;
+  }
+}
+
+.form-toggle {
+  width: 100%;
+  @include flex(row, space-between, top);
+
+  & > .form-label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: $toggle-title-color;
+  }
+}
+
+
+.switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+  margin: 0 1rem;
+
+  & > input {
+    display: none;
+
+    &:checked + .slider {
+      background-color: $toggle-color--accent;
+      border-color: $toggle-color--accent;
+    }
+
+    &:focus + .slider {
+      box-shadow: 0 0 1px $toggle-color--accent;
+    }
+
+    &:checked + .slider:before {
+      transform: translateX(29px);
+    }
+  }
+
+  & > .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $toggle-color--default;
+    border: 2px solid $toggle-color--default;
+    transition: all 0.4s ease;
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 25px;
+      width: 25px;
+      left: -4px;
+      bottom: -2px;
+      background-color: $toggle-item-color;
+      transition: all 0.4s ease;
+      box-shadow: 0 2px 9px rgba(0,0,0,0.14);
+    }
+
+    &.round {
+      border-radius: 34px;
+
+      &::before {
+        border-radius: 50%;
+      }
+    }
   }
 }
