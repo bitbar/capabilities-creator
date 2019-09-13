@@ -3,7 +3,7 @@
         <nav id="codeEditorNav">
             <ul>
                 <li :class="['editor-nav-tab', { 'active': sampleEditor }]" @click="onChangeTab()">Capabilities</li>
-                <li :class="['editor-nav-tab', { 'active': !sampleEditor }]" @click="onChangeTab()">Full sample</li>
+                <li v-if="!mode" :class="['editor-nav-tab', { 'active': !sampleEditor }]" @click="onChangeTab()">Full sample</li>
             </ul>
         </nav>
 
@@ -25,7 +25,7 @@
                 <i class="far fa-copy"></i>
                 <span class="btn-title">Copy to clipboard</span>
             </button>
-            <button class="btn btn-download" @click="downloadZipFile">
+            <button v-show="!mode" class="btn btn-download" @click="downloadZipFile">
                 <i class="fas fa-download"></i>
                 <span class="btn-title">Download full sample</span>
             </button>
@@ -47,7 +47,7 @@
 
     export default {
         name: "CodeEditor",
-        props: ['capabilities'],
+        props: ['capabilities', 'mode'],
         components: {
             codemirror, ClipboardJS
         },
@@ -76,6 +76,7 @@
             }
         },
         updated() {
+
             fetch(i18n("SOURCE", undefined, undefined, {language: this.currentLang}))
                 .then(function(response) {
                     return response.text();

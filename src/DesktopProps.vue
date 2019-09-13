@@ -86,16 +86,6 @@
                 platforms: []
             }
         },
-        computed: {
-            title: function() {
-                if (this.appiumVue) {
-                    return 'Appium';
-                }
-                else {
-                    return 'Desktop';
-                }
-            }
-        },
         created() {
             this.fetchData();
             this.$emit("capability", this.createCapabilities())

@@ -8,10 +8,11 @@
         <div class="form-toggle">
             <span class="form-label">{{ title }}</span>
             <label class="switch-toggle">
-                <input type="checkbox" v-model="appiumView"/>
+                <input type="checkbox" v-model="appiumVue"/>
                 <span class="slider round"></span>
             </label>
         </div>
+        <template v-if="!appiumVue">
         <div class="form-field">
             <drop-down v-model="capability.platform"
                        :options="platforms"></drop-down>
@@ -66,22 +67,27 @@
         <button class="btn create-btn-mob" @click="onCreateData">
             <i class="fas fa-2x fa-plus"></i>
         </button>
+        </template>
+        <appium-props v-else></appium-props>
     </div>
 </template>
 
 <script>
     import DropDown from './Dropdown.vue'
+    import AppiumProps from './AppiumProps.vue'
+
     import i18n from 'roddeh-i18n'
 
     export default {
         name: "PropertiesSetter",
         components: {
-            'drop-down': DropDown
+            'drop-down': DropDown,
+            'appium-props': AppiumProps
         },
         props: ['language'],
         data () {
             return {
-                appiumView: false,
+                appiumVue: false,
                 capability: {
                     platform: null,
                     browserName: null,
@@ -96,6 +102,16 @@
                 },
                 platforms: []
             }
+        },
+        computed: {
+          title: function() {
+              if (this.appiumVue) {
+                  return 'Appium';
+              }
+              else {
+                  return 'Desktop';    
+              }
+          }
         },
         created() {
             this.fetchData();
@@ -199,16 +215,6 @@
                 this.capability.bitbarTestRun = null;
                 this.capability.bitbarTestTimeout = null;
                 this.capability.bitbarMultiSessionWait = null
-            }
-        },
-        computed: {
-            title: function() {
-                if (this.appiumVue) {
-                    return 'Appium';
-                }
-                else {
-                    return 'Desktop';
-                }
             }
         }
     }

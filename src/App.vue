@@ -16,10 +16,11 @@
                     <span class="slider round"></span>
                 </label>
             </div>
-            <appium-props-setter v-if="appiumView"></appium-props-setter>
-            <desktop-props-setter v-else  @capability="setCapabilities" :language="language"></desktop-props-setter>
+            <appium-props-setter v-if="appiumView"  @capability="setCapabilities" :language="language"></appium-props-setter>
+            <desktop-props-setter v-else @capability="setCapabilities" :language="language"></desktop-props-setter>
         </div>
-        <code-editor class="creator-editor" @currentLang="changeLanguage" :capabilities="capabilities"></code-editor>
+        <code-editor class="creator-editor" @currentLang="changeLanguage" :capabilities="capabilities"
+            :mode="appiumView"></code-editor>
     </div>
 </template>
 
@@ -37,6 +38,11 @@
                 appiumView: false
             }
         },
+        watch: {
+            appiumView() {
+               console.log('changed');
+            }
+        },
         components: {
             'code-editor': CodeEditor,
             'props-setter': PropertiesSetter,
@@ -49,6 +55,7 @@
             },
             setCapabilities(val) {
                 this.capabilities = val
+                console.log('caps',val)
             },
             onShowNav(e) {
                 let propsSetter = document.getElementById('propertiesSetter');
@@ -58,7 +65,7 @@
         },
         computed: {
             title: function() {
-                if (this.appiumVue) {
+                if (this.appiumView) {
                     return 'Appium';
                 }
                 else {
