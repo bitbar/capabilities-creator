@@ -10,7 +10,7 @@
             <h1 class="form-header">Capabilities<br>creator</h1>
 
             <div class="form-toggle">
-                <span class="form-label">{{ title }}</span>
+                <span class="switch-toggle__title">{{ title }}</span>
                 <label class="switch-toggle">
                     <input type="checkbox" v-model="appiumView"/>
                     <span class="slider round"></span>

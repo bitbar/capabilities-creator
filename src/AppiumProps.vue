@@ -13,28 +13,36 @@
             <label class="form-label">Devices list</label>
         </div>
         <div class="form-field">
+            <span class="form-label form-field__helper-text">you can get your API_KEY from cloud UI under My Account</span>
             <input type="text" id="userApiKey" class="form-input" v-model="capability.apiKey"/>
             <label for="userApiKey" class="form-label">User Api key*</label>
         </div>
         <div class="form-field">
-            <input type="text" id="mobApp" class="form-input"
-                   placeholder="full path to your application under test" v-model="capability.appPath"/>
+            <span class="form-label form-field__helper-text">full path to your application under test</span>
+            <input type="text" id="mobApp" class="form-input" v-model="capability.appPath"/>
             <label for="mobApp" class="form-label">Mobile application</label>
         </div>
         <div class="form-field">
-            <input type="text" id="appPackage" class="form-input" v-model="capability.appPackage"/>
+            <input type="text" id="appPackage" class="form-input" v-model="capability.appPackage"
+                placeholder="com.bitbar.sample"/>
             <label for="appPackage" class="form-label">Mobile application package</label>
         </div>
         <div v-if="capability.osType == 'iOS'" class="form-field">
-            <input type="text" id="appBundleId" class="form-input" v-model="capability.bundleID"/>
+            <input type="text" id="appBundleId" class="form-input" v-model="capability.bundleID"
+                placeholder="com.bitbar.testdroid.BitbarIOSSample"/>
             <label for="appBundleId" class="form-label">Bundle ID</label>
         </div>
         <div v-if="capability.osType == 'iOS'" class="form-field">
+            <span class="form-label form-field__helper-text">used automation framework name</span>
             <input type="text" id="automationName" class="form-input" v-model="capability.automationName"/>
-            <label for="automationName" class="form-label">Automation name</label>
+            <label for="automationName" class="form-label">
+                Automation name
+            </label>
         </div>
         <div v-if="capability.osType == 'Android'" class="form-field">
-            <input type="text" id="appActivity" class="form-input" v-model="capability.appActivity"/>
+            <span class="form-label form-field__helper-text">the main activity of your app</span>
+            <input type="text" id="appActivity" class="form-input" v-model="capability.appActivity"
+                placeholder="com.bitbar.sample.BitbarSampleApplicationActivity"/>
             <label for="appActivity" class="form-label">Mobile application activity</label>
         </div>
         <div class="form-field">
@@ -42,6 +50,7 @@
             <label for="appiumUrl" class="form-label">Appium broker URL</label>
         </div>
         <div class="form-field">
+            <span class="form-label form-field__helper-text">your local directory for screenshots</span>
             <input type="text" id="screenshot" class="form-input" v-model="capability.screenshotDir"/>
             <label for="screenshot" class="form-label">Local screenshot directory</label>
         </div>
@@ -53,10 +62,6 @@
             <input type="text" id="runName" class="form-input" v-model="capability.testRunName"/>
             <label for="runName" class="form-label">Test run name</label>
         </div>
-
-
-
-        <div>*you can get your API_KEY from cloud UI under My Account</div>
     </div>
 </template>
 
@@ -142,11 +147,11 @@
                 if(this.capability.bundleID) cap.push(i18n('CAPABILITY_BUNDLE_ID', undefined,
                     {x: this.capability.bundleID}, {language: this.language}));
                 if(this.capability.automationName) cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined,
-                    {x: this.capability.automationName}, {language: this.language}));
+                    {x: 'XCUITest' + this.capability.automationName}, {language: this.language}));
                 if(this.capability.appActivity) cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined,
                     {x: this.capability.appActivity}, {language: this.language}));
                 if(this.capability.appiumBrokerUrl) cap.push(i18n('CAPABILITY_APPIUM_BROKER_URL', undefined,
-                    {x: this.capability.appiumBrokerUrl}, {language: this.language}));
+                    {x: 'https://appium.bitbar.com/wd/hub/' + this.capability.appiumBrokerUrl}, {language: this.language}));
                 if(this.capability.screenshotDir) cap.push(i18n('CAPABILITY_SCREENSHOT_DIR', undefined,
                     {x: this.capability.screenshotDir}, {language: this.language}));
                 if(this.capability.projectName) cap.push(i18n('CAPABILITY_PROJECT_NAME', undefined,

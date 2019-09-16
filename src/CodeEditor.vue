@@ -7,8 +7,11 @@
             </ul>
         </nav>
 
-        <codemirror v-if="sampleEditor" v-model="capabilities" :options="cmOptions" />
-        <codemirror v-else v-model="script" :options="cmOptions" />
+        <template v-if="mode">
+            <codemirror v-if="sampleEditor" v-model="capabilities" :options="cmOptions" />
+            <codemirror v-else v-model="script" :options="cmOptions" />
+        </template>
+        <codemirror v-else v-model="capabilities" :options="cmOptions" />
         <div :class="['alert-box', { 'hidden': !isCopied }]" id="alert">
             <span class="alert-text">Code was copied to clipboard</span>
         </div>

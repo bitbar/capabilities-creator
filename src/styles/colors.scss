@@ -34,7 +34,8 @@ $beta-additional-color: $smalt;
 $toggle-color--default: $whitesmoke;
 $toggle-color--accent: $light-blue;
 $toggle-item-color: $white;
-$toggle-title-color: $bright-turquoise;
+$toggle-title-color: $white;
+$title-label-bg: $bright-turquoise;
 
 
 //code-editor nav
@@ -66,8 +67,10 @@ $input-outline-color: $white;
 $select-text-color: $acadia;
 $lang-select-bg: $white;
 
-
 $label-color: $nobel;
+$helper-text-color: $silver;
+$placeholder-color: $silver;
+
 
 //checkboxes
 $checkbox-bg: $white;
