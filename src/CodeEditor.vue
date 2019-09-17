@@ -2,16 +2,15 @@
     <div id="codeEditor">
         <nav id="codeEditorNav">
             <ul>
-                <li :class="['editor-nav-tab', { 'active': sampleEditor }]" @click="onChangeTab()">Capabilities</li>
+                <li :class="['editor-nav-tab', { 'active': sampleEditor || mode }]" @click="onChangeTab()">Capabilities</li>
                 <li v-if="!mode" :class="['editor-nav-tab', { 'active': !sampleEditor }]" @click="onChangeTab()">Full sample</li>
             </ul>
         </nav>
-
-        <template v-if="mode">
+        <codemirror v-if="mode" v-model="capabilities" :options="cmOptions" />
+        <template v-else>
             <codemirror v-if="sampleEditor" v-model="capabilities" :options="cmOptions" />
             <codemirror v-else v-model="script" :options="cmOptions" />
         </template>
-        <codemirror v-else v-model="capabilities" :options="cmOptions" />
         <div :class="['alert-box', { 'hidden': !isCopied }]" id="alert">
             <span class="alert-text">Code was copied to clipboard</span>
         </div>
