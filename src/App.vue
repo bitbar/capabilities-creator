@@ -39,11 +39,6 @@
                 appiumView: false
             }
         },
-        watch: {
-            appiumView() {
-               console.log('changed');
-            }
-        },
         components: {
             'code-editor': CodeEditor,
             'props-setter': PropertiesSetter,
