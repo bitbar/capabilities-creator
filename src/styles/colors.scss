@@ -1,6 +1,10 @@
 $white: #ffffff;
 $black: #707070;
+$light-blue: #90ceff;
 $bright-turquoise: #2E9DFB;
+$dark-tuquoise: #0078d7;
+$smalt: #003399;
+$cornflower-blue: #004977;
 $gainsboro: #e4e4e4;
 $gainsboro-light: #e0e0e0;
 $acadia: #282a37;
@@ -8,6 +12,7 @@ $acadia-light: #414358;
 $blueviolet: #8A2BE2;
 $whitesmoke: rgb(245, 245, 245);
 $nobel: #999999;
+$silver: #cecaca;
 $dark: rgba(0,0,0,.1);
 
 $box-shadow-color: $dark;
@@ -17,6 +22,22 @@ $accent: $bright-turquoise;
 $editor-bg: $acadia;
 $nav-bg: $white;
 $nav-btn-mob-bg: $white;
+
+//beta tag
+$beta-tag-bg: $dark-tuquoise;
+$beta-tag-color: $white;
+$toggle-text-color--default: $black;
+$beta-tag-shadow: $cornflower-blue;
+$beta-additional-color: $smalt;
+
+
+//toggle
+$toggle-color--default: $whitesmoke;
+$toggle-color--accent: $light-blue;
+$toggle-item-color: $bright-turquoise;
+$toggle-title-color: $white;
+$title-label-bg: $bright-turquoise;
+
 
 //code-editor nav
 $edit-nav-bg: $acadia-light;
@@ -47,8 +68,10 @@ $input-outline-color: $white;
 $select-text-color: $acadia;
 $lang-select-bg: $white;
 
-
 $label-color: $nobel;
+$helper-text-color: $silver;
+$placeholder-color: $silver;
+
 
 //checkboxes
 $checkbox-bg: $white;

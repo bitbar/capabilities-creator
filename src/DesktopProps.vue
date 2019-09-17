@@ -1,18 +1,6 @@
 <template>
-    <div id="propertiesSetter" class="form">
-        <div class="tag">
-            <span>BETA</span>
-        </div>
-        <h1 class="form-header">Capabilities<br>creator</h1>
+    <div id="desktopProps" class="form">
 
-        <div class="form-toggle">
-            <span class="form-label">{{ title }}</span>
-            <label class="switch-toggle">
-                <input type="checkbox" v-model="appiumVue"/>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <template v-if="!appiumVue">
         <div class="form-field">
             <drop-down v-model="capability.platform"
                        :options="platforms"></drop-down>
@@ -67,27 +55,22 @@
         <button class="btn create-btn-mob" @click="onCreateData">
             <i class="fas fa-2x fa-plus"></i>
         </button>
-        </template>
-        <appium-props v-else></appium-props>
     </div>
 </template>
 
 <script>
     import DropDown from './Dropdown.vue'
-    import AppiumProps from './AppiumProps.vue'
 
     import i18n from 'roddeh-i18n'
 
     export default {
-        name: "PropertiesSetter",
+        name: "DesktopProps",
         components: {
-            'drop-down': DropDown,
-            'appium-props': AppiumProps
+            'drop-down': DropDown
         },
         props: ['language'],
         data () {
             return {
-                appiumVue: false,
                 capability: {
                     platform: null,
                     browserName: null,
@@ -102,16 +85,6 @@
                 },
                 platforms: []
             }
-        },
-        computed: {
-          title: function() {
-              if (this.appiumVue) {
-                  return 'Appium';
-              }
-              else {
-                  return 'Desktop';    
-              }
-          }
         },
         created() {
             this.fetchData();
