@@ -8,12 +8,13 @@
                 <span>BETA</span>
             </div>
             <h1 class="form-header">Capabilities<br>creator</h1>
-
             <div class="form-toggle">
-                <span class="switch-toggle__title">{{ title }}</span>
                 <label class="switch-toggle">
-                    <input type="checkbox" v-model="appiumView"/>
-                    <span class="slider round"></span>
+                    <input type="checkbox" v-model="appiumView" @click="onChangeTitle"/>
+                    <span class="slider round" id="toggle">
+                        <span class="slider__item">Desktop</span>
+                        <span class="slider__item">Appium</span>
+                    </span>
                 </label>
             </div>
             <appium-props-setter v-if="appiumView"  @capability="setCapabilities" :language="language"></appium-props-setter>
@@ -49,29 +50,34 @@
             'desktop-props-setter': Desktop,
             'appium-props-setter': Appium
         },
+        mounted() {
+            let a = document.getElementById('toggle');
+            a.setAttribute("data-title", "Desktop");
+
+        },
         methods: {
             changeLanguage(lang) {
                 this.language = lang
             },
             setCapabilities(val) {
                 this.capabilities = val
-                console.log('caps',val)
             },
             onShowNav(e) {
                 let propsSetter = document.getElementById('propertiesSetter');
                 propsSetter.classList.add('visible');
                 e.stopPropagation();
+            },
+            onChangeTitle() {
+                let toggleEl = document.getElementById('toggle');
+                if (this.appiumView) {
+                    toggleEl.setAttribute("data-title", "Desktop");
+                }
+                else {
+                    toggleEl.setAttribute("data-title", "Appium");
+                }
             }
         },
         computed: {
-            title: function() {
-                if (this.appiumView) {
-                    return 'Appium';
-                }
-                else {
-                    return 'Desktop';
-                }
-            }
         }
     }
 </script>

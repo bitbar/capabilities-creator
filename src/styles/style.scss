@@ -608,23 +608,21 @@ div.alert-box {
   display: inline-block;
   width: 50px;
   height: 25px;
-  margin: 0 1rem;
+  margin: 1rem 0;
 
   & > input {
     display: none;
 
-    &:checked + .slider {
-      background-color: $toggle-color--accent;
-      border-color: $toggle-color--accent;
-    }
-
     &:focus + .slider {
       box-shadow: 0 0 1px $toggle-color--accent;
     }
+  }
 
-    &:checked + .slider:before {
-      transform: translateX(29px);
-    }
+
+
+  input:checked + .slider:before {
+    transform: translateX(75px);
+    border-radius: 0 5px 5px 0;
   }
 
   & > .slider {
@@ -634,27 +632,42 @@ div.alert-box {
     left: 0;
     right: 0;
     bottom: 0;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    color: $toggle-text-color--default;
     background-color: $toggle-color--default;
     border: 2px solid $toggle-color--default;
     transition: all 0.4s ease;
+    @include flex(row, space-around, center);
+
+    .slider__item {
+      width: 47%;
+      padding-left: 10px;
+
+      &:last-of-type {
+      }
+    }
 
     &::before {
       position: absolute;
-      content: '';
-      height: 25px;
-      width: 25px;
+      content: attr(data-title);
+      height: 32px;
+      width: 55%;
       left: -4px;
-      bottom: -2px;
+      line-height: 32px;
+      text-align: center;
+      color: $toggle-title-color;
       background-color: $toggle-item-color;
       transition: all 0.4s ease;
       box-shadow: 0 2px 9px rgba(0,0,0,0.14);
     }
 
     &.round {
-      border-radius: 34px;
+      border-radius: 5px;
 
       &::before {
-        border-radius: 50%;
+        border-radius: 5px 0 0 5px;
       }
     }
   }
