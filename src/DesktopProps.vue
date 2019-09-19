@@ -134,6 +134,7 @@
                         return response.json()
                     }).then(function (data) {
                     that.platforms = data.platforms
+                    console.log(data)
                 })
             },
             setOptions(key, deep=false) {

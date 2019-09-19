@@ -19,19 +19,18 @@
         "REGEXP": "( *)\\/\\/ user-customizable parameters start here\\n([\\S\\s]*?)\\n.*\\/\\/",
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/java/src/test/java/com/bitbar/selenium/BitbarSelenium.java",
         "SOURCE_XML": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/java/pom.xml",
-        "CAPABILITY_OS_TYPE": "capabilities.setCapability(\"osType\", \"%{x}\")",
-        "CAPABILITY_DEVICE": "capabilities.setCapability(\"device\", \"%{x}\")",
-        "CAPABILITY_USER_API_KEY": "capabilities.setCapability(\"userApiKey\", \"%{x}\")",
-        "CAPABILITY_APP_PATH": "capabilities.setCapability(\"appPath\", \"%{x}\")",
-        "CAPABILITY_APP_PACKAGE": "capabilities.setCapability(\"appPackage\", \"%{x}\")",
-        "CAPABILITY_BUNDLE_ID": "capabilities.setCapability(\"bundleId\", \"%{x}\")",
-        "CAPABILITY_AUTOMATION_NAME": "capabilities.setCapability(\"automationName\", \"%{x}\")",
-        "CAPABILITY_APP_ACTIVITY": "capabilities.setCapability(\"appActivity\", \"%{x}\")",
-        "CAPABILITY_APPIUM_BROKER_URL": "capabilities.setCapability(\"appiumBrokerUrl\", \"%{x}\")",
-        "CAPABILITY_SCREENSHOT_DIR": "capabilities.setCapability(\"screenshotDir\", \"%{x}\")",
-        "CAPABILITY_PROJECT_NAME": "capabilities.setCapability(\"projectName\", \"%{x}\")",
-        "CAPABILITY_TEST_RUN_NAME": "capabilities.setCapability(\"testRunName\", \"%{x}\")"
 
+        "CAPABILITY_BITBAR_DEVICE": "capabilities.setCapability(\"bitbar_device\", \"%{x}\")",
+        "CAPABILITY_BITBAR_APP": "capabilities.setCapability(\"bitbar_app\", \"%{x}\")",
+        "CAPABILITY_APP_PACKAGE": "capabilities.setCapability(\"appPackage\", \"%{x}\")",
+        "CAPABILITY_APP_ACTIVITY": "capabilities.setCapability(\"appActivity\", \"%{x}\")",
+        "CAPABILITY_BITBAR_PROJECT_NAME": "capabilities.setCapability(\"bitbar_project\", \"%{x}\")",
+        "CAPABILITY_AUTOMATION_NAME": "capabilities.setCapability(\"automationName\", \"%{x}\")",
+        "CAPABILITY_BITBAR_TARGET": "capabilities.setCapability(\"bitbar_target\", \"%{x}\")",
+        "CAPABILITY_DEVICE_NAME": "capabilities.setCapability(\"deviceName\", \"%{x}\")",
+        "CAPABILITY_APP": "capabilities.setCapability(\"app\", \"%{x}\")",
+        "CAPABILITY_PLATFORM_NAME": "capabilities.setCapability(\"platform_name\", \"%{x}\")",
+        "APPIUM_BROKER_URL": "/* URL form Appium broker https://appium.bitbar.com/wd/hub/ */"
       }
     },
     {
@@ -58,18 +57,17 @@
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/python/bitbar_selenium.py",
         "SOURCE_1": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/package-lock.json",
         "SOURCE_2": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/package.json",
-        "CAPABILITY_OS_TYPE": "\t'osType': '%{x}'",
-        "CAPABILITY_DEVICE": "\t'device': '%{x}'",
-        "CAPABILITY_USER_API_KEY": "\t'userApiKey': '%{x}'",
-        "CAPABILITY_APP_PATH": "\t'appPath': '%{x}'",
+        "CAPABILITY_BITBAR_DEVICE": "\t'bitbar_device': '%{x}'",
+        "CAPABILITY_BITBAR_APP": "\t'bitbar_app': '%{x}'",
         "CAPABILITY_APP_PACKAGE": "\t'appPackage': '%{x}'",
-        "CAPABILITY_BUNDLE_ID": "\t'bundleId': '%{x}'",
-        "CAPABILITY_AUTOMATION_NAME": "\t'automationName': '%{x}'",
         "CAPABILITY_APP_ACTIVITY": "\t'appActivity': '%{x}'",
-        "CAPABILITY_APPIUM_BROKER_URL": "\t'appiumBrokerUrl': '%{x}'",
-        "CAPABILITY_SCREENSHOT_DIR": "\t'screenShotDir': '%{x}'",
-        "CAPABILITY_PROJECT_NAME": "\t'projectName': '%{x}'",
-        "CAPABILITY_TEST_RUN_NAME": "\t'testRunName': '%{x}'"
+        "CAPABILITY_BITBAR_PROJECT_NAME": "\t'bitbar_project': '%{x}'",
+        "CAPABILITY_AUTOMATION_NAME": "\t'automationName': '%{x}'",
+        "CAPABILITY_BITBAR_TARGET": "\t'bitbar_target': '%{x}'",
+        "CAPABILITY_DEVICE_NAME": "\t'device_name': '%{x}'",
+        "CAPABILITY_APP": "\t'app': '%{x}'",
+        "CAPABILITY_PLATFORM_NAME": "\t'platformName': '%{x}'",
+        "APPIUM_BROKER_URL": "# URL form Appium broker https://appium.bitbar.com/wd/hub/"
 
       }
     },
@@ -93,18 +91,17 @@
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/bitbar_selenium.js",
         "SOURCE_1": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/package-lock.json",
         "SOURCE_2": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/NodeJS/package.json",
-        "CAPABILITY_OS_TYPE": "\t'osType': '%{x}',",
-        "CAPABILITY_DEVICE": "\t'device': '%{x}',",
-        "CAPABILITY_USER_API_KEY": "\t'userApiKey': '%{x}',",
-        "CAPABILITY_APP_PATH": "\t'appPath': '%{x}',",
+        "CAPABILITY_BITBAR_DEVICE": "\t'bitbar_device': '%{x}',",
+        "CAPABILITY_BITBAR_APP": "\t'bitbar_app': '%{x}',",
         "CAPABILITY_APP_PACKAGE": "\t'appPackage': '%{x}',",
-        "CAPABILITY_BUNDLE_ID": "\t'bundleId': '%{x}',",
-        "CAPABILITY_AUTOMATION_NAME": "\t'automationName': '%{x}',",
         "CAPABILITY_APP_ACTIVITY": "\t'appActivity': '%{x}',",
-        "CAPABILITY_APPIUM_BROKER_URL": "\t'appiumBrokerUrl': '%{x}',",
-        "CAPABILITY_SCREENSHOT_DIR": "\t'screenshotDir': '%{x}',",
-        "CAPABILITY_PROJECT_NAME": "\t'projectName': '%{x}',",
-        "CAPABILITY_TEST_RUN_NAME": "\t'testRunName': '%{x}'"
+        "CAPABILITY_BITBAR_PROJECT_NAME": "\t'bitbar_project': '%{x}',",
+        "CAPABILITY_AUTOMATION_NAME": "\t'automationName': '%{x}',",
+        "CAPABILITY_BITBAR_TARGET": "\t'bitbar_target': '%{x}',",
+        "CAPABILITY_DEVICE_NAME": "\t'device_name': '%{x}',",
+        "CAPABILITY_APP": "\t'app': '%{x}',",
+        "CAPABILITY_PLATFORM_NAME": "\t'platformName': '%{x}',",
+        "APPIUM_BROKER_URL": "// URL form Appium broker https://appium.bitbar.com/wd/hub/"
       }
     },
     {
@@ -125,19 +122,17 @@
         "CAPABILITY_BITBAR_MULTI_SESSION_WAIT": "\t 'bitbar_multiSessionWait' => '%{x}'",
         "REGEXP": "",
         "SOURCE": "",
-
-        "CAPABILITY_OS_TYPE": "capabilities.SetCapability('osType', '%{x}');",
-        "CAPABILITY_DEVICE": "capabilities.SetCapability('device', '%{x}');",
-        "CAPABILITY_USER_API_KEY": "capabilities.SetCapability('userApiKey', '%{x}');",
-        "CAPABILITY_APP_PATH": "capabilities.SetCapability('appPath', '%{x}');",
+        "CAPABILITY_BITBAR_DEVICE": "capabilities.SetCapability('bitbar_device', '%{x}');",
+        "CAPABILITY_BITBAR_APP": "capabilities.SetCapability('bitbar_app', '%{x}');",
         "CAPABILITY_APP_PACKAGE": "capabilities.SetCapability('appPackage', '%{x}');",
-        "CAPABILITY_BUNDLE_ID": "capabilities.SetCapability('bundleId', '%{x}');",
-        "CAPABILITY_AUTOMATION_NAME": "capabilities.SetCapability('automationName', '%{x}');",
         "CAPABILITY_APP_ACTIVITY": "capabilities.SetCapability('appActivity', '%{x}');",
-        "CAPABILITY_APPIUM_BROKER_URL": "capabilities.SetCapability('appiumBrokerUrl', '%{x}');",
-        "CAPABILITY_SCREENSHOT_DIR": "capabilities.SetCapability('screenshotDir', '%{x}');",
-        "CAPABILITY_PROJECT_NAME": "capabilities.SetCapability('projectName', '%{x}');",
-        "CAPABILITY_TEST_RUN_NAME": "capabilities.SetCapability('testRunName', '%{x}');"
+        "CAPABILITY_BITBAR_PROJECT_NAME": "capabilities.SetCapability('bitbar_project', '%{x}');",
+        "CAPABILITY_AUTOMATION_NAME": "capabilities.SetCapability('automationName', '%{x}');",
+        "CAPABILITY_BITBAR_TARGET": "capabilities.SetCapability('bitbar_target', '%{x}');",
+        "CAPABILITY_DEVICE_NAME": "capabilities.SetCapability('device_name', '%{x}');",
+        "CAPABILITY_APP": "capabilities.SetCapability('app', '%{x}');",
+        "CAPABILITY_PLATFORM_NAME": "capabilities.SetCapability('platformName', '%{x}');",
+        "APPIUM_BROKER_URL": "// URL form Appium broker https://appium.bitbar.com/wd/hub/"
       }
     },
     {
@@ -176,19 +171,17 @@
         "REGEXP": "( *)# user-customizable parameters start here\n([\\S\\s]*?)\n.*#",
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/ruby/bitbar_selenium.rb",
         "SOURCE_GEMFILE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/ruby/Gemfile",
-
-        "CAPABILITY_OS_TYPE": "capabilities['osType'] = '%{x}'",
-        "CAPABILITY_DEVICE": "capabilities['device'] = '%{x}'",
-        "CAPABILITY_USER_API_KEY": "capabilities['userApiKey'] = '%{x}'",
-        "CAPABILITY_APP_PATH": "capabilities['appPath'] = '%{x}'",
+        "CAPABILITY_BITBAR_DEVICE": "capabilities['bitbar_device'] = '%{x}'",
+        "CAPABILITY_BITBAR_APP": "capabilities['bitbar_app'] = '%{x}'",
         "CAPABILITY_APP_PACKAGE": "capabilities['appPackage'] = '%{x}'",
-        "CAPABILITY_BUNDLE_ID": "capabilities['bundleId'] = '%{x}'",
-        "CAPABILITY_AUTOMATION_NAME": "capabilities['automationName'] = '%{x}'",
         "CAPABILITY_APP_ACTIVITY": "capabilities['appActivity'] = '%{x}'",
-        "CAPABILITY_APPIUM_BROKER_URL": "capabilities['appiumBrokerUrl'] = '%{x}'",
-        "CAPABILITY_SCREENSHOT_DIR": "capabilities['acreenshotDir'] = '%{x}'",
-        "CAPABILITY_PROJECT_NAME": "capabilities['projectName'] = '%{x}'",
-        "CAPABILITY_TEST_RUN_NAME": "capabilities['testRunName'] = '%{x}'"
+        "CAPABILITY_BITBAR_PROJECT_NAME": "capabilities['bitbar_project'] = '%{x}'",
+        "CAPABILITY_AUTOMATION_NAME": "capabilities['automationName'] = '%{x}'",
+        "CAPABILITY_BITBAR_TARGET": "capabilities['bitbar_target'] = '%{x}'",
+        "CAPABILITY_DEVICE_NAME": "capabilities['device_name'] = '%{x}'",
+        "CAPABILITY_APP": "capabilities['app'] = '%{x}'",
+        "CAPABILITY_PLATFORM_NAME": "capabilities['platformName'] = '%{x}'",
+        "APPIUM_BROKER_URL": "# URL form Appium broker https://appium.bitbar.com/wd/hub/"
       }
     }
   ]

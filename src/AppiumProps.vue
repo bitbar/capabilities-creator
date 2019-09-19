@@ -1,16 +1,16 @@
 <template>
     <div class="appiumProps">
         <div class="form-field">
-            <drop-down v-model="capability.osType"
+            <drop-down v-model="osType"
                     :options="osTypes">
             </drop-down>
             <label class="form-label">OS type</label>
         </div>
         <div class="form-field">
             <drop-down v-model="capability.device"
-                    :options="devicesList">
+                    :options="deviceList" optionKey="displayName">
             </drop-down>
-            <label class="form-label">Devices list</label>
+            <label class="form-label">Device</label>
         </div>
         <div class="form-field">
             <span class="form-label form-field__helper-text">you can get your API_KEY from cloud UI under My Account</span>
@@ -19,46 +19,41 @@
         </div>
         <div class="form-field">
             <span class="form-label form-field__helper-text">full path to your application under test</span>
-            <input type="text" id="mobApp" class="form-input" v-model="capability.appPath"/>
-            <label for="mobApp" class="form-label">Mobile application</label>
+            <input type="text" id="mobApp" class="form-input" v-model="capability.bitbar_app"/>
+            <label for="mobApp" class="form-label">Application</label>
         </div>
-        <div class="form-field">
-            <input type="text" id="appPackage" class="form-input" v-model="capability.appPackage"
+        <div v-if="osType == 'ANDROID'" class="form-field">
+            <input type="text" id="appPackage" class="form-input" v-model="capability.android.appPackage"
                 placeholder="com.bitbar.sample"/>
-            <label for="appPackage" class="form-label">Mobile application package</label>
+            <label for="appPackage" class="form-label">Application package</label>
         </div>
-        <div v-if="capability.osType == 'iOS'" class="form-field">
-            <input type="text" id="appBundleId" class="form-input" v-model="capability.bundleID"
+        <div v-if="osType == 'ANDROID'" class="form-field">
+            <span class="form-label form-field__helper-text">the main activity of your app</span>
+            <input type="text" id="appActivity" class="form-input" v-model="capability.android.appActivity"
+                   placeholder="com.bitbar.sample.BitbarSampleApplicationActivity"/>
+            <label for="appActivity" class="form-label">Aapplication activity</label>
+        </div>
+        <div v-if="osType == 'iOS'" class="form-field">
+            <input type="text" id="appBundleId" class="form-input" v-model="capability.ios.app"
                 placeholder="com.bitbar.testdroid.BitbarIOSSample"/>
             <label for="appBundleId" class="form-label">Bundle ID</label>
         </div>
-        <div v-if="capability.osType == 'iOS'" class="form-field">
+        <div v-if="osType == 'iOS'" class="form-field">
             <span class="form-label form-field__helper-text">used automation framework name</span>
             <input type="text" id="automationName" class="form-input" v-model="capability.automationName"/>
             <label for="automationName" class="form-label">
                 Automation name
             </label>
         </div>
-        <div v-if="capability.osType == 'Android'" class="form-field">
-            <span class="form-label form-field__helper-text">the main activity of your app</span>
-            <input type="text" id="appActivity" class="form-input" v-model="capability.appActivity"
-                placeholder="com.bitbar.sample.BitbarSampleApplicationActivity"/>
-            <label for="appActivity" class="form-label">Mobile application activity</label>
+        <div class="form-field checkbox-field">
+            <input type="checkbox" id="optional" class="form-checkbox" v-model="capability.optional"/>
+            <label for="optional" class="form-label">Optional capabilities</label>
         </div>
-        <div class="form-field">
-            <input type="text" id="appiumUrl" class="form-input" v-model="capability.appiumBrokerUrl"/>
-            <label for="appiumUrl" class="form-label">Appium broker URL</label>
-        </div>
-        <div class="form-field">
-            <span class="form-label form-field__helper-text">your local directory for screenshots</span>
-            <input type="text" id="screenshot" class="form-input" v-model="capability.screenshotDir"/>
-            <label for="screenshot" class="form-label">Local screenshot directory</label>
-        </div>
-        <div class="form-field">
+        <div v-if="capability.optional" class="form-field">
             <input type="text" id="projectName" class="form-input" v-model="capability.projectName"/>
             <label for="projectName" class="form-label">Project name</label>
         </div>
-        <div class="form-field">
+        <div v-if="capability.optional" class="form-field">
             <input type="text" id="runName" class="form-input" v-model="capability.testRunName"/>
             <label for="runName" class="form-label">Test run name</label>
         </div>
@@ -76,35 +71,37 @@
         props: ['language'],
         data () {
             return {
-                osTypes: ['Android', 'iOS'],
+                osTypes: ['ANDROID', 'iOS'],
+                osType: null,
+                devices: [],
+                deviceList: [],
                 capability: {
-                    osType: null,
-                    devices: null,
                     apiKey: null,
-                    appPath: null,
-                    appPackage: null,
-                    bundleID: null,
-                    automationName: null,
-                    appActivity: null,
-                    appiumBrokerUrl: null,
-                    screenshotDir: null,
-                    projectName: null,
-                    testRunName: null
+                    device: null,
+                    bitbar_app: null,
+                    platformName: this.osType,
+                    bitbar_project: null,
+                    bitbar_testrun: null,
+                    optional: false,
+                    android: {
+                        appPackage: null,
+                        appActivity: null,
+                        deviceName: 'Android Phone',
+                        bitbar_target: 'android',
+                        automationName: 'Appium'
+                    },
+                    ios: {
+                        app: null,
+                        bitbar_target: 'ios',
+                        deviceName: 'iPhone device',
+                        automationName: 'XCUITest'
+                    }
                 }
             }
         },
         created() {
+            this.fetchDevices();
             this.$emit("capability", this.createCapabilities())
-        },
-        computed: {
-            devicesList: function() {
-                if(this.capability.osType == 'Android') {
-                    return ['pixel 3a', 'pixel 1', 'xiaomi A2'];
-                }
-                else {
-                    return ['iPhone 5s', 'iPhone X'];
-                }
-            }
         },
         watch: {
             capability: {
@@ -117,9 +114,39 @@
             language() {
                 this.createCapabilities();
                 this.$emit("capability", this.createCapabilities())
+            },
+            osType: {
+                handler() {
+                    let that = this;
+                    that.deviceList = [];
+                    that.devices.forEach(d => {
+                        if(d.osType === that.osType) {
+                            that.deviceList.push(d);
+                        }
+                    })
+                    this.createCapabilities();
+                    this.$emit("capability", this.createCapabilities());
+                }
             }
         },
         methods: {
+            fetchDevices() {
+                let that = this;
+                let url = 'https://cloud.bitbar.com/api/v2/devices?offset=0&limit=50&labelIds%5B%5D=41100480';
+
+                if  (window.location.href.split('?')[1] === btoa('staging.bitbar.com'))
+                    url = 'https://staging.bitbar.com/api/v2/devices?offset=0&limit=50&labelIds%5B%5D=41100480';
+
+                fetch(url)
+                    .then(function(response) {
+                        return response.json()
+                    }).then(function (data) {
+                    data.data.forEach(d => {
+                        that.devices.push(d);
+                    })
+                })
+
+            },
             fetchApiKey() {
                 let that = this;
                 let url = 'https://staging.bitbar.com/api/v2/users/32976629';
@@ -133,30 +160,43 @@
             },
             createCapabilities() {
                 let cap = [];
-                if(this.capability.osType) cap.push(i18n('CAPABILITY_OS_TYPE', undefined,
-                    {x: this.capability.osType}, {language: this.language}));
-                if(this.capability.device) cap.push(i18n('CAPABILITY_DEVICE', undefined,
-                    {x: this.capability.device}, {language: this.language}));
-                if(this.capability.apiKey) cap.push(i18n('CAPABILITY_USER_API_KEY', undefined,
+                if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
                     {x: this.capability.apiKey}, {language: this.language}));
-                if(this.capability.appPath) cap.push(i18n('CAPABILITY_APP_PATH', undefined,
-                    {x: this.capability.appPath}, {language: this.language}));
-                if(this.capability.appPackage) cap.push(i18n('CAPABILITY_APP_PACKAGE', undefined,
-                    {x: this.capability.appPackage}, {language: this.language}));
-                if(this.capability.bundleID) cap.push(i18n('CAPABILITY_BUNDLE_ID', undefined,
-                    {x: this.capability.bundleID}, {language: this.language}));
-                if(this.capability.automationName) cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined,
-                    {x: 'XCUITest' + this.capability.automationName}, {language: this.language}));
-                if(this.capability.appActivity) cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined,
-                    {x: this.capability.appActivity}, {language: this.language}));
-                if(this.capability.appiumBrokerUrl) cap.push(i18n('CAPABILITY_APPIUM_BROKER_URL', undefined,
-                    {x: 'https://appium.bitbar.com/wd/hub/' + this.capability.appiumBrokerUrl}, {language: this.language}));
-                if(this.capability.screenshotDir) cap.push(i18n('CAPABILITY_SCREENSHOT_DIR', undefined,
-                    {x: this.capability.screenshotDir}, {language: this.language}));
-                if(this.capability.projectName) cap.push(i18n('CAPABILITY_PROJECT_NAME', undefined,
-                    {x: this.capability.projectName}, {language: this.language}));
-                if(this.capability.testRunName) cap.push(i18n('CAPABILITY_TEST_RUN_NAME', undefined,
-                    {x: this.capability.testRunName}, {language: this.language}));
+                if(this.deviceList && this.capability.device) cap.push(i18n('CAPABILITY_BITBAR_DEVICE', undefined,
+                    {x: this.capability.device.displayName}, {language: this.language}));
+                if(this.capability.bitbar_app) cap.push(i18n('CAPABILITY_BITBAR_APP', undefined,
+                    {x: this.capability.bitbar_app}, {language: this.language}));
+
+                if(this.capability.android.appPackage && this.osType === 'ANDROID')
+                    cap.push(i18n('CAPABILITY_APP_PACKAGE', undefined, {x: this.capability.android.appPackage},
+                        {language: this.language}));
+                if(this.capability.android.appActivity && this.osType === 'ANDROID')
+                    cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined, {x: this.capability.android.appActivity},
+                        {language: this.language}));
+
+                if(this.capability.bitbar_project) cap.push(i18n('CAPABILITY_BITBAR_PROJECT_NAME', undefined,
+                    {x: this.capability.bitbar_project}, {language: this.language}));
+                if(this.capability.bitbar_testrun) cap.push(i18n('CAPABILITY_BITBAR_TEST_RUN', undefined,
+                    {x: this.capability.bitbar_testrun}, {language: this.language}));
+
+
+                if(this.osType === 'iOS' && this.capability.ios.app) cap.push(i18n('CAPABILITY_APP', undefined,
+                    {x: this.capability.ios.app}, {language: this.language}));
+
+                if (this.osType === 'ANDROID'){
+                    cap.push(i18n('CAPABILITY_PLATFORM_NAME', undefined, {x: 'Android'}, {language: this.language}));
+                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: 'android'}, {language: this.language}));
+                    cap.push(i18n('CAPABILITY_DEVICE_NAME', undefined, {x: 'Android Phone'}, {language: this.language}));
+                    cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: 'Appium'}, {language: this.language}));
+                }
+                else if (this.osType === 'iOS'){
+                    cap.push(i18n('CAPABILITY_PLATFORM_NAME', undefined, {x: 'iOS'}, {language: this.language}));
+                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: 'ios'}, {language: this.language}));
+                    cap.push(i18n('CAPABILITY_DEVICE_NAME', undefined, {x: 'iPhone device'}, {language: this.language}));
+                    cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: 'XCUITest'}, {language: this.language}));
+                }
+
+                cap.push(i18n('APPIUM_BROKER_URL', undefined, undefined, { language: this.language }));
 
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
 
