@@ -8,7 +8,7 @@
         </div>
         <div class="form-field">
             <drop-down v-model="capability.device"
-                    :options="deviceList" optionKey="displayName">
+                    :options="devicesByOSType" optionKey="displayName">
             </drop-down>
             <label class="form-label">Device</label>
         </div>
@@ -74,12 +74,11 @@
                 osTypes: ['ANDROID', 'iOS'],
                 osType: null,
                 devices: [],
-                deviceList: [],
+                devicesByOSType: [],
                 capability: {
                     apiKey: null,
                     device: null,
                     bitbar_app: null,
-                    platformName: this.osType,
                     bitbar_project: null,
                     bitbar_testrun: null,
                     optional: false,
@@ -100,37 +99,28 @@
             }
         },
         created() {
-            this.fetchDevices();
+            this.fetchAllDevices();
             this.$emit("capability", this.createCapabilities())
         },
         watch: {
             capability: {
                 handler() {
-                    this.createCapabilities();
-                    this.$emit("capability", this.createCapabilities());
+                    this.resetCapabilities();
                 },
                 deep: true
             },
             language() {
-                this.createCapabilities();
-                this.$emit("capability", this.createCapabilities())
+                this.resetCapabilities();
             },
             osType: {
                 handler() {
-                    let that = this;
-                    that.deviceList = [];
-                    that.devices.forEach(d => {
-                        if(d.osType === that.osType) {
-                            that.deviceList.push(d);
-                        }
-                    })
-                    this.createCapabilities();
-                    this.$emit("capability", this.createCapabilities());
+                    this.fetchDevices();
+                    this.resetCapabilities();
                 }
             }
         },
         methods: {
-            fetchDevices() {
+            fetchAllDevices() {
                 let that = this;
                 let url = 'https://cloud.bitbar.com/api/v2/devices?offset=0&limit=50&labelIds%5B%5D=41100480';
 
@@ -147,6 +137,15 @@
                 })
 
             },
+            fetchDevices() {
+                let that = this;
+                that.devicesByOSType = [];
+                that.devices.forEach(d => {
+                    if(d.osType === that.osType) {
+                        that.devicesByOSType.push(d);
+                    }
+                })
+            },
             fetchApiKey() {
                 let that = this;
                 let url = 'https://staging.bitbar.com/api/v2/users/32976629';
@@ -162,15 +161,16 @@
                 let cap = [];
                 if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
                     {x: this.capability.apiKey}, {language: this.language}));
-                if(this.deviceList && this.capability.device) cap.push(i18n('CAPABILITY_BITBAR_DEVICE', undefined,
+
+                if(this.devicesByOSType && this.capability.device) cap.push(i18n('CAPABILITY_BITBAR_DEVICE', undefined,
                     {x: this.capability.device.displayName}, {language: this.language}));
                 if(this.capability.bitbar_app) cap.push(i18n('CAPABILITY_BITBAR_APP', undefined,
                     {x: this.capability.bitbar_app}, {language: this.language}));
 
-                if(this.capability.android.appPackage && this.osType === 'ANDROID')
+                if(this.capability.android.appPackage)
                     cap.push(i18n('CAPABILITY_APP_PACKAGE', undefined, {x: this.capability.android.appPackage},
                         {language: this.language}));
-                if(this.capability.android.appActivity && this.osType === 'ANDROID')
+                if(this.capability.android.appActivity)
                     cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined, {x: this.capability.android.appActivity},
                         {language: this.language}));
 
@@ -196,10 +196,19 @@
                     cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: 'XCUITest'}, {language: this.language}));
                 }
 
+                if(this.capability.bitbar_project) cap.push(i18n('CAPABILITY_BITBAR_PROJECT_NAME', undefined,
+                    {x: this.capability.bitbar_project}, {language: this.language}));
+                if(this.capability.bitbar_testrun) cap.push(i18n('CAPABILITY_BITBAR_TEST_RUN', undefined,
+                    {x: this.capability.bitbar_testrun}, {language: this.language}));
+
                 cap.push(i18n('APPIUM_BROKER_URL', undefined, undefined, { language: this.language }));
 
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
 
+            },
+            resetCapabilities() {
+                this.createCapabilities();
+                this.$emit("capability", this.createCapabilities());
             }
         }
     }
