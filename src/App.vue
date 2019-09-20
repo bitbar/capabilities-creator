@@ -1,12 +1,15 @@
 <template>
     <div class="full-width center-content" id="creatorContent">
-        <button class="nav-btn-mob" @click="onShowNav">
+        <button class="nav-btn-mob" @click="onMenuToggle">
             <i class="fas fa-2x fa-pencil-alt"></i>
         </button>
         <div class="creator-nav">
             <div class="tag">
                 <span>BETA</span>
             </div>
+            <button class="form-header__close-btn" @click="onMenuToggle">
+                <i class="fa fa-2x fa-times"></i>
+            </button>
             <h1 class="form-header">Capabilities<br>creator</h1>
              <div class="form-toggle">
                 <label class="switch-toggle">
@@ -57,10 +60,10 @@
             setCapabilities(val) {
                 this.capabilities = val
             },
-            onShowNav(e) {
-                let propsSetter = document.getElementById('propertiesSetter');
-                propsSetter.classList.add('visible');
+            onMenuToggle(e) {
                 e.stopPropagation();
+                let propsSetter = document.querySelector('.creator-nav');
+                propsSetter.classList.toggle('visible');
             },
             onChangeTitle() {
                 let toggleEl = document.getElementById('toggle');

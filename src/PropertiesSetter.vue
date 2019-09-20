@@ -13,60 +13,57 @@
             </label>
         </div>
         <template v-if="!appiumVue">
-        <div class="form-field">
-            <drop-down v-model="capability.platform"
-                       :options="platforms"></drop-down>
-            <label class="form-label">Platform</label>
-        </div>
-        <div class="form-field">
-            <drop-down v-model="capability.browserName"
-                       :options="setOptions('browsers')"
-                       :disabled="!capability.platform"></drop-down>
-            <label class="form-label">Browser</label>
-        </div>
-        <div v-if="capability.browserName" class="form-field">
-            <drop-down v-model="capability.version"
-                       :options="setOptions('versions', true)"
-                       :disabled="!capability.browserName"></drop-down>
-            <label class="form-label">Browser version</label>
-        </div>
-        <div class="form-field">
-            <drop-down v-model="capability.resolution"
-                       :options="setOptions('resolutions')"
-                       :disabled="!capability.platform"></drop-down>
-            <label class="form-label">Resolution</label>
-        </div>
-        <div class="form-field">
-            <input type="text" id="key" class="form-input" v-model="capability.apiKey"/>
-            <label for="key" class="form-label">API key</label>
-        </div>
-        <div class="form-field checkbox-field">
-            <input type="checkbox" id="optional" class="form-checkbox" v-model="capability.optional"/>
-            <label for="optional" class="form-label">Optional capabilities</label>
-        </div>
-        <div v-if="capability.optional" class="form-field">
-            <input type="text" class="form-input" id="name" v-model="capability.bitbarProject"/>
-            <label for="name" class="form-label">Project name</label>
-        </div>
-        <div v-if="capability.optional" class="form-field">
-            <input type="text" class="form-input" id="testRunName" v-model="capability.bitbarTestRun"/>
-            <label for="testRunName" class="form-label">Test run name</label>
-        </div>
-        <div v-if="capability.optional" class="form-field">
-            <input type="number" class="form-input num-input" id="testTimeout" v-model="capability.bitbarTestTimeout"
-                   min="0" oninput="this.value = Math.abs(this.value)"/>
-            <label for="testTimeout" class="form-label">Test timeout (in seconds; 600 by default)</label>
-        </div>
-        <div v-if="capability.optional" class="form-field">
-            <input type="number" class="form-input num-input" id="multiSessionWait" v-model="capability.bitbarMultiSessionWait"
-                   min="0" max="60" oninput="this.value = Math.abs(this.value)"/>
-            <label for="multiSessionWait" class="form-label">
-                Multisession wait (in seconds; max 60)
-            </label>
-        </div>
-        <button class="btn create-btn-mob" @click="onCreateData">
-            <i class="fas fa-2x fa-plus"></i>
-        </button>
+            <div class="form-field">
+                <drop-down v-model="capability.platform"
+                           :options="platforms"></drop-down>
+                <label class="form-label">Platform</label>
+            </div>
+            <div class="form-field">
+                <drop-down v-model="capability.browserName"
+                           :options="setOptions('browsers')"
+                           :disabled="!capability.platform"></drop-down>
+                <label class="form-label">Browser</label>
+            </div>
+            <div v-if="capability.browserName" class="form-field">
+                <drop-down v-model="capability.version"
+                           :options="setOptions('versions', true)"
+                           :disabled="!capability.browserName"></drop-down>
+                <label class="form-label">Browser version</label>
+            </div>
+            <div class="form-field">
+                <drop-down v-model="capability.resolution"
+                           :options="setOptions('resolutions')"
+                           :disabled="!capability.platform"></drop-down>
+                <label class="form-label">Resolution</label>
+            </div>
+            <div class="form-field">
+                <input type="text" id="key" class="form-input" v-model="capability.apiKey"/>
+                <label for="key" class="form-label">API key</label>
+            </div>
+            <div class="form-field checkbox-field">
+                <input type="checkbox" id="optional" class="form-checkbox" v-model="capability.optional"/>
+                <label for="optional" class="form-label">Optional capabilities</label>
+            </div>
+            <div v-if="capability.optional" class="form-field">
+                <input type="text" class="form-input" id="name" v-model="capability.bitbarProject"/>
+                <label for="name" class="form-label">Project name</label>
+            </div>
+            <div v-if="capability.optional" class="form-field">
+                <input type="text" class="form-input" id="testRunName" v-model="capability.bitbarTestRun"/>
+                <label for="testRunName" class="form-label">Test run name</label>
+            </div>
+            <div v-if="capability.optional" class="form-field">
+                <input type="number" class="form-input num-input" id="testTimeout" v-model="capability.bitbarTestTimeout"
+                       min="0" oninput="this.value = Math.abs(this.value)"/>
+                <label for="testTimeout" class="form-label">Test timeout (in seconds; 600 by default)</label>
+            </div>
+            <div v-if="capability.optional" class="form-field">
+                <input type="number" class="form-input num-input" id="multiSessionWait" v-model="capability.bitbarMultiSessionWait"
+                       min="0" max="60" oninput="this.value = Math.abs(this.value)"/>
+                <label for="multiSessionWait" class="form-label">
+                    Multisession wait (in seconds; max 60)
+                </label>
+            </div>
         </template>
         <appium-props v-else></appium-props>
     </div>
@@ -204,11 +201,6 @@
                 if(this.capability.optional && this.capability.bitbarMultiSessionWait) cap.push(i18n('CAPABILITY_BITBAR_MULTI_SESSION_WAIT', undefined,
                     {x: this.capability.bitbarMultiSessionWait}, {language: this.language}));
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language})
-            },
-            onCreateData(e) {
-                let propsSetter = document.getElementById('propertiesSetter');
-                propsSetter.classList.remove('visible');
-                e.stopPropagation();
             },
             clearOptionalCaps() {
                 this.capability.bitbarProject = null;
