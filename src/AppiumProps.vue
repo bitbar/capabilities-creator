@@ -122,7 +122,8 @@
         methods: {
             fetchAllDevices() {
                 let that = this;
-                let url = 'https://staging.bitbar.com/api/v2/devices?offset=0&limit=50&labelIds%5B%5D=41100480';
+                let url = 'https://staging.bitbar.com/api/v2/devices?offset=0&limit=50' +
+                    '&sort=displayName_a&labelIds%5B%5D=41100480';
 
                 fetch(url)
                     .then(function(response) {
