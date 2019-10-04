@@ -15,7 +15,7 @@
         <div class="form-field">
             <span class="form-label form-field__helper-text">you can get your API_KEY from cloud UI under My Account</span>
             <input type="text" id="userApiKey" class="form-input" v-model="capability.apiKey"/>
-            <label for="userApiKey" class="form-label">User Api key*</label>
+            <label for="userApiKey" class="form-label">Api key*</label>
         </div>
         <div class="form-field">
             <span class="form-label form-field__helper-text">full path to your application under test</span>
@@ -158,6 +158,9 @@
                 let cap = [];
                 if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
                     {x: this.capability.apiKey}, {language: this.language}));
+                if(!this.capability.apiKey)
+                    cap.push(i18n('CAPABILITY_API_KEY_UNDEFINED', undefined,
+                        {x: this.capability.apiKey}, {language: this.language}));
 
                 if(this.devicesByOSType && this.capability.device) cap.push(i18n('CAPABILITY_BITBAR_DEVICE', undefined,
                     {x: this.capability.device.displayName}, {language: this.language}));
