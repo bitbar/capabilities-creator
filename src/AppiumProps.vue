@@ -100,7 +100,7 @@
         },
         created() {
             this.fetchAllDevices();
-            this.$emit("capability", this.createCapabilities())
+            this.addCapabilities();
         },
         watch: {
             capability: {
@@ -201,14 +201,17 @@
                 if(this.capability.bitbar_testrun) cap.push(i18n('CAPABILITY_BITBAR_TEST_RUN', undefined,
                     {x: this.capability.bitbar_testrun}, {language: this.language}));
 
-                cap.push(i18n('APPIUM_BROKER_URL', undefined, undefined, { language: this.language }));
-
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
 
             },
+            addCapabilities(){
+                let caps = this.createCapabilities();
+                let str = caps + "\n" + i18n('APPIUM_BROKER_URL', undefined, undefined, { language: this.language })
+                this.$emit("capability", str);
+            },
+
             resetCapabilities() {
-                this.createCapabilities();
-                this.$emit("capability", this.createCapabilities());
+                this.addCapabilities();
             }
         }
     }
