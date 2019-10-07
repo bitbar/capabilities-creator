@@ -139,7 +139,8 @@
                 let that = this;
                 that.devicesByOSType = [];
                 that.devices.forEach(d => {
-                    if(d.osType === that.osType) {
+                    let os = that.osType.toUpperCase()
+                    if(d.osType === os) {
                         that.devicesByOSType.push(d);
                     }
                 })
