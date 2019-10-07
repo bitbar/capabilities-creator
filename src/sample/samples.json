@@ -30,7 +30,7 @@
         "CAPABILITY_DEVICE_NAME": "capabilities.setCapability(\"deviceName\", \"%{x}\")",
         "CAPABILITY_APP": "capabilities.setCapability(\"app\", \"%{x}\")",
         "CAPABILITY_PLATFORM_NAME": "capabilities.setCapability(\"platform_name\", \"%{x}\")",
-        "APPIUM_BROKER_URL": "/* URL form Appium broker https://appium.bitbar.com/wd/hub/ */"
+        "APPIUM_BROKER_URL": "/* Remember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/ */"
       }
     },
     {
@@ -67,7 +67,7 @@
         "CAPABILITY_DEVICE_NAME": "\t'device_name': '%{x}',",
         "CAPABILITY_APP": "\t'app': '%{x}',",
         "CAPABILITY_PLATFORM_NAME": "\t'platformName': '%{x}',",
-        "APPIUM_BROKER_URL": "# URL form Appium broker https://appium.bitbar.com/wd/hub/"
+        "APPIUM_BROKER_URL": "# URemember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/"
 
       }
     },
@@ -101,7 +101,7 @@
         "CAPABILITY_DEVICE_NAME": "\t'device_name': '%{x}',",
         "CAPABILITY_APP": "\t'app': '%{x}',",
         "CAPABILITY_PLATFORM_NAME": "\t'platformName': '%{x}',",
-        "APPIUM_BROKER_URL": "// URL form Appium broker https://appium.bitbar.com/wd/hub/"
+        "APPIUM_BROKER_URL": "// Remember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/"
       }
     },
     {
@@ -132,7 +132,7 @@
         "CAPABILITY_DEVICE_NAME": "capabilities.SetCapability('device_name', '%{x}');",
         "CAPABILITY_APP": "capabilities.SetCapability('app', '%{x}');",
         "CAPABILITY_PLATFORM_NAME": "capabilities.SetCapability('platformName', '%{x}');",
-        "APPIUM_BROKER_URL": "// URL form Appium broker https://appium.bitbar.com/wd/hub/"
+        "APPIUM_BROKER_URL": "// Remember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/"
       }
     },
     {
@@ -181,7 +181,7 @@
         "CAPABILITY_DEVICE_NAME": "capabilities['device_name'] = '%{x}'",
         "CAPABILITY_APP": "capabilities['app'] = '%{x}'",
         "CAPABILITY_PLATFORM_NAME": "capabilities['platformName'] = '%{x}'",
-        "APPIUM_BROKER_URL": "# URL form Appium broker https://appium.bitbar.com/wd/hub/"
+        "APPIUM_BROKER_URL": "Remember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/"
       }
     }
   ]
