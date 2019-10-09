@@ -31,7 +31,7 @@
             <span class="form-label form-field__helper-text">the main activity of your app</span>
             <input type="text" id="appActivity" class="form-input" v-model="capability.android.appActivity"
                    placeholder="com.bitbar.sample.BitbarSampleApplicationActivity"/>
-            <label for="appActivity" class="form-label">Aapplication activity</label>
+            <label for="appActivity" class="form-label">Application activity</label>
         </div>
         <div v-if="osType == 'iOS'" class="form-field">
             <input type="text" id="appBundleId" class="form-input" v-model="capability.ios.app"
