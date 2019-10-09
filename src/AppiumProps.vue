@@ -50,11 +50,11 @@
             <label for="optional" class="form-label">Optional capabilities</label>
         </div>
         <div v-if="capability.optional" class="form-field">
-            <input type="text" id="projectName" class="form-input" v-model="capability.projectName"/>
+            <input type="text" id="projectName" class="form-input" v-model="capability.bitbar_project"/>
             <label for="projectName" class="form-label">Project name</label>
         </div>
         <div v-if="capability.optional" class="form-field">
-            <input type="text" id="runName" class="form-input" v-model="capability.testRunName"/>
+            <input type="text" id="runName" class="form-input" v-model="capability.bitbar_testrun"/>
             <label for="runName" class="form-label">Test run name</label>
         </div>
     </div>
@@ -197,11 +197,6 @@
                     cap.push(i18n('CAPABILITY_DEVICE_NAME', undefined, {x: 'iPhone device'}, {language: this.language}));
                     cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: 'XCUITest'}, {language: this.language}));
                 }
-
-                if(this.capability.bitbar_project) cap.push(i18n('CAPABILITY_BITBAR_PROJECT_NAME', undefined,
-                    {x: this.capability.bitbar_project}, {language: this.language}));
-                if(this.capability.bitbar_testrun) cap.push(i18n('CAPABILITY_BITBAR_TEST_RUN', undefined,
-                    {x: this.capability.bitbar_testrun}, {language: this.language}));
 
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
 
