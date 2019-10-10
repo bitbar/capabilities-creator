@@ -158,11 +158,22 @@
             },
             createCapabilities() {
                 let cap = [];
-                if(this.capability.apiKey) cap.push(i18n('CAPABILITY_API_KEY', undefined,
-                    {x: this.capability.apiKey}, {language: this.language}));
+                if(this.capability.apiKey)
+                    if(this.language === 'ruby')
+                        cap.push(i18n('CAPABILITY_API_KEY_APPIUM', undefined,
+                            {x: this.capability.apiKey}, {language: this.language}));
+                    else
+                        cap.push(i18n('CAPABILITY_API_KEY', undefined,
+                            {x: this.capability.apiKey}, {language: this.language}));
+
                 if(!this.capability.apiKey)
-                    cap.push(i18n('CAPABILITY_API_KEY_UNDEFINED', undefined,
+                    if(this.language === 'ruby')
+                        cap.push(i18n('CAPABILITY_API_KEY_UNDEFINED_APPIUM', undefined,
                         {x: this.capability.apiKey}, {language: this.language}));
+                    else
+                        cap.push(i18n('CAPABILITY_API_KEY_UNDEFINED', undefined,
+                            {x: this.capability.apiKey}, {language: this.language}));
+
 
                 if(this.devicesByOSType && this.capability.device) cap.push(i18n('CAPABILITY_BITBAR_DEVICE', undefined,
                     {x: this.capability.device.displayName}, {language: this.language}));
@@ -176,10 +187,20 @@
                     cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined, {x: this.capability.android.appActivity},
                         {language: this.language}));
 
-                if(this.capability.bitbar_project) cap.push(i18n('CAPABILITY_BITBAR_PROJECT_NAME', undefined,
-                    {x: this.capability.bitbar_project}, {language: this.language}));
-                if(this.capability.bitbar_testrun) cap.push(i18n('CAPABILITY_BITBAR_TEST_RUN', undefined,
-                    {x: this.capability.bitbar_testrun}, {language: this.language}));
+                if(this.capability.bitbar_project)
+                    if(this.language === 'ruby')
+                        cap.push(i18n('CAPABILITY_BITBAR_PROJECT_APPIUM', undefined,
+                            {x: this.capability.bitbar_project}, {language: this.language}));
+                    else
+                        cap.push(i18n('CAPABILITY_BITBAR_PROJECT', undefined,
+                            {x: this.capability.bitbar_project}, {language: this.language}));
+                if(this.capability.bitbar_testrun)
+                    if(this.language === 'ruby')
+                        cap.push(i18n('CAPABILITY_BITBAR_TEST_RUN_APPIUM', undefined,
+                            {x: this.capability.bitbar_testrun}, {language: this.language}));
+                    else
+                        cap.push(i18n('CAPABILITY_BITBAR_TEST_RUN', undefined,
+                            {x: this.capability.bitbar_testrun}, {language: this.language}));
 
 
                 if(this.osType === 'iOS' && this.capability.ios.app) cap.push(i18n('CAPABILITY_APP', undefined,
@@ -198,7 +219,11 @@
                     cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: 'XCUITest'}, {language: this.language}));
                 }
 
-                return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
+                if (this.language === 'ruby') {
+                    return i18n('WRAPPER_APPIUM', undefined, {x: cap.join("\n")}, {language: this.language});
+                } else {
+                    return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language});
+                }
 
             },
             addCapabilities(){

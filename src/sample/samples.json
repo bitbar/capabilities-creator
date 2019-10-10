@@ -158,6 +158,7 @@
       },
       "values":{
         "WRAPPER": "capabilities = Selenium::WebDriver::Remote::Capabilities.new\n%{x}\n",
+        "WRAPPER_APPIUM": "desired_capabilities_cloud = {\n%{x}\n}",
         "CAPABILITY_PLATFORM": "capabilities['platform'] = '%{x}'",
         "CAPABILITY_BROWSER_NAME": "capabilities['browserName'] = '%{x}'",
         "CAPABILITY_VERSION": "capabilities['version'] = '%{x}'",
@@ -171,17 +172,21 @@
         "REGEXP": "( *)# user-customizable parameters start here\n([\\S\\s]*?)\n.*#",
         "SOURCE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/ruby/bitbar_selenium.rb",
         "SOURCE_GEMFILE": "https://raw.githubusercontent.com/bitbar/bitbar-samples/master/samples/testing-frameworks/desktop-browsers/client-side/ruby/Gemfile",
-        "CAPABILITY_BITBAR_DEVICE": "capabilities['bitbar_device'] = '%{x}'",
-        "CAPABILITY_BITBAR_APP": "capabilities['bitbar_app'] = '%{x}'",
-        "CAPABILITY_APP_PACKAGE": "capabilities['appPackage'] = '%{x}'",
-        "CAPABILITY_APP_ACTIVITY": "capabilities['appActivity'] = '%{x}'",
-        "CAPABILITY_BITBAR_PROJECT_NAME": "capabilities['bitbar_project'] = '%{x}'",
-        "CAPABILITY_AUTOMATION_NAME": "capabilities['automationName'] = '%{x}'",
-        "CAPABILITY_BITBAR_TARGET": "capabilities['bitbar_target'] = '%{x}'",
-        "CAPABILITY_DEVICE_NAME": "capabilities['device_name'] = '%{x}'",
-        "CAPABILITY_APP": "capabilities['app'] = '%{x}'",
-        "CAPABILITY_PLATFORM_NAME": "capabilities['platformName'] = '%{x}'",
-        "APPIUM_BROKER_URL": "Remember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/"
+        "CAPABILITY_API_KEY_APPIUM": "\t'bitbar_apiKey' => '%{x}',",
+        "CAPABILITY_API_KEY_UNDEFINED_APPIUM": "\t'bitbar_apiKey' => '<insert your Bitbar API key here>',",
+        "CAPABILITY_BITBAR_DEVICE": "\t'bitbar_device' => '%{x}',",
+        "CAPABILITY_BITBAR_APP": "\t'bitbar_app' => '%{x}',",
+        "CAPABILITY_APP_PACKAGE": "\t'appPackage' => '%{x}',",
+        "CAPABILITY_APP_ACTIVITY": "\t'appActivity' => '%{x}',",
+        "CAPABILITY_BITBAR_PROJECT_NAME": "\t'bitbar_project' => '%{x}',",
+        "CAPABILITY_AUTOMATION_NAME": "\t'automationName' => '%{x}'",
+        "CAPABILITY_BITBAR_TARGET": "\t'bitbar_target' => '%{x}',",
+        "CAPABILITY_DEVICE_NAME": "\t'device_name' => '%{x}',",
+        "CAPABILITY_APP": "\t'app' => '%{x}',",
+        "CAPABILITY_PLATFORM_NAME": "\t'platformName' => '% {x}',",
+        "CAPABILITY_BITBAR_PROJECT_APPIUM": "\t'bitbarProject' => '%{x}',",
+        "CAPABILITY_BITBAR_TEST_RUN_APPIUM": "\t'bitbar_testrun' => '%{x}',",
+        "APPIUM_BROKER_URL": "# Remember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/"
       }
     }
   ]
