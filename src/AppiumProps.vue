@@ -15,7 +15,7 @@
         <div class="form-field">
             <span class="form-label form-field__helper-text">you can get your API_KEY from cloud UI under My Account</span>
             <input type="text" id="userApiKey" class="form-input" v-model="capability.apiKey"/>
-            <label for="userApiKey" class="form-label">API key*</label>
+            <label for="userApiKey" class="form-label">API key</label>
         </div>
         <div class="form-field">
             <span class="form-label form-field__helper-text">full path to your application under test</span>
