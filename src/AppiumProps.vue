@@ -38,11 +38,28 @@
                 placeholder="com.bitbar.testdroid.BitbarIOSSample"/>
             <label for="appBundleId" class="form-label">Bundle ID</label>
         </div>
-        <div v-if="osType == 'iOS'" class="form-field">
-            <span class="form-label form-field__helper-text">used automation framework name</span>
-            <input type="text" id="automationName" class="form-input" v-model="capability.automationName"/>
+        <div v-if="osType == 'ANDROID'" class="form-field">
+            <drop-down id="targetAndroid" v-model="capability.bitbar_target"
+                        :options="androidTestTarget">
+            </drop-down>
+            <label for="targetAndroid" class="form-label">
+                Target test type
+            </label>
+        </div>
+        <div v-if="osType == 'ANDROID'" class="form-field">
+            <drop-down id="automationName" v-model="capability.android.automationName"
+                       :options="automationNames">
+            </drop-down>
             <label for="automationName" class="form-label">
                 Automation name
+            </label>
+        </div>
+        <div v-if="osType == 'iOS'" class="form-field">
+            <drop-down id="targetIos" v-model="capability.bitbar_target"
+                       :options="iosTestTarget">
+            </drop-down>
+            <label for="targetIos" class="form-label">
+                Target test type
             </label>
         </div>
         <div class="form-field checkbox-field">
@@ -75,23 +92,25 @@
                 osType: null,
                 devices: [],
                 devicesByOSType: [],
+                androidTestTarget: ['android', 'selendroid', 'chrome'],
+                iosTestTarget: ['ios', 'safari'],
+                automationNames: ['Appium', 'Selendroid'],
                 capability: {
                     apiKey: null,
                     device: null,
                     bitbar_app: null,
                     bitbar_project: null,
                     bitbar_testrun: null,
+                    bitbar_target: null,
                     optional: false,
                     android: {
                         appPackage: null,
                         appActivity: null,
                         deviceName: 'Android Phone',
-                        bitbar_target: 'android',
-                        automationName: 'Appium'
+                        automationName: null
                     },
                     ios: {
                         app: null,
-                        bitbar_target: 'ios',
                         deviceName: 'iPhone device',
                         automationName: 'XCUITest'
                     }
@@ -187,6 +206,22 @@
                     cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined, {x: this.capability.android.appActivity},
                         {language: this.language}));
 
+                if(this.capability.bitbar_target)
+                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.capability.bitbar_target},
+                        {language: this.language}))
+
+                if(this.capability.bitbar_target === null)
+                    if(this.osType === 'ANDROID')
+                        cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.androidTestTarget[0]},
+                            {language: this.language}))
+                    else if (this.osType === 'iOS')
+                        cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.iosTestTarget[0]},
+                            {language: this.language}))
+
+                if(this.osType === 'ANDROID' && this.capability.android.automationName)
+                    cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: this.capability.android.automationName},
+                        {language: this.language}));
+
                 if(this.capability.bitbar_project)
                     if(this.language === 'ruby')
                         cap.push(i18n('CAPABILITY_BITBAR_PROJECT_APPIUM', undefined,
@@ -208,13 +243,10 @@
 
                 if (this.osType === 'ANDROID'){
                     cap.push(i18n('CAPABILITY_PLATFORM_NAME', undefined, {x: 'Android'}, {language: this.language}));
-                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: 'android'}, {language: this.language}));
                     cap.push(i18n('CAPABILITY_DEVICE_NAME', undefined, {x: 'Android Phone'}, {language: this.language}));
-                    cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: 'Appium'}, {language: this.language}));
                 }
                 else if (this.osType === 'iOS'){
                     cap.push(i18n('CAPABILITY_PLATFORM_NAME', undefined, {x: 'iOS'}, {language: this.language}));
-                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: 'ios'}, {language: this.language}));
                     cap.push(i18n('CAPABILITY_DEVICE_NAME', undefined, {x: 'iPhone device'}, {language: this.language}));
                     cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: 'XCUITest'}, {language: this.language}));
                 }

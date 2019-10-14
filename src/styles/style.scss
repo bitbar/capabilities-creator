@@ -641,7 +641,7 @@ div.alert-box {
 
 
   input:checked + .slider:before {
-    transform: translateX(75px);
+    transform: translateX(88px);
     border-radius: 0 5px 5px 0;
   }
 
@@ -652,7 +652,7 @@ div.alert-box {
     left: 0;
     right: 0;
     bottom: 0;
-    width: 150px;
+    width: 170px;
     height: 30px;
     line-height: 30px;
     color: $toggle-text-color--default;

@@ -106,7 +106,7 @@
                   return 'Appium';
               }
               else {
-                  return 'Desktop';    
+                  return 'Selenium';
               }
           }
         },

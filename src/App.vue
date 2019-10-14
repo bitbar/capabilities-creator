@@ -15,7 +15,7 @@
                 <label class="switch-toggle">
                     <input type="checkbox" v-model="appiumView" @click="onChangeTitle"/>
                     <span class="slider round" id="toggle">
-                        <span class="slider__item">Desktop</span>
+                        <span class="slider__item">Selenium</span>
                         <span class="slider__item">Appium</span>
                     </span>
                 </label>
@@ -50,7 +50,7 @@
         },
         mounted() {
             let a = document.getElementById('toggle');
-            a.setAttribute("data-title", "Desktop");
+            a.setAttribute("data-title", "Selenium");
 
         },
         methods: {
@@ -68,7 +68,7 @@
             onChangeTitle() {
                 let toggleEl = document.getElementById('toggle');
                 if (this.appiumView) {
-                    toggleEl.setAttribute("data-title", "Desktop");
+                    toggleEl.setAttribute("data-title", "Selenium");
                 }
                 else {
                     toggleEl.setAttribute("data-title", "Appium");
