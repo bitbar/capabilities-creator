@@ -210,15 +210,14 @@
                     cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.capability.bitbar_target},
                         {language: this.language}))
 
-                if(this.capability.bitbar_target === null)
-                    if(this.osType === 'ANDROID')
-                        cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.androidTestTarget[0]},
-                            {language: this.language}))
-                    else if (this.osType === 'iOS')
-                        cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.iosTestTarget[0]},
-                            {language: this.language}))
+                if(this.osType === 'ANDROID' && this.capability.bitbar_target === null)
+                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.androidTestTarget[0]},
+                        {language: this.language}))
+                else if (this.osType === 'iOS' && this.capability.bitbar_target === null)
+                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.iosTestTarget[0]},
+                        {language: this.language}))
 
-                if(this.osType === 'ANDROID' && this.capability.android.automationName)
+                if(this.capability.android.automationName)
                     cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: this.capability.android.automationName},
                         {language: this.language}));
 
