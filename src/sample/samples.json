@@ -183,7 +183,7 @@
         "CAPABILITY_BITBAR_TARGET": "\t'bitbar_target' => '%{x}',",
         "CAPABILITY_DEVICE_NAME": "\t'device_name' => '%{x}',",
         "CAPABILITY_APP": "\t'app' => '%{x}',",
-        "CAPABILITY_PLATFORM_NAME": "\t'platformName' => '% {x}',",
+        "CAPABILITY_PLATFORM_NAME": "\t'platformName' => '%{x}',",
         "CAPABILITY_BITBAR_PROJECT_APPIUM": "\t'bitbarProject' => '%{x}',",
         "CAPABILITY_BITBAR_TEST_RUN_APPIUM": "\t'bitbar_testrun' => '%{x}',",
         "APPIUM_BROKER_URL": "# Remember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/"
