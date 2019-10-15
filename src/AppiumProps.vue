@@ -88,7 +88,7 @@
         props: ['language'],
         data () {
             return {
-                osTypes: ['Android', 'iOS'],
+                osTypes: ['ANDROID', 'iOS'],
                 osType: null,
                 devices: [],
                 devicesByOSType: [],
@@ -127,6 +127,7 @@
             },
             osType: {
                 handler() {
+                    this.cleanCapabilities();
                     this.fetchDevices();
                     this.createCapabilities();
                     this.resetCapabilities();
@@ -189,32 +190,25 @@
                             {x: this.capability.apiKey}, {language: this.language}));
 
 
+
+
                 if(this.devicesByOSType && this.capability.device) cap.push(i18n('CAPABILITY_BITBAR_DEVICE', undefined,
                     {x: this.capability.device.displayName}, {language: this.language}));
                 if(this.capability.bitbar_app) cap.push(i18n('CAPABILITY_BITBAR_APP', undefined,
                     {x: this.capability.bitbar_app}, {language: this.language}));
 
-                if(this.capability.androidAppPackage)
-                    cap.push(i18n('CAPABILITY_APP_PACKAGE', undefined, {x: this.capability.androidAppPackage},
-                        {language: this.language}));
-                if(this.capability.androidAppActivity)
-                    cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined, {x: this.capability.androidAppActivity},
-                        {language: this.language}));
+
 
                 if(this.capability.bitbar_target)
                     cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.capability.bitbar_target},
                         {language: this.language}))
-
-                if(this.osType === 'ANDROID' && this.capability.bitbar_target === null)
-                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.androidTestTarget[0]},
-                        {language: this.language}))
-                else if (this.osType === 'iOS' && this.capability.bitbar_target === null)
-                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.iosTestTarget[0]},
-                        {language: this.language}))
-
-                if(this.capability.androidAutomationName)
-                    cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: this.capability.androidAutomationName},
-                        {language: this.language}));
+                else
+                    if(this.osType === 'ANDROID')
+                        cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.androidTestTarget[0]},
+                            {language: this.language}))
+                    else if (this.osType === 'iOS')
+                        cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.iosTestTarget[0]},
+                            {language: this.language}))
 
                 if(this.capability.bitbar_project)
                     if(this.language === 'ruby')
@@ -231,20 +225,28 @@
                         cap.push(i18n('CAPABILITY_BITBAR_TEST_RUN', undefined,
                             {x: this.capability.bitbar_testrun}, {language: this.language}));
 
-
-                if(this.osType === 'iOS' && this.capability.iosApp)
-                    cap.push(i18n('CAPABILITY_APP', undefined, {x: this.capability.iosApp}, {language: this.language}));
-                else
-                    cap.pop(i18n('CAPABILITY_APP'))
-
                 if (this.osType === 'ANDROID'){
                     cap.push(i18n('CAPABILITY_PLATFORM_NAME', undefined, {x: 'Android'}, {language: this.language}));
                     cap.push(i18n('CAPABILITY_DEVICE_NAME', undefined, {x: 'Android Phone'}, {language: this.language}));
+                    if(this.capability.androidAppPackage) {
+                        cap.push(i18n('CAPABILITY_APP_PACKAGE', undefined, {x: this.capability.androidAppPackage},
+                            {language: this.language}));
+                    }
+                    if(this.capability.androidAppActivity) {
+                        cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined, {x: this.capability.androidAppActivity},
+                            {language: this.language}));
+                    }
+                    if(this.capability.androidAutomationName)
+                        cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: this.capability.androidAutomationName},
+                            {language: this.language}));
                 }
                 else if (this.osType === 'iOS'){
                     cap.push(i18n('CAPABILITY_PLATFORM_NAME', undefined, {x: 'iOS'}, {language: this.language}));
                     cap.push(i18n('CAPABILITY_DEVICE_NAME', undefined, {x: 'iPhone device'}, {language: this.language}));
                     cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: 'XCUITest'}, {language: this.language}));
+                    if(this.capability.iosApp) {
+                        cap.push(i18n('CAPABILITY_APP', undefined, {x: this.capability.iosApp}, {language: this.language}));
+                    }
                 }
 
                 if (this.language === 'ruby') {
@@ -255,7 +257,6 @@
 
             },
             addCapabilities(){
-                this.capability = this.capability.map((cap) => console.log(cap));
                 let caps = this.createCapabilities();
                 let str = caps + "\n" + i18n('APPIUM_BROKER_URL', undefined, undefined, { language: this.language })
                 this.$emit("capability", str);
@@ -263,6 +264,17 @@
 
             resetCapabilities() {
                 this.addCapabilities();
+            },
+            cleanCapabilities() {
+                for(let key in this.capability) {
+
+                    if(typeof this.capability[key] === 'boolean') {
+                        this.capability[key] = false
+                    }
+                    else {
+                        this.capability[key] = null
+                    }
+                }
             }
         }
     }
