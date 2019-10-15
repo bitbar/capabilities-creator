@@ -23,18 +23,18 @@
             <label for="mobApp" class="form-label">Application</label>
         </div>
         <div v-if="osType == 'ANDROID'" class="form-field">
-            <input type="text" id="appPackage" class="form-input" v-model="capability.android.appPackage"
+            <input type="text" id="appPackage" class="form-input" v-model="capability.androidAppPackage"
                 placeholder="com.bitbar.sample"/>
             <label for="appPackage" class="form-label">Application package</label>
         </div>
         <div v-if="osType == 'ANDROID'" class="form-field">
             <span class="form-label form-field__helper-text">the main activity of your app</span>
-            <input type="text" id="appActivity" class="form-input" v-model="capability.android.appActivity"
+            <input type="text" id="appActivity" class="form-input" v-model="capability.androidAppActivity"
                    placeholder="com.bitbar.sample.BitbarSampleApplicationActivity"/>
             <label for="appActivity" class="form-label">Application activity</label>
         </div>
         <div v-if="osType == 'iOS'" class="form-field">
-            <input type="text" id="appBundleId" class="form-input" v-model="capability.ios.app"
+            <input type="text" id="appBundleId" class="form-input" v-model="capability.iosApp"
                 placeholder="com.bitbar.testdroid.BitbarIOSSample"/>
             <label for="appBundleId" class="form-label">Bundle ID</label>
         </div>
@@ -47,7 +47,7 @@
             </label>
         </div>
         <div v-if="osType == 'ANDROID'" class="form-field">
-            <drop-down id="automationName" v-model="capability.android.automationName"
+            <drop-down id="automationName" v-model="capability.androidAutomationName"
                        :options="automationNames">
             </drop-down>
             <label for="automationName" class="form-label">
@@ -88,7 +88,7 @@
         props: ['language'],
         data () {
             return {
-                osTypes: ['ANDROID', 'iOS'],
+                osTypes: ['Android', 'iOS'],
                 osType: null,
                 devices: [],
                 devicesByOSType: [],
@@ -103,17 +103,11 @@
                     bitbar_testrun: null,
                     bitbar_target: null,
                     optional: false,
-                    android: {
-                        appPackage: null,
-                        appActivity: null,
-                        deviceName: 'Android Phone',
-                        automationName: null
-                    },
-                    ios: {
-                        app: null,
-                        deviceName: 'iPhone device',
-                        automationName: 'XCUITest'
-                    }
+                    androidAppPackage: null,
+                    androidAppActivity: null,
+                    androidAutomationName: null,
+                    iosApp: null,
+                    iosDeviceName: 'iPhone device'
                 }
             }
         },
@@ -134,6 +128,7 @@
             osType: {
                 handler() {
                     this.fetchDevices();
+                    this.createCapabilities();
                     this.resetCapabilities();
                 }
             }
@@ -188,7 +183,7 @@
                 if(!this.capability.apiKey)
                     if(this.language === 'ruby')
                         cap.push(i18n('CAPABILITY_API_KEY_UNDEFINED_APPIUM', undefined,
-                        {x: this.capability.apiKey}, {language: this.language}));
+                            {x: this.capability.apiKey}, {language: this.language}));
                     else
                         cap.push(i18n('CAPABILITY_API_KEY_UNDEFINED', undefined,
                             {x: this.capability.apiKey}, {language: this.language}));
@@ -199,11 +194,11 @@
                 if(this.capability.bitbar_app) cap.push(i18n('CAPABILITY_BITBAR_APP', undefined,
                     {x: this.capability.bitbar_app}, {language: this.language}));
 
-                if(this.capability.android.appPackage)
-                    cap.push(i18n('CAPABILITY_APP_PACKAGE', undefined, {x: this.capability.android.appPackage},
+                if(this.capability.androidAppPackage)
+                    cap.push(i18n('CAPABILITY_APP_PACKAGE', undefined, {x: this.capability.androidAppPackage},
                         {language: this.language}));
-                if(this.capability.android.appActivity)
-                    cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined, {x: this.capability.android.appActivity},
+                if(this.capability.androidAppActivity)
+                    cap.push(i18n('CAPABILITY_APP_ACTIVITY', undefined, {x: this.capability.androidAppActivity},
                         {language: this.language}));
 
                 if(this.capability.bitbar_target)
@@ -217,8 +212,8 @@
                     cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.iosTestTarget[0]},
                         {language: this.language}))
 
-                if(this.capability.android.automationName)
-                    cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: this.capability.android.automationName},
+                if(this.capability.androidAutomationName)
+                    cap.push(i18n('CAPABILITY_AUTOMATION_NAME', undefined, {x: this.capability.androidAutomationName},
                         {language: this.language}));
 
                 if(this.capability.bitbar_project)
@@ -237,8 +232,10 @@
                             {x: this.capability.bitbar_testrun}, {language: this.language}));
 
 
-                if(this.osType === 'iOS' && this.capability.ios.app) cap.push(i18n('CAPABILITY_APP', undefined,
-                    {x: this.capability.ios.app}, {language: this.language}));
+                if(this.osType === 'iOS' && this.capability.iosApp)
+                    cap.push(i18n('CAPABILITY_APP', undefined, {x: this.capability.iosApp}, {language: this.language}));
+                else
+                    cap.pop(i18n('CAPABILITY_APP'))
 
                 if (this.osType === 'ANDROID'){
                     cap.push(i18n('CAPABILITY_PLATFORM_NAME', undefined, {x: 'Android'}, {language: this.language}));
@@ -258,6 +255,7 @@
 
             },
             addCapabilities(){
+                this.capability = this.capability.map((cap) => console.log(cap));
                 let caps = this.createCapabilities();
                 let str = caps + "\n" + i18n('APPIUM_BROKER_URL', undefined, undefined, { language: this.language })
                 this.$emit("capability", str);
