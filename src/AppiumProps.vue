@@ -2,7 +2,8 @@
     <div class="appiumProps">
         <div class="form-field">
             <drop-down v-model="osType"
-                    :options="osTypes">
+                    :options="osTypes"
+                    :value="osType">
             </drop-down>
             <label class="form-label">OS type</label>
         </div>
@@ -39,7 +40,7 @@
             <label for="appBundleId" class="form-label">Bundle ID</label>
         </div>
         <div v-if="osType == 'ANDROID'" class="form-field">
-            <drop-down id="targetAndroid" v-model="capability.bitbar_target"
+            <drop-down id="targetAndroid" v-model="capability.bitbar_target_android"
                         :options="androidTestTarget">
             </drop-down>
             <label for="targetAndroid" class="form-label">
@@ -55,7 +56,7 @@
             </label>
         </div>
         <div v-if="osType == 'iOS'" class="form-field">
-            <drop-down id="targetIos" v-model="capability.bitbar_target"
+            <drop-down id="targetIos" v-model="capability.bitbar_target_ios"
                        :options="iosTestTarget">
             </drop-down>
             <label for="targetIos" class="form-label">
@@ -89,7 +90,7 @@
         data () {
             return {
                 osTypes: ['ANDROID', 'iOS'],
-                osType: null,
+                osType: 'ANDROID',
                 devices: [],
                 devicesByOSType: [],
                 androidTestTarget: ['android', 'selendroid', 'chrome'],
@@ -101,18 +102,19 @@
                     bitbar_app: null,
                     bitbar_project: null,
                     bitbar_testrun: null,
-                    bitbar_target: null,
+                    bitbar_target_ios: 'ios',
+                    bitbar_target_android: 'android',
                     optional: false,
                     androidAppPackage: null,
                     androidAppActivity: null,
-                    androidAutomationName: null,
+                    androidAutomationName: 'Appium',
                     iosApp: null,
                     iosDeviceName: 'iPhone device'
                 }
             }
         },
         created() {
-            this.fetchAllDevices();
+            this.fetchAllDevices(this.fetchDevices);
             this.addCapabilities();
         },
         watch: {
@@ -125,17 +127,15 @@
             language() {
                 this.resetCapabilities();
             },
-            osType: {
-                handler() {
+            osType() {
+                    this.resetCapabilities();
                     this.cleanCapabilities();
                     this.fetchDevices();
                     this.createCapabilities();
-                    this.resetCapabilities();
-                }
             }
         },
         methods: {
-            fetchAllDevices() {
+            fetchAllDevices(callback) {
                 let that = this;
                 let url = 'https://staging.bitbar.com/api/v2/devices?offset=0&limit=50' +
                     '&sort=displayName_a&labelIds%5B%5D=41100480';
@@ -146,14 +146,17 @@
                     }).then(function (data) {
                     data.data.forEach(d => {
                         that.devices.push(d);
-                    })
+                    });
+                    callback(that.devices);
                 })
 
+
             },
-            fetchDevices() {
+            fetchDevices(arr) {
                 let that = this;
+                if(!arr) arr = that.devices;
                 that.devicesByOSType = [];
-                that.devices.forEach(d => {
+                arr.forEach(d => {
                     let os = that.osType.toUpperCase()
                     if(d.osType === os) {
                         that.devicesByOSType.push(d);
@@ -198,15 +201,18 @@
                     {x: this.capability.bitbar_app}, {language: this.language}));
 
 
-
-                if(this.capability.bitbar_target)
-                    cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.capability.bitbar_target},
-                        {language: this.language}))
-                else
-                    if(this.osType === 'ANDROID')
+                if(this.osType === 'ANDROID')
+                    if (this.capability.bitbar_target_android)
+                        cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.capability.bitbar_target_android},
+                            {language: this.language}))
+                    else
                         cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.androidTestTarget[0]},
                             {language: this.language}))
-                    else if (this.osType === 'iOS')
+                else if (this.osType === 'iOS')
+                    if (this.capability.bitbar_target_ios)
+                        cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.capability.bitbar_target_ios},
+                            {language: this.language}))
+                    else
                         cap.push(i18n('CAPABILITY_BITBAR_TARGET', undefined, {x: this.iosTestTarget[0]},
                             {language: this.language}))
 
@@ -265,7 +271,7 @@
             resetCapabilities() {
                 this.addCapabilities();
             },
-            cleanCapabilities() {
+            cleanCapabilities(os) {
                 for(let key in this.capability) {
 
                     if(typeof this.capability[key] === 'boolean') {
@@ -274,6 +280,13 @@
                     else {
                         this.capability[key] = null
                     }
+                }
+                if(os === 'ANDROID') {
+                    this.capability.bitbar_target_android = this.androidTestTarget[0]
+                    this.capability.androidAutomationName = this.automationNames[0]
+                }
+                else {
+                    this.capability.bitbar_target_ios = this.iosTestTarget[0]
                 }
             }
         }
