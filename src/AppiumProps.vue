@@ -127,9 +127,9 @@
             language() {
                 this.resetCapabilities();
             },
-            osType() {
+            osType(value) {
                     this.resetCapabilities();
-                    this.cleanCapabilities();
+                    this.cleanCapabilities(value);
                     this.fetchDevices();
                     this.createCapabilities();
             }
@@ -278,15 +278,24 @@
                         this.capability[key] = false
                     }
                     else {
-                        this.capability[key] = null
+
+                        if(os === 'ANDROID') {
+                            // if(key === 'androidAutomationName') {
+                            //     this.capability.androidAutomationName = this.automationNames[0];
+                            // }
+                            if(key === 'bitbar_target_android') {
+                                this.capability[key] = this.androidTestTarget[0];
+                            }
+                        }
+                        else if(os === 'iOS') {
+                            if(key === 'bitbar_target_ios') {
+                                this.capability[key] = this.iosTestTarget[0]
+                            }
+                        }
+                        else {
+                            this.capability[key] = null
+                        }
                     }
-                }
-                if(os === 'ANDROID') {
-                    this.capability.bitbar_target_android = this.androidTestTarget[0]
-                    this.capability.androidAutomationName = this.automationNames[0]
-                }
-                else {
-                    this.capability.bitbar_target_ios = this.iosTestTarget[0]
                 }
             }
         }
