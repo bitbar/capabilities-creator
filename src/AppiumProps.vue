@@ -2,14 +2,14 @@
     <div class="appiumProps">
         <div class="form-field">
             <drop-down v-model="osType"
-                    :options="osTypes"
-                    :value="osType">
+                       :options="osTypes"
+                       :value="osType">
             </drop-down>
             <label class="form-label">OS type</label>
         </div>
         <div class="form-field">
             <drop-down v-model="capability.device"
-                    :options="devicesByOSType" optionKey="displayName">
+                       :options="devicesByOSType" optionKey="displayName">
             </drop-down>
             <label class="form-label">Device</label>
         </div>
@@ -23,31 +23,31 @@
             <input type="text" id="mobApp" class="form-input" v-model="capability.bitbar_app"/>
             <label for="mobApp" class="form-label">Application</label>
         </div>
-        <div v-if="osType == 'ANDROID'" class="form-field">
+        <div v-show="osType == 'ANDROID'" class="form-field">
             <input type="text" id="appPackage" class="form-input" v-model="capability.androidAppPackage"
-                placeholder="com.bitbar.sample"/>
+                   placeholder="com.bitbar.sample"/>
             <label for="appPackage" class="form-label">Application package</label>
         </div>
-        <div v-if="osType == 'ANDROID'" class="form-field">
+        <div v-show="osType == 'ANDROID'" class="form-field">
             <span class="form-label form-field__helper-text">the main activity of your app</span>
             <input type="text" id="appActivity" class="form-input" v-model="capability.androidAppActivity"
                    placeholder="com.bitbar.sample.BitbarSampleApplicationActivity"/>
             <label for="appActivity" class="form-label">Application activity</label>
         </div>
-        <div v-if="osType == 'iOS'" class="form-field">
+        <div v-show="osType == 'iOS'" class="form-field">
             <input type="text" id="appBundleId" class="form-input" v-model="capability.iosApp"
-                placeholder="com.bitbar.testdroid.BitbarIOSSample"/>
+                   placeholder="com.bitbar.testdroid.BitbarIOSSample"/>
             <label for="appBundleId" class="form-label">Bundle ID</label>
         </div>
-        <div v-if="osType == 'ANDROID'" class="form-field">
+        <div v-show="osType == 'ANDROID'" class="form-field">
             <drop-down id="targetAndroid" v-model="capability.bitbar_target_android"
-                        :options="androidTestTarget">
+                       :options="androidTestTarget">
             </drop-down>
             <label for="targetAndroid" class="form-label">
                 Target test type
             </label>
         </div>
-        <div v-if="osType == 'ANDROID'" class="form-field">
+        <div v-show="osType == 'ANDROID'" class="form-field">
             <drop-down id="automationName" v-model="capability.androidAutomationName"
                        :options="automationNames">
             </drop-down>
@@ -55,7 +55,7 @@
                 Automation name
             </label>
         </div>
-        <div v-if="osType == 'iOS'" class="form-field">
+        <div v-show="osType == 'iOS'" class="form-field">
             <drop-down id="targetIos" v-model="capability.bitbar_target_ios"
                        :options="iosTestTarget">
             </drop-down>
@@ -127,11 +127,11 @@
             language() {
                 this.resetCapabilities();
             },
-            osType(value) {
-                    this.resetCapabilities();
-                    this.cleanCapabilities(value);
-                    this.fetchDevices();
-                    this.createCapabilities();
+            osType() {
+                this.resetCapabilities();
+                this.cleanCapabilities();
+                this.fetchDevices();
+                this.createCapabilities();
             }
         },
         methods: {
@@ -171,7 +171,7 @@
                     .then(function(response) {
                         return response.json()
                     }).then(function (data) {
-                        that.apiKey = data.apiKey
+                    that.apiKey = data.apiKey
                 })
             },
             createCapabilities() {
@@ -278,24 +278,15 @@
                         this.capability[key] = false
                     }
                     else {
-
-                        if(os === 'ANDROID') {
-                            // if(key === 'androidAutomationName') {
-                            //     this.capability.androidAutomationName = this.automationNames[0];
-                            // }
-                            if(key === 'bitbar_target_android') {
-                                this.capability[key] = this.androidTestTarget[0];
-                            }
-                        }
-                        else if(os === 'iOS') {
-                            if(key === 'bitbar_target_ios') {
-                                this.capability[key] = this.iosTestTarget[0]
-                            }
-                        }
-                        else {
-                            this.capability[key] = null
-                        }
+                        this.capability[key] = null
                     }
+                }
+                if(os === 'ANDROID') {
+                    this.capability.bitbar_target_android = this.androidTestTarget[0]
+                    this.capability.androidAutomationName = this.automationNames[0]
+                }
+                else {
+                    this.capability.bitbar_target_ios = this.iosTestTarget[0]
                 }
             }
         }
