@@ -52,9 +52,6 @@
                 Multisession wait (in seconds; max 60)
             </label>
         </div>
-        <button class="btn create-btn-mob" @click="onCreateData">
-            <i class="fas fa-2x fa-plus"></i>
-        </button>
     </div>
 </template>
 
@@ -133,7 +130,7 @@
                     .then(function(response) {
                         return response.json()
                     }).then(function (data) {
-                    that.platforms = data.platforms
+                    that.platforms = data.platforms;
                 })
             },
             setOptions(key, deep=false) {
@@ -177,11 +174,6 @@
                 if(this.capability.optional && this.capability.bitbarMultiSessionWait) cap.push(i18n('CAPABILITY_BITBAR_MULTI_SESSION_WAIT', undefined,
                     {x: this.capability.bitbarMultiSessionWait}, {language: this.language}));
                 return i18n('WRAPPER', undefined, {x: cap.join("\n")}, {language: this.language})
-            },
-            onCreateData(e) {
-                let propsSetter = document.getElementById('propertiesSetter');
-                propsSetter.classList.remove('visible');
-                e.stopPropagation();
             },
             clearOptionalCaps() {
                 this.capability.bitbarProject = null;
