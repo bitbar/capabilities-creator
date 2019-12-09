@@ -29,7 +29,7 @@
         "CAPABILITY_BITBAR_TARGET": "capabilities.setCapability(\"bitbar_target\", \"%{x}\");",
         "CAPABILITY_DEVICE_NAME": "capabilities.setCapability(\"deviceName\", \"%{x}\");",
         "CAPABILITY_APP": "capabilities.setCapability(\"app\", \"%{x}\");",
-        "CAPABILITY_PLATFORM_NAME": "capabilities.setCapability(\"platform_name\", \"%{x}\");",
+        "CAPABILITY_PLATFORM_NAME": "capabilities.setCapability(\"platformName\", \"%{x}\");",
         "APPIUM_BROKER_URL": "/* Remember to change your Appium URL (command executor) to https://appium.bitbar.com/wd/hub/ */"
       }
     },
