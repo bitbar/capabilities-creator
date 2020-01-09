@@ -137,11 +137,11 @@
         methods: {
             fetchAllDevices(callback) {
                 let that = this;
-                let url = 'https://staging.bitbar.com/api/v2/devices?offset=0&limit=50' +
+                let url = 'https://staging.bitbar.com/api/v2/devices?offset=0&limit=0' +
                     '&sort=displayName_a&labelIds%5B%5D=41100480';
 
                 if(window.location.href.split('?')[1] === btoa('cloud.bitbar.com'))
-                    url = 'https://cloud.bitbar.com/api/v2/devices?offset=0&limit=50' +
+                    url = 'https://cloud.bitbar.com/api/v2/devices?offset=0&limit=0' +
                         '&sort=displayName_a&labelIds%5B%5D=41100480';
 
                 fetch(url)
