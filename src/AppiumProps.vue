@@ -114,7 +114,7 @@
             }
         },
         created() {
-            this.fetchAllDevices(this.fetchDevices);
+            this.getID(this.fetchAllDevices);
             this.addCapabilities();
         },
         watch: {
@@ -135,14 +135,36 @@
             }
         },
         methods: {
-            fetchAllDevices(callback) {
+            getID(callback) {
+                let that = this;
+                let url = 'https://staging.bitbar.com/api/v2/devices/filters';
+
+                if(window.location.href.split('?')[1] === btoa('cloud.bitbar.com'))
+                    url = 'https://cloud.bitbar.com/api/v2/devices/filters';
+
+                fetch(url)
+                    .then(response => {
+                        return response.json();
+                    }).then(data => {
+
+                    let supportedFrameworks =  data.deviceFilterGroups.filter(function(d) {
+                        return d.name === 'Supported frameworks';
+                    });
+
+                    let frameworkID = supportedFrameworks[0].deviceFilters.filter(function (d) {
+                        return d.name === 'appium-client-side';
+                    });
+                    callback(frameworkID[0].id, this.fetchDevices);
+                })
+            },
+            fetchAllDevices(id, callback) {
                 let that = this;
                 let url = 'https://staging.bitbar.com/api/v2/devices?offset=0&limit=0' +
-                    '&sort=displayName_a&labelIds%5B%5D=41100480';
+                    '&sort=displayName_a&labelIds%5B%5D=' + id;
 
                 if(window.location.href.split('?')[1] === btoa('cloud.bitbar.com'))
                     url = 'https://cloud.bitbar.com/api/v2/devices?offset=0&limit=0' +
-                        '&sort=displayName_a&labelIds%5B%5D=41100480';
+                        '&sort=displayName_a&labelIds%5B%5D=' + id;
 
                 fetch(url)
                     .then(function(response) {
